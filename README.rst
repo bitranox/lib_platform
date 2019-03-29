@@ -127,13 +127,13 @@ License
 
 This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/MIT_License>`_
 
-See `License file <https://github.com/bitranox/wrapt-timeout-decorator/blob/master/LICENSE.txt>`_
+See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.txt>`_
 
-.. |Build Status| image:: https://travis-ci.org/bitranox/lib_registry.svg?branch=master
-   :target: https://travis-ci.org/bitranox/lib_registry
-.. |Codecov Status| image:: https://codecov.io/gh/bitranox/lib_registry/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/bitranox/lib_registry
-.. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_registry?branch=master
-   :target: https://bettercodehub.com/results/bitranox/lib_registry
-.. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_registry/badge.svg
-   :target: https://snyk.io/test/github/bitranox/lib_registry
+.. |Build Status| image:: https://travis-ci.org/bitranox/lib_platform.svg?branch=master
+   :target: https://travis-ci.org/bitranox/lib_platform
+.. |Codecov Status| image:: https://codecov.io/gh/bitranox/lib_platform/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/bitranox/lib_platform
+.. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_platform?branch=master
+   :target: https://bettercodehub.com/results/bitranox/lib_platform
+.. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_platform/badge.svg
+   :target: https://snyk.io/test/github/bitranox/lib_platform
