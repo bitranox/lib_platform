@@ -38,6 +38,8 @@ setup(
                       'typing',
                       'lib_registry'
                       ],
+    dependency_links=['https://github.com/bitranox/lib_registry/archive/master.zip',
+                      ],
     classifiers=CLASSIFIERS,
     setup_requires=['pytest-runner'],
     tests_require=['pytest'])
