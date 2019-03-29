@@ -25,7 +25,7 @@ def get_hostname():
         # noinspection PyBroadException
         try:
             _hostname = lib_registry.get_value(key_name='HKLM\System\CurrentControlSet\Control\ComputerName',
-                                               subkey_name='ComputerName')
+                                               value_name='ComputerName')
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
     else:
