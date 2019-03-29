@@ -1,24 +1,24 @@
-lib_registry
+lib_platform
 ============
 
 |Build Status| |Codecov Status| |Better Code| |snyk security|
 
-some convenience functions to access the windows registry - to be extended.
+some convenience functions used in many scripts
 
 supports python 2.7 - python 3.7 and possibly other dialects.
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_registry>`_, tested under `Windows <https://travis-ci.org/bitranox/lib_registry>`_
+`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Windows <https://travis-ci.org/bitranox/lib_platform>`_
 
 -----
 
 
-`Report Issues <https://github.com/bitranox/lib_registry/blob/master/ISSUE_TEMPLATE.md>`_
+`Report Issues <https://github.com/bitranox/lib_platform/blob/master/ISSUE_TEMPLATE.md>`_
 
-`Contribute <https://github.com/bitranox/lib_registry/blob/master/CONTRIBUTING.md>`_
+`Contribute <https://github.com/bitranox/lib_platform/blob/master/CONTRIBUTING.md>`_
 
-`Pull Request <https://github.com/bitranox/lib_registry/blob/master/PULL_REQUEST_TEMPLATE.md>`_
+`Pull Request <https://github.com/bitranox/lib_platform/blob/master/PULL_REQUEST_TEMPLATE.md>`_
 
-`Code of Conduct <https://github.com/bitranox/lib_registry/blob/master/CODE_OF_CONDUCT.md>`_
+`Code of Conduct <https://github.com/bitranox/lib_platform/blob/master/CODE_OF_CONDUCT.md>`_
 
 
 -----
@@ -38,14 +38,14 @@ via pip (preferred):
 
 ::
 
-    pip install --upgrade https://github.com/bitranox/lib_registry/archive/master.zip
+    pip install --upgrade https://github.com/bitranox/lib_platform/archive/master.zip
 
 via requirements.txt:
 
 ::
 
     Insert following line in Your requirements.txt:
-    https://github.com/bitranox/lib_registry/archive/master.zip
+    https://github.com/bitranox/lib_platform/archive/master.zip
 
     to install and upgrade all modules mentioned in requirements.txt:
     pip install --upgrade -r /<path>/requirements.txt
@@ -54,7 +54,7 @@ via python:
 
 ::
 
-    python -m pip install --upgrade https://github.com/bitranox/lib_registry/archive/master.zip
+    python -m pip install --upgrade https://github.com/bitranox/lib_platform/archive/master.zip
 
 
 Basic Usage
@@ -62,41 +62,59 @@ Basic Usage
 
 ::
 
-    >>> from lib_registry import *
-    >>> import winreg
+    >>> from lib_platform import *
 
-    >>> # get the SID´s of all Windows users
-    >>> get_ls_user_sids()
-    ['.DEFAULT', 'S-1-5-18', 'S-1-5-19', 'S-1-5-20', ...]
+    >>> # possible values : lowercase, returns:  'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine'
+    >>> system
+    'linux'
 
-    >>> # get the Username from SID
-    >>> get_username_from_sid(sid='S-1-5-20')
-    'NetworkService'
-
-    >>> # Read a Subkey from the Registry
-    >>> key =  'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList\\S-1-5-20'
-    >>> get_value(key_name=key, subkey_name='ProfileImagePath')
-    '%systemroot%\\\\ServiceProfiles\\\\NetworkService'
-
-    >>> key_exist('HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList\\S-1-5-20'
+    >>> is_platform_linux
     True
-    >>> key_exist('HKEY_LOCAL_MACHINE\\Software\\Wine')
+
+    >>> is_platform_darwin
     False
 
+    >>> is_platform_posix       # either darwin or linux
+    True
 
+    >>> is_platform_windows     # also True for windows_xp or windows_wine
+    False
+
+    >>> is_platform_windows_xp
+    False
+
+    >>> is_platform_wine
+    False
+
+    >>> username
+    'root'
+
+    >>> hostname
+    'test.host.com'
+
+    >>> hostname_short
+    'test'
+
+    >>> is_python2
+    False
+
+    >>> is_python3
+    True
 
 
 Requirements
 ------------
 
-PYTEST, see : https://github.com/pytest-dev/pytest
+lib_registry, see: https://github.com/bitranox/lib_registry
 
-TYPING, see : https://pypi.org/project/typing/
+pytest, see : https://github.com/pytest-dev/pytest
+
+typing, see : https://pypi.org/project/typing/
 
 Acknowledgement
 ---------------
 
-special thanks to Robert C. Martin, especially for his books on "clean code" and "clean architecture"
+special thanks to "uncle bob" Robert C. Martin, especially for his books on "clean code" and "clean architecture"
 
 Contribute
 ----------
