@@ -111,6 +111,18 @@ def get_is_python_2():
         return False
 
 
+def get_path_userhome():
+    """
+    >>> s_path = get_path_userhome()
+    >>> if s_path == '/home/srvadmin' or s_path == '/root': print('passed')  # we are root under pytest
+    passed
+
+    """
+
+    s_userhome = os.path.realpath(os.path.expanduser("~"))
+    return s_userhome
+
+
 system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine'
 is_platform_linux = platform.system().lower() == 'linux'
 is_platform_darwin = platform.system().lower() == 'darwin'
@@ -122,3 +134,4 @@ hostname = get_hostname()
 hostname_short = get_hostname_short()
 is_python2 = get_is_python_2()
 is_python3 = not is_python2
+path_userhome = get_path_userhome()
