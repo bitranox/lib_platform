@@ -83,7 +83,7 @@ Basic Usage
     >>> is_platform_windows_xp
     False
 
-    >>> is_platform_wine
+    >>> is_platform_windows_wine
     False
 
     >>> username
