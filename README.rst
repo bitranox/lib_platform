@@ -7,7 +7,7 @@ some convenience functions used in many scripts
 
 supports python 2.7 - python 3.7 and possibly other dialects.
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Windows <https://travis-ci.org/bitranox/lib_platform>`_
+`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Linux, OsX and Windows <https://travis-ci.org/bitranox/lib_platform>`_
 
 -----
 
