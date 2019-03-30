@@ -24,7 +24,7 @@ def get_hostname():
     if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - would give name of the host
         # noinspection PyBroadException
         try:
-            _hostname = lib_registry.get_value(key_name='HKLM\System\CurrentControlSet\Control\ComputerName',
+            _hostname = lib_registry.get_value(key_name=r'HKLM\System\CurrentControlSet\Control\ComputerName',
                                                value_name='ComputerName')
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
