@@ -113,9 +113,8 @@ def get_is_python_2():
 
 def get_path_userhome():
     """
-    >>> s_path = get_path_userhome()
-    >>> if s_path == '/home/srvadmin' or s_path == '/root': print('passed')  # we are root under pytest
-    passed
+    >>> result = get_path_userhome()
+    >>> assert len(result) > 1
 
     """
 

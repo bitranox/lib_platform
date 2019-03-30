@@ -102,6 +102,8 @@ Basic Usage
     >>> is_python3
     True
 
+    >>> path_userhome
+    '/home/user'
 
 Requirements
 ------------
