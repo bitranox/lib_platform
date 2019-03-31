@@ -1,7 +1,7 @@
 lib_platform
 ============
 
-|Build Status| |Codecov Status| |Better Code| |snyk security|
+|Build Status| |jupyter| |Codecov Status| |Better Code| |snyk security|
 
 some convenience functions used in many scripts
 
@@ -21,8 +21,12 @@ supports python 2.7 - python 3.7 and possibly other dialects.
 `Code of Conduct <https://github.com/bitranox/lib_platform/blob/master/CODE_OF_CONDUCT.md>`_
 
 
-
 -----
+
+Try it in Jupyter Notebook
+--------------------------
+
+You might try it right away in Jupyter Notebook by using the "launch binder" badge, or click `here <https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb>`_
 
 
 Installation and Upgrade
@@ -140,3 +144,5 @@ See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.
    :target: https://bettercodehub.com/results/bitranox/lib_platform
 .. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_platform/badge.svg
    :target: https://snyk.io/test/github/bitranox/lib_platform
+.. |jupyter| image:: https://mybinder.org/badge.svg
+   :target: https://mybinder.org/v2/gh/bitranox/wrapt_timeout_decorator/master?filepath=jupyter_test_wrapt_timeout_decorator.ipynb
