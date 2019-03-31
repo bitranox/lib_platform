@@ -145,4 +145,4 @@ See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.
 .. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_platform/badge.svg
    :target: https://snyk.io/test/github/bitranox/lib_platform
 .. |jupyter| image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/bitranox/wrapt_timeout_decorator/master?filepath=jupyter_test_wrapt_timeout_decorator.ipynb
+   :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb
