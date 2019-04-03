@@ -12,7 +12,7 @@ def test_wine_support():
 
         """
         # todo: we need admin rights to do that in travis
-        
+
         create_wine_registry_entry()
         is_wine = get_is_platform_windows_wine()
         assert is_wine
@@ -20,7 +20,7 @@ def test_wine_support():
 
         def create_wine_registry_entry():
             pass
-        
+
         def delete_wine_registry_entry():
             pass
         """
