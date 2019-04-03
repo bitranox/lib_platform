@@ -28,7 +28,7 @@ def test_wine_support():
         """
 
 
-def my_function_test():
+def my_function_pickle_test():
     if is_platform_windows:
         print('windows')
     if get_system() == 'windows':
@@ -36,5 +36,5 @@ def my_function_test():
 
 
 def test_if_pickable():
-    pickled_object = dill.dumps(my_function_test)
+    pickled_object = dill.dumps(my_function_pickle_test)
     unpickled_object = dill.loads(pickled_object)
