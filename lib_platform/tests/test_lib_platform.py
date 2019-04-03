@@ -1,5 +1,7 @@
 """lib_platform tests"""
 
+import dill
+import lib_platform
 from lib_platform import *
 from lib_registry import *
 
@@ -7,15 +9,30 @@ from lib_registry import *
 def test_wine_support():
     if is_platform_windows:
         assert not is_platform_windows_wine
-        # create_wine_registry_entry()
-        # is_wine = get_is_platform_windows_wine()
-        # assert is_wine
-        # delete_wine_registry_entry()
+
+        """
+        # todo: we need admin rights to do that in travis
+        
+        create_wine_registry_entry()
+        is_wine = get_is_platform_windows_wine()
+        assert is_wine
+        delete_wine_registry_entry()
+
+        def create_wine_registry_entry():
+            pass
+        
+        def delete_wine_registry_entry():
+            pass
+        """
 
 
-def create_wine_registry_entry():
-    pass
+def my_function():
+    if is_platform_windows:
+        print('windows')
+    if get_system() == 'windows':
+        print('windows')
 
 
-def delete_wine_registry_entry():
-    pass
+def test_if_pickable():
+    pickled_object = dill.dumps(my_function)
+    unpickled_object = dill.loads(pickled_object)
