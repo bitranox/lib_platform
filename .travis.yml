@@ -26,7 +26,7 @@ matrix:
     name: "osX Python 2.7"
     install:
     - pip install --upgrade pip
-    - pip install codecov pytest-pep8 pytest-cov
+    - pip install codecov pytest-pep8 pytest-cov dill
     - pip install -e .
 
   - os: osx
@@ -34,7 +34,7 @@ matrix:
     name: "osX Python 3.6"
     install:
     - pip3 install --upgrade pip
-    - pip3 install codecov pytest-pep8 pytest-cov
+    - pip3 install codecov pytest-pep8 pytest-cov dill
     - pip3 install -e .
 
   - os: windows
@@ -44,7 +44,7 @@ matrix:
     - choco install python2
     - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
     - python -m pip install --upgrade pip
-    - pip install codecov pytest-pep8 pytest-cov
+    - pip install codecov pytest-pep8 pytest-cov dill
     - pip install -e .
 
   - os: windows
@@ -54,13 +54,13 @@ matrix:
     - choco install python3
     - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
     - python -m pip install --upgrade pip
-    - pip install codecov pytest-pep8 pytest-cov
+    - pip install codecov pytest-pep8 pytest-cov dill
     - pip install -e .
 
 install:
 - pip install --upgrade pip
 - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then pip install "pytest-cov==2.6.0"; fi
-- pip install codecov pytest pytest-pep8 pytest-cov
+- pip install codecov pytest pytest-pep8 pytest-cov dill
 - pip install -e .
 
 script:
