@@ -19,9 +19,11 @@ def test_wine_support():
         delete_wine_registry_entry()
 
         def create_wine_registry_entry():
+            # stub
             pass
 
         def delete_wine_registry_entry():
+            # stub
             pass
         """
 
