@@ -16,7 +16,7 @@ windows_drive_c_path=~/wine/wine32/drive_c
 echo "Unzip Python 3.7.3 32 Bit to $windows_drive_c_path"
 unzip ./pywine32.zip -d $windows_drive_c_path
 
-cd windows_drive_c_path
+cd $(windows_drive_c_path)
 echo "this is now the content of $windows_drive_c_path"
 ls -l
 
