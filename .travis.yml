@@ -21,6 +21,22 @@ python:
 matrix:
   include:
 
+  - os: linux
+    language: sh
+    name: "WINE 32"
+    before_install:
+    - chmod 755 ./wine_*.sh   # make it executable
+    - ./wine_install.sh
+    - ./wine_setup_32bit.sh
+
+  - os: linux
+    language: sh
+    name: "WINE 64"
+    before_install:
+    - chmod 755 ./wine_*.sh   # make it executable
+    - ./wine_install.sh
+    - ./wine_setup_64bit.sh
+
   - os: osx
     language: sh
     name: "osX Python 2.7"
@@ -57,11 +73,6 @@ matrix:
     - pip install codecov pytest-pep8 pytest-cov dill
     - pip install -e .
 
-before_install:
-- chmod 755 ./wine_*.sh   # make it executable
-- ./wine_install.sh
-- ./wine_setup_32bit.sh
-- ./wine_setup_64bit.sh
 
 install:
 - pip install --upgrade pip
