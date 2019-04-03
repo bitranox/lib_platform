@@ -17,6 +17,8 @@ python:
 - 'pypy2.7-6.0'
 - 'pypy3.5-6.0'
 
+env:
+  - PIP_PREFIX=""
 
 matrix:
   include:
@@ -24,6 +26,8 @@ matrix:
   - os: linux
     language: sh
     name: "WINE 32"
+    env:
+      - PIP_PREFIX="WINE 32"
     before_install:
     - chmod 755 ./wine_*.sh   # make it executable
     - ./wine_install.sh
@@ -32,6 +36,8 @@ matrix:
   - os: linux
     language: sh
     name: "WINE 64"
+    env:
+      - PIP_PREFIX="WINE 32"
     before_install:
     - chmod 755 ./wine_*.sh   # make it executable
     - ./wine_install.sh
