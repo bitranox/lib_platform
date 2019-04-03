@@ -59,10 +59,11 @@ def get_system():
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine']
     >>> assert result in possible_results
     >>> # fake xp
+    >>> save_release_state = platform.release
     >>> platform.release = 'xp'
     >>> result = get_system()
     >>> assert result in possible_results
-
+    >>> platform.release = save_release_state
 
     """
     if get_is_platform_windows_wine():
