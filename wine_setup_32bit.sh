@@ -2,9 +2,10 @@
 
 save_path="`dirname \"$0\"`"
 
-echo "Setup Wine 32 Bit"
+echo "Setup Wine 32 Bit, DISPLAY = $DISPLAY"
+
 mkdir -p ~/wine
-DISPLAY=:0 WINEARCH=win32 WINEPREFIX=~/wine/wine32 winecfg
+WINEARCH=win32 WINEPREFIX=~/wine/wine32 winecfg
 
 
 echo "Download Python 3.7.3 32 Bit"
