@@ -22,10 +22,6 @@ matrix:
   - os: linux
     language: sh
     name: "WINE 32"
-    before_script:  # SETUP DISPLAY
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3 # give xvfb some time to start
     env:
     - pip_prefix="wine32..."
     before_install:
@@ -35,6 +31,7 @@ matrix:
     install:
       - echo "Install will happen here"
     script:
+      - xvfb-run make test
       - echo "Test will happen here"
 
   - os: linux
