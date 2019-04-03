@@ -58,8 +58,10 @@ matrix:
     - pip install -e .
 
 before_install:
-- chmod 755 ./install_wine.sh   # make it executable
-- ./install_wine.sh
+- chmod 755 ./wine_*.sh   # make it executable
+- ./wine_install.sh
+- ./wine_setup_32bit.sh
+- ./wine_setup_64bit.sh
 
 install:
 - pip install --upgrade pip
