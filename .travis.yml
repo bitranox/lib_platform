@@ -17,9 +17,6 @@ python:
 - 'pypy2.7-6.0'
 - 'pypy3.5-6.0'
 
-env:
-  - pip_prefix=""
-
 matrix:
   include:
 
@@ -32,6 +29,10 @@ matrix:
     - chmod 755 ./wine_*.sh   # make it executable
     - ./wine_install.sh
     - ./wine_setup_32bit.sh
+    install:
+      - echo "Install will happen here"
+    script:
+      - echo "Test will happen here"
 
   - os: linux
     language: sh
@@ -42,6 +43,10 @@ matrix:
     - chmod 755 ./wine_*.sh   # make it executable
     - ./wine_install.sh
     - ./wine_setup_64bit.sh
+    install:
+      - echo "Install will happen here"
+    script:
+      - echo "Test will happen here"
 
   - os: osx
     language: sh
