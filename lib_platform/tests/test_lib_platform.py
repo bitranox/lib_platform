@@ -1,8 +1,8 @@
 """lib_platform tests"""
 
 import dill
-import lib_platform
 from lib_platform import *
+from lib_platform.lib_platform import *
 from lib_registry import *
 
 
@@ -38,3 +38,18 @@ def test_function_to_pickle():
 def test_if_pickable():
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
+
+
+def test_fake_xp():
+    if is_platform_windows:
+        save_current_release_function = platform.release
+        platform.release = fake_release_function_xp
+        assert lib_platform.get_system() == 'windows_xp'
+        assert get_is_platform_windows_xp() is True
+        platform.release = save_current_release_function
+        assert lib_platform.get_system() == 'windows'
+        assert get_is_platform_windows_xp() is False
+
+
+def fake_release_function_xp():
+    return 'xp'

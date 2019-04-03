@@ -58,13 +58,6 @@ def get_system():
     >>> result = get_system()
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine']
     >>> assert result in possible_results
-    >>> # fake xp
-    >>> save_release_state = platform.release
-    >>> platform.release = 'xp'
-    >>> result = get_system()
-    >>> assert result in possible_results
-    >>> platform.release = save_release_state
-
     """
     if get_is_platform_windows_wine():
         return 'windows_wine'
@@ -88,6 +81,16 @@ def get_username():
     """
     _username = getpass.getuser().lower()
     return _username
+
+
+def get_is_platform_windows_xp():
+    # type: () -> bool
+    if is_platform_windows:
+        _system = get_system()
+        if _system == 'windows_xp':
+            return True
+        else:
+            return False
 
 
 def get_is_platform_windows_wine():
@@ -132,7 +135,7 @@ system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wi
 is_platform_linux = platform.system().lower() == 'linux'
 is_platform_darwin = platform.system().lower() == 'darwin'
 is_platform_posix = not is_platform_windows
-is_platform_windows_xp = system == 'windows_xp'
+is_platform_windows_xp = get_is_platform_windows_xp()
 is_platform_windows_wine = get_is_platform_windows_wine()
 username = get_username()
 hostname = get_hostname()
