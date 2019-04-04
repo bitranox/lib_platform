@@ -7,6 +7,9 @@ cd ${HOME}
 
 wget -nc --no-check-certificate -O pywine-master.zip https://github.com/bitranox/python_wine_binaries/archive/master.zip
 
+echo "Unzip Python 3.7.3 Master to ${HOME}"
+unzip -nqq ./pywine-master.zip -d ${HOME}
+
 if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Unzip Git Portable 32 Bit"

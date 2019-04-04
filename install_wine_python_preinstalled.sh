@@ -10,7 +10,7 @@ wget -nc --no-check-certificate -O pywine-master.zip https://github.com/bitranox
 # wget --no-check-certificate -O pywine32.zip https://github.com/bitranox/python_wine_binaries/blob/master/bin/python3.7.3_wine_32.zip # not working !
 
 echo "Unzip Python 3.7.3 Master to ${HOME}"
-unzip -qq ./pywine-master.zip -d ${HOME}
+unzip -nqq ./pywine-master.zip -d ${HOME}
 
 if [[ "${WINEARCH}" == "win32" ]]
     then
