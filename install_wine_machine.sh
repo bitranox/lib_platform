@@ -10,9 +10,9 @@ echo "Disable GUI Crash Dialogs"
 winetricks nocrashdialog
 
 echo "Install common Packets"
-# winetricks -q dotnet20sp2  # Error SBSDisabled
-winetricks -q msxml3
-winetricks -q dotnet35sp1
+# winetricks -q msxml3  # win32 ok
+winetricks -q msxml6
+winetricks -q dotnet462
 winetricks -q allfonts
 winetricks -q windowscodecs
 
