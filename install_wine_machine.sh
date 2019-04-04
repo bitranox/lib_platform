@@ -10,9 +10,10 @@ echo "Disable GUI Crash Dialogs"
 winetricks nocrashdialog
 
 echo "Install common Packets"
-winetricks -q dotnet20
-winetricks -q msxml3 dotnet35sp1
-winetricks lucida
-winetricks windowscodecs
+winetricks -q dotnet20sp2
+winetricks -q msxml3
+winetricks -q dotnet35sp1
+winetricks -q allfonts
+winetricks -q windowscodecs
 
 cd ${save_path}
