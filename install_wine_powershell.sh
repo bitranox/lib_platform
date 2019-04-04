@@ -17,6 +17,6 @@ if [[ "${WINEARCH}" == "win32" ]]
     fi
 
 unzip -qq ./powershell.zip -d ${powershell_install_dir}
-wine ${powershell_install_dir}/pwsh -ExecutionPolicy unrestricted get-executionpolicy
+wine ${powershell_install_dir}/pwsh -ExecutionPolicy unrestricted -Command "get-executionpolicy"
 
 cd ${save_path}
