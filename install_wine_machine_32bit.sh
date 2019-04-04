@@ -5,6 +5,8 @@ save_path="`dirname \"$0\"`"
 echo "Setup Wine 32 Bit"
 mkdir -p ~/wine
 wine_dir="~/wine/wine32"
+wine_dir = eval ${wine_dir}
+
 export WINEARCH=win32
 export WINEPREFIX=${wine_dir}
 xvfb-run wine winecfg
