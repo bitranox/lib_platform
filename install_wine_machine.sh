@@ -5,7 +5,7 @@ echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH} "
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 
-xvfb-run --auto-servernum winecfg
+winecfg
 
 echo "Disable GUI Crash Dialogs"
 winetricks nocrashdialog
