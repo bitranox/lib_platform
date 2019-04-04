@@ -21,6 +21,8 @@ addons:
   apt:
     packages:
       - xvfb
+      - winbind
+      - ntlm_auth
 
 matrix:
   include:
