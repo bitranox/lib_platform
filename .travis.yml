@@ -16,7 +16,7 @@ python:
 - 'pypy2.7-6.0'
 - 'pypy3.5-6.0'
 
-### install xvfb virtual framebuffer - start commands with xvfb-run <command>
+### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
   apt:
     packages:
