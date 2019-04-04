@@ -16,6 +16,12 @@ python:
 - 'pypy2.7-6.0'
 - 'pypy3.5-6.0'
 
+### install xvfb virtual framebuffer - start commands with xvfb-run <command>
+addons:
+  apt:
+    packages:
+      - xvfb
+
 matrix:
   include:
 
@@ -24,7 +30,7 @@ matrix:
     name: "WINE32 Python 3.7.3"
     before_install:
     - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-    - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
+    # - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
     - ./install_wine.sh
     - ./install_wine_machine_32bit.sh
     install:
