@@ -6,8 +6,6 @@ wine_drive_c_dir=${WINEPREFIX}/drive_c
 echo "Download Python Binaries"
 cd ${HOME}
 wget -nc --no-check-certificate -O pywine-master.zip https://github.com/bitranox/python_wine_binaries/archive/master.zip
-# NOT WORKING :
-# wget --no-check-certificate -O pywine32.zip https://github.com/bitranox/python_wine_binaries/blob/master/bin/python3.7.3_wine_32.zip # not working !
 
 echo "Unzip Python 3.7.3 Master to ${HOME}"
 unzip -nqq ./pywine-master.zip -d ${HOME}

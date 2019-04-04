@@ -3,11 +3,11 @@ save_path="`dirname \"$0\"`"
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 
+echo "Download Git Portable Binaries"
 cd ${HOME}
-
 wget -nc --no-check-certificate -O pywine-master.zip https://github.com/bitranox/python_wine_binaries/archive/master.zip
 
-echo "Unzip Python 3.7.3 Master to ${HOME}"
+echo "Unzip Git Master to ${HOME}"
 unzip -nqq ./pywine-master.zip -d ${HOME}
 
 if [[ "${WINEARCH}" == "win32" ]]
