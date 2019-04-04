@@ -5,6 +5,7 @@ echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH} "
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 
+# xvfb-run --auto-servernum winecfg # fails marshal_object couldnt get IPSFactory buffer for interface ...
 winecfg
 
 echo "Disable GUI Crash Dialogs"
