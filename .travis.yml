@@ -28,6 +28,8 @@ matrix:
   - os: linux
     language: sh
     name: "WINE32 Python 3.7.3"
+    services:
+    - xvfb
     before_install:
     - chmod 755 ./*.sh    # make shell scripts executable, just in case.
     # - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
