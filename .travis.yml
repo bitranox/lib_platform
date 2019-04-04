@@ -33,9 +33,11 @@ matrix:
       WINEARCH=win32
       WINEPREFIX=${HOME}/wine/wine32
 
-    # services:   # does not work
+    # services:   # does not work 2019-04-03
     #   - xvfb
+
     before_install:
+      - "export DISPLAY=:99.0"
       - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
