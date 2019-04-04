@@ -7,19 +7,20 @@ mkdir -p ${HOME}/wine
 wine_dir="${HOME}/wine/wine32"   ## expand the home dir with ${HOME} - wine does not like "~"
 wine_drive_c_dir=${wine_dir}/drive_c
 
-export WINEARCH=win32
-export WINEPREFIX=${wine_dir}
-export DISPLAY=:99.0
+# export WINEARCH=win32
+# export WINEPREFIX=${wine_dir}
+# export DISPLAY=:99.0
 
 # /etc/init.d/xvfb start  ## does not work
 # sleep 3
+# sudo service xvfb start ## does not work
 
-sudo service xvfb start
 
-WINEARCH=win32 WINEPREFIX=${wine_dir} winecfg
+# WINEARCH=win32 WINEPREFIX=${wine_dir} winecfg
+winecfg
 
 echo "Disable GUI Crash Dialogs"
-xvfb-run winetricks nocrashdialog
+winetricks nocrashdialog
 
 echo "Download Python Binaries"
 cd ~
