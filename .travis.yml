@@ -30,11 +30,10 @@ matrix:
     name: "WINE32 Python 3.7.3"
     before_install:
     - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-    # - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
     - ./install_wine.sh
     - ./install_wine_machine_32bit.sh
     install:
-      - echo "Install Application will happen here"
+      - wine c:/Python37-32/python -m pip install --upgrade pip
     script:
       - echo "Test Application will happen here"
 
@@ -43,7 +42,6 @@ matrix:
     name: "WINE64 Python 3.7.3"
     before_install:
     - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-    - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
     - ./install_wine.sh
     - ./install_wine_machine_64bit.sh
     install:

@@ -10,8 +10,11 @@ wine_drive_c_dir=${wine_dir}/drive_c
 export WINEARCH=win32
 export WINEPREFIX=${wine_dir}
 export DISPLAY=:99.0
-/etc/init.d/xvfb start
-sleep 3
+
+# /etc/init.d/xvfb start  ## does not work
+# sleep 3
+
+sudo service xvfb start
 
 WINEARCH=win32 WINEPREFIX=${wine_dir} winecfg
 
@@ -28,8 +31,5 @@ wget --no-check-certificate -O pywine-master.zip https://github.com/bitranox/pyt
 echo "Unzip Python 3.7.3 32 Bit to ${wine_drive_c_dir}"
 unzip ./pywine-master.zip -d ${HOME}
 unzip ./python_wine_binaries-master/bin/python3.7.3_wine_32.zip -d ${wine_drive_c_dir}
-
-echo "this is now the content of ${wine_drive_c_dir}"
-ls -l
 
 cd ${save_path}
