@@ -31,5 +31,6 @@ wget --no-check-certificate -O pywine-master.zip https://github.com/bitranox/pyt
 echo "Unzip Python 3.7.3 32 Bit to ${wine_drive_c_dir}"
 unzip ./pywine-master.zip -d ${HOME}
 unzip ./python_wine_binaries-master/bin/python3.7.3_wine_32.zip -d ${wine_drive_c_dir}
+wine c:/Python37-32/python -m pip install --upgrade pip
 
 cd ${save_path}
