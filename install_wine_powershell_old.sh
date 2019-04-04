@@ -16,7 +16,7 @@ if [[ "${WINEARCH}" == "win32" ]]
         wget --no-check-certificate -O powershell.zip https://github.com/PowerShell/PowerShell/releases/download/v6.2.0/PowerShell-6.2.0-win-x64.zip
     fi
 
-unzip -qq ./powershell.zip -d ${powershell_dir}
-wine ${powershell_dir}/pwsh -h
+unzip -qq ./powershell.zip -d ${powershell_install_dir}
+wine ${powershell_install_dir}/pwsh -h
 
 cd ${save_path}
