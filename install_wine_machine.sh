@@ -4,7 +4,7 @@ save_path="`dirname \"$0\"`"
 echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH} "
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
-DISPLAY=:0.0 winecfg
+winecfg
 
 echo "Disable GUI Crash Dialogs"
 winetricks nocrashdialog
