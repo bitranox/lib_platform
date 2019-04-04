@@ -31,17 +31,12 @@ matrix:
     env:
       WINEARCH=win32
       WINEPREFIX=${HOME}/wine/wine32
-
     before_install:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3
     - chmod 755 ./*.sh    # make shell scripts executable, just in case.
     - ./install_wine.sh
     - ./install_wine_machine_32bit.sh
     install:
       - wine c:/Python37-32/python -m pip install --upgrade pip
-
     script:
       - echo "Test Application will happen here"
 
