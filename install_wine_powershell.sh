@@ -11,13 +11,17 @@ if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Download Powershell 32 Bit"
         wget --no-check-certificate -O powershell.zip https://github.com/PowerShell/PowerShell/releases/download/v6.2.0/PowerShell-6.2.0-win-x86.zip
-        unzip -qq ./powershell.zip -d ${install_dir}
     else
         echo "Download Powershell 64 Bit"
         wget --no-check-certificate -O powershell.zip https://github.com/PowerShell/PowerShell/releases/download/v6.2.0/PowerShell-6.2.0-win-x64.zip
-        unzip -qq ./powershell.zip -d ${install_dir}
     fi
+
+unzip -qq ./powershell.zip -d ${install_dir}
+mv *.exe powershell-setup.exe
 
 echo "contents of installdir ${install_dir}: "
 ls ${install_dir} -l
 cd ${save_path}
+
+wine c:/install/powershell/powershell-setup.exe /quiet /passive /norestart
+wine powershell -h
