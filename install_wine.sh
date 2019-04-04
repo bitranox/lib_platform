@@ -10,3 +10,4 @@ echo "Wine Packages Update"
 sudo apt-get update
 echo "Wine Packages Install"
 sudo apt-get install --install-recommends winehq-devel
+sudo apt-get install -y winetricks

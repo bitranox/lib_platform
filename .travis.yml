@@ -21,32 +21,29 @@ matrix:
 
   - os: linux
     language: sh
-    name: "WINE 32"
-    env:
-    - pip_prefix="wine32..."
+    name: "WINE32 Python 3.7.3"
     before_install:
-    - chmod 755 ./wine_*.sh   # make it executable
-    - ./wine_install.sh
-    - ./wine_setup_32bit.sh
+    - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+    - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
+    - ./install_wine.sh
+    - ./install_wine_machine_32bit.sh
     install:
-      - echo "Install will happen here"
+      - echo "Install Application will happen here"
     script:
-      - xvfb-run make test
-      - echo "Test will happen here"
+      - echo "Test Application will happen here"
 
   - os: linux
     language: sh
-    name: "WINE 64"
-    env:
-      - pip_prefix="wine64..."
+    name: "WINE64 Python 3.7.3"
     before_install:
-    - chmod 755 ./wine_*.sh   # make it executable
-    - ./wine_install.sh
-    - ./wine_setup_64bit.sh
+    - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+    - ./install_xvfb.sh   # virtual framebuffer - start commands with xvfb-run <command>
+    - ./install_wine.sh
+    - ./install_wine_machine_64bit.sh
     install:
-      - echo "Install will happen here"
+      - echo "Install Application will happen here"
     script:
-      - echo "Test will happen here"
+      - echo "Test Application will happen here"
 
   - os: osx
     language: sh
