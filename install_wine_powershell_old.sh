@@ -2,7 +2,7 @@
 save_path="`dirname \"$0\"`"
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
-powershell_install_dir=${wine_drive_c_dir}/opt/powershell
+powershell_install_dir=${wine_drive_c_dir}/windows/system32/powershell
 mkdir -p ${powershell_install_dir}
 
 cd ${powershell_install_dir}
