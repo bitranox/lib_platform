@@ -9,6 +9,10 @@ wine_drive_c_dir=${wine_dir}/drive_c
 
 export WINEARCH=win32
 export WINEPREFIX=${wine_dir}
+export DISPLAY=:99.0
+/etc/init.d/xvfb start
+sleep 3
+
 WINEARCH=win32 WINEPREFIX=${wine_dir} winecfg
 
 echo "Disable GUI Crash Dialogs"
@@ -16,7 +20,7 @@ xvfb-run winetricks nocrashdialog
 
 echo "Download Python Binaries"
 cd ~
-wget --no-check-certificate -O pywine32.zip https://github.com/bitranox/python_wine_binaries/archive/master.zip
+wget --no-check-certificate -O pywine-master.zip https://github.com/bitranox/python_wine_binaries/archive/master.zip
 # NOT WORKING :
 # wget --no-check-certificate -O pywine32.zip https://github.com/bitranox/python_wine_binaries/blob/master/bin/python3.7.3_wine_32.zip # not working !
 
