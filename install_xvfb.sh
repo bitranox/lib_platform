@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Install xvfb virtual framebuffer"
-sudo apt-get install -y x11-xkb-utils
+# sudo apt-get install -y x11-xkb-utils # can not be installed
+sudo apt-get install -y x11-utils
 sudo apt-get install -y xserver-common
 sudo apt-get install -y xvfb
 

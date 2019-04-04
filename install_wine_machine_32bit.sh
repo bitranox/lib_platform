@@ -6,10 +6,10 @@ echo "Setup Wine 32 Bit"
 mkdir -p ~/wine
 wine_dir="~/wine/wine32"
 wine_prefix="WINEARCH=win32 WINEPREFIX=${wine_dir}"
-${wine_prefix} xvfb-run wine winecfg
+xvfb-run $wine_prefix wine winecfg
 
 echo "Disable GUI Crash Dialogs"
-${wine_prefix} xvfb-run winetricks nocrashdialog
+xvfb-run $wine_prefix winetricks nocrashdialog
 
 
 echo "Download Python 3.7.3 32 Bit"
