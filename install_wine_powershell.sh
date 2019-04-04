@@ -17,7 +17,7 @@ if [[ "${WINEARCH}" == "win32" ]]
     fi
 
 unzip -qq ./powershell.zip -d ${install_dir}
-mv *.exe powershell-setup.exe
+# mv *.exe powershell-setup.exe
 
 echo "contents of installdir ${install_dir}: "
 ls ${install_dir} -l
