@@ -42,7 +42,7 @@ matrix:
       - ./install_wine.sh
       - ./install_wine_machine.sh
       - ./install_wine_python_preinstalled.sh
-      - ./install_wine_powershell_old.sh
+      - ./install_wine_powershell.sh
       - ./install_wine_chocolatey.sh
       - ./install_wine_git.sh
     install:
