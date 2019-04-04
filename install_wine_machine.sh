@@ -18,14 +18,14 @@ wget --no-check-certificate -O pywine-master.zip https://github.com/bitranox/pyt
 
 
 echo "Unzip Python 3.7.3 32 & 64 Bit to ${wine_drive_c_dir}"
-unzip ./pywine-master.zip -d ${HOME}
-unzip ./python_wine_binaries-master/bin/python3.7.3_wine_32.zip -d ${wine_drive_c_dir}
-unzip ./python_wine_binaries-master/bin/python3.7.3_wine_64.zip -d ${wine_drive_c_dir}
+unzip -qq ./pywine-master.zip -d ${HOME}
+unzip -qq ./python_wine_binaries-master/bin/python3.7.3_wine_32.zip -d ${wine_drive_c_dir}
+unzip -qq ./python_wine_binaries-master/bin/python3.7.3_wine_64.zip -d ${wine_drive_c_dir}
 
-echo "Contents of ${HOME}"
-ls ${HOME} -l
+echo "Install Chocolatey"
+wine "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
-echo "Contents of ${wine_drive_c_dir}"
-ls ${wine_drive_c_dir} -l
+echo "Install Git"
+wine choco install git -params '"/GitAndUnixToolsOnPath"'
 
 cd ${save_path}
