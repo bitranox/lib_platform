@@ -11,7 +11,7 @@ wine_dir="${HOME}/wine/wine32"
 
 export WINEARCH=win32
 export WINEPREFIX=${wine_dir}
-WINEARCH=win32 WINEPREFIX=${wine_dir} xvfb-run winecfg
+WINEARCH=win32 WINEPREFIX=${wine_dir} winecfg
 
 ##########################################
 echo "Disable GUI Crash Dialogs"
