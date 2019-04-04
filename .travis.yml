@@ -32,25 +32,31 @@ matrix:
       WINEARCH=win32
       WINEPREFIX=${HOME}/wine/wine32
     before_install:
-    - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-    - ./install_wine.sh
-    - ./install_wine_machine_32bit.sh
+      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+      - ./install_wine.sh
+      - ./install_wine_machine.sh
     install:
       - wine c:/Python37-32/python -m pip install --upgrade pip
+      - wine c:/Python37-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
+      - wine c:/Python37-32/Scripts/pip install -e .
     script:
-      - echo "Test Application will happen here"
+      - wine c:/Python37-32/python -m pytest --pep8 --cov
 
   - os: linux
     language: sh
     name: "WINE64 Python 3.7.3"
+    env:
+      WINEPREFIX=${HOME}/wine/wine64
     before_install:
-    - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-    - ./install_wine.sh
-    - ./install_wine_machine_64bit.sh
+      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+      - ./install_wine.sh
+      - ./install_wine_machine.sh
     install:
-      - echo "Install Application will happen here"
+      - wine c:/Python37-64/python -m pip install --upgrade pip
+      - wine c:/Python37-64/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
+      - wine c:/Python37-64/Scripts/pip install -e .
     script:
-      - echo "Test Application will happen here"
+      - wine c:/Python37-64/python -m pytest --pep8 --cov
 
   - os: osx
     language: sh
@@ -64,30 +70,29 @@ matrix:
     language: sh
     name: "Windows Python 2.7"
     before_install:
-    - choco install python2
-    - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
-    - python -m pip install --upgrade pip
+      - choco install python2
+      - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+      - python -m pip install --upgrade pip
 
   - os: windows
     language: sh
     name: "Windows Python 3.7"
     before_install:
-    - choco install python3
-    - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-    - python -m pip install --upgrade pip
+      - choco install python3
+      - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+      - python -m pip install --upgrade pip
 
 before_install:
-- pip install --upgrade pip
+  - pip install --upgrade pip
 
 install:
-- if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then pip install "pytest-cov==2.6.0"; fi
-- pip install codecov pytest pytest-pep8 pytest-cov dill
-- pip install -e .
+  - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then pip install "pytest-cov==2.6.0"; fi
+  - pip install codecov pytest pytest-pep8 pytest-cov dill
+  - pip install -e .
 
 script:
   - py.test --pep8 --cov
 
 after_success:
-
-- coverage report
-- codecov
+  - coverage report
+  - codecov
