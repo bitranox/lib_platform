@@ -35,6 +35,8 @@ matrix:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
       - ./install_wine_machine.sh
+      - ./install_wine_python_preinstalled.sh
+      - ./install_wine_powershell.sh
     install:
       - wine c:/Python37-32/python -m pip install --upgrade pip
       - wine c:/Python37-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
@@ -51,6 +53,8 @@ matrix:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
       - ./install_wine_machine.sh
+      - ./install_wine_python_preinstalled.sh
+      - ./install_wine_powershell.sh
     install:
       - wine c:/Python37-64/python -m pip install --upgrade pip
       - wine c:/Python37-64/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
