@@ -3,13 +3,15 @@ save_path="`dirname \"$0\"`"
 
 ##########################################
 echo "Setup Wine 32 Bit"
-mkdir -p ~/wine
-wine_dir="~/wine/wine32"
-eval wine_dir=${wine_dir}  ## expand the home dir - wine does not like "~"
+# mkdir -p ~/wine
+mkdir -p ${HOME}/wine
+# wine_dir="~/wine/wine32"
+wine_dir="${HOME}/wine/wine32"
+# eval wine_dir=${wine_dir}  ## expand the home dir - wine does not like "~"
 
 export WINEARCH=win32
 export WINEPREFIX=${wine_dir}
-xvfb-run wine winecfg
+xvfb-run winecfg
 
 ##########################################
 echo "Disable GUI Crash Dialogs"
