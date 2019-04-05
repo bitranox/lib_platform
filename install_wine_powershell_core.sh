@@ -1,6 +1,13 @@
 #!/bin/bash
 save_path="`dirname \"$0\"`"
 
+## set wine prefix to ${HOME}/.wine if not given by environment variable
+if [[ -z ${WINEPREFIX} ]]
+    then
+        echo "WARNING - no WINEPREFIX in environment - set now to ${HOME}/.wine"
+        WINEPREFIX=${HOME}/.wine
+    fi
+
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 powershell_install_dir=${wine_drive_c_dir}/windows/system32/powershell
 mkdir -p ${powershell_install_dir}
