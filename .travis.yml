@@ -46,7 +46,7 @@ matrix:
       - ./install_wine_git_portable.sh
     install:
       # - wine c:/Python27-32/python -m pip install --upgrade pip
-      - WINEPATH=${var_WINEPATH} wine python -m pip install --upgrade pip
+      - WINEPATH=$var_WINEPATH wine python -m pip install --upgrade pip
       # - wine c:/Python27-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
       - wine pip install codecov pytest pytest-pep8 pytest-cov dill
       # - WINEPATH=c:/PortableGit32/cmd wine c:/Python27-32/Scripts/pip install -e .
