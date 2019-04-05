@@ -13,8 +13,11 @@ python:
 - '3.7-dev'   # 2018-03-25 development Version
 # - '3.8-dev'   # 2019-03-28 does not exist now
 # - 'nightly'   # 2019-03-28 does not exist now
-- 'pypy2.7-6.0'
-- 'pypy3.5-6.0'
+# - 'pypy2.7-6.0' # fails starting from 2019-04-05
+# - 'pypy3.5-6.0' # fails starting from  2019-04-05
+- 'pypy2.7-7.0'
+- 'pypy3.5-7.0'
+
 
 ### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
@@ -44,9 +47,9 @@ matrix:
     install:
       - wine c:/Python37-32/python -m pip install --upgrade pip
       - wine c:/Python37-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
-      - wine c:/Python37-32/Scripts/pip install -e .
+      - WINEPATH=c:/PortableGit32/cmd wine c:/Python37-32/Scripts/pip install -e .
     script:
-      - WINEPATH=c:\\PortableGit32\\cmd wine c:/Python37-32/python -m pytest --pep8 --cov
+      - c:/Python37-32/python -m pytest --pep8 --cov
 
   - os: linux
     language: sh
@@ -64,9 +67,9 @@ matrix:
     install:
       - wine c:/Python37-64/python -m pip install --upgrade pip
       - wine c:/Python37-64/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
-      - wine c:/Python37-64/Scripts/pip install -e .
+      - WINEPATH=c:/PortableGit64/cmd wine c:/Python37-64/Scripts/pip install -e .
     script:
-      - WINEPATH=c:\\PortableGit32\\cmd wine c:/Python37-64/python -m pytest --pep8 --cov
+      - wine c:/Python37-64/python -m pytest --pep8 --cov
 
   - os: osx
     language: sh

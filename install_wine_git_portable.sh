@@ -11,9 +11,6 @@ wget -nc --no-check-certificate -O ${decompress_dir}/binaries_portable_git-maste
 echo "Unzip Git Portable Binaries Master to ${decompress_dir}"
 unzip -nqq ${decompress_dir}/binaries_portable_git-master.zip -d ${decompress_dir}
 
-cat x* > ~/hugefile
-
-
 if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Joining Multipart Zip in ${decompress_dir}/binaries_portable_git-master/bin"
