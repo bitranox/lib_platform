@@ -160,7 +160,7 @@ install:
   - pip install -e .
 
 script:
-  - pip --install-option test  # test setup.py test
+  - pip --install-option test .  # test setup.py test
   - py.test --pep8 --cov
 
 after_success:
