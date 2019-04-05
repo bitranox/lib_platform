@@ -49,6 +49,9 @@ matrix:
       - WINEPATH=c:/PortableGit32/cmd wine c:/Python37-32/Scripts/pip install -e .
     script:
       - wine c:/Python37-32/python -m pytest --pep8 --cov
+    after_success:
+      - wine coverage report
+      - wine codecov
 
   - os: linux
     language: sh
@@ -67,6 +70,10 @@ matrix:
       - WINEPATH=c:/PortableGit64/cmd wine c:/Python37-64/Scripts/pip install -e .
     script:
       - wine c:/Python37-64/python -m pytest --pep8 --cov
+    after_success:
+      - wine coverage report
+      - wine codecov
+
 
   - os: osx
     language: sh
