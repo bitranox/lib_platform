@@ -160,7 +160,7 @@ install:
   - pip install -e .
 
 script:
-  - pip wheel https://github.com/bitranox/lib_platform/archive/master.zip --install-option test  # test setup.py test option
+  - pip install https://github.com/bitranox/lib_platform/archive/master.zip --install-option test --compile  # test setup.py test option
   - py.test --pep8 --cov
 
 after_success:
