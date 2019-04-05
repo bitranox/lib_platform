@@ -41,7 +41,7 @@ matrix:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
       - ./install_wine_machine.sh
-      - ./install_wine_python_preinstalled.sh
+      - ./install_wine_python3_preinstalled.sh
       - ./install_wine_git_portable.sh
     install:
       - wine c:/Python37-32/python -m pip install --upgrade pip
@@ -62,7 +62,7 @@ matrix:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
       - ./install_wine_machine.sh
-      - ./install_wine_python_preinstalled.sh
+      - ./install_wine_python3_preinstalled.sh
       - ./install_wine_git_portable.sh
     install:
       - wine c:/Python37-64/python -m pip install --upgrade pip
