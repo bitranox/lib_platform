@@ -14,10 +14,10 @@ unzip -nqq ${decompress_dir}/binaries_portable_git-master.zip -d ${decompress_di
 if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Unzip Git Portable Binaries 32 Bit to ${decompress_dir}"
-        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit32*.zip -d ${wine_drive_c_dir}
+        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit32*.zip.001 -d ${wine_drive_c_dir}
     else
         echo "Unzip Git Portable Binaries 64 Bit to ${decompress_dir}"
-        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit64*.zip -d ${wine_drive_c_dir}
+        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit64*.zip.001 -d ${wine_drive_c_dir}
     fi
 
 cd ${save_path}
