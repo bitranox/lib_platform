@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 # this is only for local development when the package is actually not installed
-# noinspection PyBroadException
 try:
     from .lib_platform.lib_platform import *
-except Exception:
+except ImportError:
     pass
 
 __title__ = 'lib_platform'
