@@ -28,6 +28,52 @@ addons:
 matrix:
   include:
 
+- os: linux
+    language: sh
+    name: "WINE32 Python 2.7.16"
+    env:
+      WINEARCH=win32
+      WINEPREFIX=${HOME}/wine/wine32
+    # services:
+    #   - xvfb    # this does not work 2019-04-04
+
+    before_install:
+      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+      - ./install_wine.sh
+      - ./install_wine_machine.sh
+      - ./install_wine_python2_preinstalled.sh
+      - ./install_wine_git_portable.sh
+    install:
+      - wine c:/Python27-32/python -m pip install --upgrade pip
+      - wine c:/Python27-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
+      - WINEPATH=c:/PortableGit32/cmd wine c:/Python27-32/Scripts/pip install -e .
+    script:
+      - wine c:/Python27-32/python -m pytest --pep8 --cov
+    after_success:
+      - wine c:/Python27-32/Scripts/coverage report
+      - wine c:/Python27-32/Scripts/codecov
+
+  - os: linux
+    language: sh
+    name: "WINE64 Python 2.7.16"
+    env:
+      WINEPREFIX=${HOME}/wine/wine64
+    before_install:
+      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+      - ./install_wine.sh
+      - ./install_wine_machine.sh
+      - ./install_wine_python2_preinstalled.sh
+      - ./install_wine_git_portable.sh
+    install:
+      - wine c:/Python27-64/python -m pip install --upgrade pip
+      - wine c:/Python27-64/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
+      - WINEPATH=c:/PortableGit64/cmd wine c:/Python27-64/Scripts/pip install -e .
+    script:
+      - wine c:/Python27-64/python -m pytest --pep8 --cov
+    after_success:
+      - wine c:/Python27-64/Scripts/coverage report
+      - wine c:/Python27-64/Scripts/codecov
+
   - os: linux
     language: sh
     name: "WINE32 Python 3.7.3"
