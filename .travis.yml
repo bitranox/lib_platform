@@ -5,6 +5,7 @@ dist: xenial
 sudo: true
 
 python:
+# you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
 - '2.7'
 - '3.4'
 - '3.5'
@@ -13,12 +14,10 @@ python:
 - '3.7-dev'   # 2018-03-25 development Version
 # - '3.8-dev'   # 2019-03-28 does not exist now
 # - 'nightly'   # 2019-03-28 does not exist now
-# - 'pypy2.7-6.0' # fails from 2019-04-05
-# - 'pypy3.5-6.0' # fails from  2019-04-05
+- 'pypy2.7-6.0' # fails from 2019-04-05
+- 'pypy3.5-6.0' # fails from  2019-04-05
 # - 'pypy2.7-7.0' # fails 2019-04-05
 # - 'pypy3.5-7.0' # fails 2019-04-05
-- 'pypy2.7' # fails 2019-04-05
-- 'pypy3.5' # fails 2019-04-05
 
 
 ### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
