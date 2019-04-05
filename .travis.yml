@@ -172,8 +172,8 @@ install:
 
 script:
   - ${WINECMD} pip install ${github_master} --install-option test # test setup.py test option
-  - ${WINECMD} py.test --pep8 --cov
-
+  # - ${WINECMD} py.test --pep8 --cov
+  - ${WINECMD} python -m pytest --pep8 --cov
 after_success:
   - coverage report
   - codecov
