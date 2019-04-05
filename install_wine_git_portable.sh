@@ -2,7 +2,7 @@
 save_path="`dirname \"$0\"`"
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
-decompress_dir=${HOME}/decompress
+decompress_dir=${HOME}/bitranox_decompress
 mkdir -p ${decompress_dir}
 
 echo "Download Git Portable Binaries"
@@ -23,5 +23,6 @@ if [[ "${WINEARCH}" == "win32" ]]
 echo "Unzip Git Portable Binaries to ${wine_drive_c_dir}"
 unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip -d ${wine_drive_c_dir}
 
+rm -r ${decompress_dir}
 
 cd ${save_path}

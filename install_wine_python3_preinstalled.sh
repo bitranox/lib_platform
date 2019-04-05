@@ -18,7 +18,7 @@ if [[ -z ${WINEPREFIX} ]]
 
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
-decompress_dir=${HOME}/decompress
+decompress_dir=${HOME}/bitranox_decompress
 mkdir -p ${decompress_dir}
 
 python_version_short=python37
