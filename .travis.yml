@@ -35,15 +35,14 @@ matrix:
 
   - os: linux
     language: sh
-    name: "WINE32 Python 2.7.16"
     env:
       - WINEARCH="win32"
+      - WINEARCH="win64"
       - WINEPREFIX="${HOME}/wine/wine32"
       - WINECMD="wine"
       - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
-      global:
-        - WINECMD="wine"
 
+    name: "WINE ${WINEARCH} Python 2.7.16"
     # services:
     #   - xvfb    # this does not work 2019-04-04
 
@@ -57,9 +56,9 @@ matrix:
       - wine python -m pip install --upgrade pip
       - wine pip install codecov pytest pytest-pep8 pytest-cov dill
       - wine pip install -e .
-    # script:
-    #   - wine pip install ${github_master} --install-option test # test setup.py test option
-    #   - wine python -m pytest --pep8 --cov
+    script:
+      - wine pip install ${github_master} --install-option test # test setup.py test option
+      - wine python -m pytest --pep8 --cov
     after_success:
       - wine coverage report
       - wine codecov
@@ -162,6 +161,7 @@ matrix:
       - choco install python3
       - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
       - python -m pip install --upgrade pip
+
 
 before_install:
   - pip install --upgrade pip
