@@ -4,10 +4,17 @@ save_path="`dirname \"$0\"`"
 # if used outside github/travis You need to set :
 # WINEARCH=win32    for 32 Bit Wine
 # WINEARCH=""       for 64 Bit Wine
-# WINEPREFIX={HOME}/.wine   or the wine prefix You are using
+# WINEPREFIX defaults to ${HOME}/.wine   or you need to pass it via environment variable
 # dont rely on the python version strings set below - they might change over time,
 # check https://github.com/bitranox/binaries_python37_wine
 # todo : shift python_version_full dependent code to  https://github.com/bitranox/binaries_${python_version_short}_wine/archive/master.zip
+
+## set wine prefix to ${HOME}/.wine if not given by environment variable
+if [[ -z ${WINEPREFIX} ]]
+    then
+        echo "WARNING - no WINEPREFIX in environment - set now to ${HOME}/.wine"
+        WINEPREFIX=${HOME}/.wine
+    fi
 
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
