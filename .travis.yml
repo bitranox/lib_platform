@@ -50,8 +50,8 @@ matrix:
     script:
       - wine c:/Python37-32/python -m pytest --pep8 --cov
     after_success:
-      - wine coverage report
-      - wine codecov
+      - wine c:/Python37-32/Scripts/coverage report
+      - wine c:/Python37-32/Scripts/codecov
 
   - os: linux
     language: sh
@@ -71,8 +71,8 @@ matrix:
     script:
       - wine c:/Python37-64/python -m pytest --pep8 --cov
     after_success:
-      - wine coverage report
-      - wine codecov
+      - wine c:/Python37-64/Scripts/coverage report
+      - wine c:/Python37-64/Scripts/codecov
 
 
   - os: osx

@@ -14,11 +14,14 @@ unzip -nqq ${decompress_dir}/binaries_python_wine-master.zip -d ${decompress_dir
 
 if [[ "${WINEARCH}" == "win32" ]]
     then
-        echo "Unzip Python 3.7.3 32 Bit to ${wine_drive_c_dir}"
-        unzip -qq ${decompress_dir}/binaries_python_wine-master/bin/python3.7.3_wine_32.zip -d ${wine_drive_c_dir}
+        echo "Joining Multipart Zip in ${decompress_dir}/binaries_portable_git-master/bin"
+        cat ${decompress_dir}/binaries_python_wine-master/bin/python3.7.3_wine_32* > ${decompress_dir}/binaries_portable_git-master/bin/joined_python37.zip
     else
-        echo "Unzip Python 3.7.3 64 Bit to ${wine_drive_c_dir}"
-        unzip -qq ${decompress_dir}/binaries_python_wine-master/bin/python3.7.3_wine_64.zip -d ${wine_drive_c_dir}
+        echo "Joining Multipart Zip in ${decompress_dir}/binaries_portable_git-master/bin"
+        cat ${decompress_dir}/binaries_python_wine-master/bin/python3.7.3_wine_64* > ${decompress_dir}/binaries_portable_git-master/bin/joined_python37.zip
     fi
+
+echo "Unzip Python 3.7.3 to ${wine_drive_c_dir}"
+unzip -qq ${decompress_dir}/binaries_python_wine-master/bin/joined_python37.zip -d ${wine_drive_c_dir}
 
 cd ${save_path}
