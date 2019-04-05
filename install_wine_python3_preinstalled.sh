@@ -1,6 +1,11 @@
 #!/bin/bash
 save_path="`dirname \"$0\"`"
 
+# if used outside github/travis You need to set :
+# WINEARCH=win32    for 32 Bit Wine
+# WINEARCH=""       for 64 Bit Wine
+# WINEPREFIX={HOME}/.wine   or the wine prefix You are using
+
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/decompress
 mkdir -p ${decompress_dir}
@@ -27,5 +32,7 @@ if [[ "${WINEARCH}" == "win32" ]]
 
 echo "Unzip ${python_version_doc} to ${wine_drive_c_dir}"
 unzip -qq ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip -d ${wine_drive_c_dir}
+
+rm -r ${decompress_dir}
 
 cd ${save_path}
