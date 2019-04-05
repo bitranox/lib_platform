@@ -1,172 +1,122 @@
 language: python
 group: travis_latest
 dist: xenial
-
 sudo: true
 
+env:
+    global:
+        - github_master="https://github.com/bitranox/lib_platform/archive/master.zip"
+
 python:
-# you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
-- '2.7'
-- '3.4'
-- '3.5'
-- '3.6'
-- '3.7.1'     # 2019-03-25 latest Version
-- '3.7-dev'   # 2018-03-25 development Version
-# - '3.8-dev'   # 2019-03-28 does not exist now
-# - 'nightly'   # 2019-03-28 does not exist now
-- 'pypy2.7-6.0'
-- 'pypy3.5-6.0'
+    # you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
+    - '2.7'
+    - '3.4'
+    - '3.5'
+    - '3.6'
+    - '3.7.1'     # 2019-03-25 latest Version
+    - '3.7-dev'   # 2018-03-25 development Version
+    # - '3.8-dev'   # 2019-03-28 does not exist now
+    # - 'nightly'   # 2019-03-28 does not exist now
+    - 'pypy2.7-6.0'
+    - 'pypy3.5-6.0'
 
 
 ### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
-  apt:
-    packages:
-      - xvfb
-      - winbind
-
-env:
-  global:
-    - github_master="https://github.com/bitranox/lib_platform/archive/master.zip"
-
-
+    apt:
+        packages:
+            - xvfb
+            - winbind
+    #################################################################################
+    #################################################################################
 matrix:
-  include:
-
-  - os: linux
-    language: sh
-    name: "WINE 32 Bit Python 2.7.16"
-    env:
-      - WINEARCH="win32"
-      - WINEPREFIX="${HOME}/wine/wine32"
-      - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
-      - WINECMD="wine"
-
-    # services:
-    #   - xvfb    # this does not work 2019-04-04
-
-    before_install:
-      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-      - ./install_wine.sh
-      - ./install_wine_machine.sh
-      - ./install_wine_python2_preinstalled.sh
-      - ./install_wine_git_portable.sh
-      - ${WINECMD} python -m pip install --upgrade pip
-    # install:
-    #   - ${WINECMD} pip install codecov pytest pytest-pep8 pytest-cov dill
-    #   - ${WINECMD} pip install -e .
-    # script:
-    #   - ${WINECMD} pip install ${github_master} --install-option test # test setup.py test option
-    #   - ${WINECMD} python -m pytest --pep8 --cov
-    # after_success:
-    #   - ${WINECMD} coverage report
-    #   - ${WINECMD} codecov
-
-  - os: linux
-    language: sh
-    name: "WINE 64 Bit Python 2.7.16"
-    env:
-      - WINEPREFIX="${HOME}/wine/wine64"
-      - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
-      - WINECMD="wine"
-
-    before_install:
-      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-      - ./install_wine.sh
-      - ./install_wine_machine.sh
-      - ./install_wine_python2_preinstalled.sh
-      - ./install_wine_git_portable.sh
-      - ${WINECMD} python -m pip install --upgrade pip
-    # install:
-    #   - ${WINECMD} pip install codecov pytest pytest-pep8 pytest-cov dill
-    #   - ${WINECMD} pip install -e .
-    # script:
-    #   - ${WINECMD} pip install ${github_master} --install-option test # test setup.py test option
-    #   - ${WINECMD} python -m pytest --pep8 --cov
-    # after_success:
-    #   - ${WINECMD} coverage report
-    #   - ${WINECMD} codecov
-
-  - os: linux
-    language: sh
-    name: "WINE 32 Bit Python 3.7.3"
-    env:
-      - WINEARCH="win32"
-      - WINEPREFIX="${HOME}/wine/wine32"
-      - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
-      - WINECMD="wine"
-    # services:
-    #   - xvfb    # this does not work 2019-04-04
-
-    before_install:
-      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-      - ./install_wine.sh
-      - ./install_wine_machine.sh
-      - ./install_wine_python3_preinstalled.sh
-      - ./install_wine_git_portable.sh
-      - ${WINECMD} python -m pip install --upgrade pip
-    # install:
-    #   - wine pip install codecov pytest pytest-pep8 pytest-cov dill
-    #   - wine pip install -e .
-    # script:
-    #   - wine pip install ${github_master} --install-option test # test setup.py test option
-    #   - wine python -m pytest --pep8 --cov
-    # after_success:
-    #   - wine coverage report
-    #   - wine codecov
-
-  - os: linux
-    language: sh
-    name: "WINE 64 Bit Python 3.7.3"
-    env:
-      - WINEPREFIX="${HOME}/wine/wine64"
-      - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
-      - WINECMD="wine"
-    before_install:
-      - chmod 755 ./*.sh    # make shell scripts executable, just in case.
-      - ./install_wine.sh
-      - ./install_wine_machine.sh
-      - ./install_wine_python3_preinstalled.sh
-      - ./install_wine_git_portable.sh
-      - ${WINECMD} python -m pip install --upgrade pip
-    # install:
-    #   - ${WINECMD} pip install codecov pytest pytest-pep8 pytest-cov dill
-    #   - ${WINECMD} pip install -e .
-    # script:
-    #   - ${WINECMD} pip install ${github_master} --install-option test # test setup.py test option
-    #   - ${WINECMD} python -m pytest --pep8 --cov
-    # after_success:
-    #   - ${WINECMD} coverage report
-    #   - ${WINECMD} codecov
-
-
-  - os: osx
-    language: sh
-    name: "osX Python 2.7"
-
-  - os: osx
-    language: sh
-    name: "osX Python 3.6"
-
-  - os: windows
-    language: sh
-    name: "Windows Python 2.7"
-    before_install:
-      - choco install python2
-      - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
-      - python -m pip install --upgrade pip
-
-  - os: windows
-    language: sh
-    name: "Windows Python 3.7"
-    before_install:
-      - choco install python3
-      - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-      - python -m pip install --upgrade pip
-
-
-before_install:
-  - pip install --upgrade pip
+    include:
+    #################################################################################
+    - os: linux
+      language: sh
+      name: "WINE 32 Bit Python 2.7.16"
+      env:
+          - WINEARCH="win32"
+          - WINEPREFIX="${HOME}/wine/wine32"
+          - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - WINECMD="wine"
+      # services:
+      #   - xvfb    # this does not work 2019-04-04
+      before_install:
+          - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+          - ./install_wine.sh
+          - ./install_wine_machine.sh
+          - ./install_wine_python2_preinstalled.sh
+          - ./install_wine_git_portable.sh
+    #################################################################################
+    - os: linux
+      language: sh
+      name: "WINE 64 Bit Python 2.7.16"
+      env:
+          - WINEPREFIX="${HOME}/wine/wine64"
+          - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - WINECMD="wine"
+      before_install:
+          - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+          - ./install_wine.sh
+          - ./install_wine_machine.sh
+          - ./install_wine_python2_preinstalled.sh
+          - ./install_wine_git_portable.sh
+    #################################################################################
+    - os: linux
+      language: sh
+      name: "WINE 32 Bit Python 3.7.3"
+      env:
+          - WINEARCH="win32"
+          - WINEPREFIX="${HOME}/wine/wine32"
+          - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - WINECMD="wine"
+      # services:
+      #   - xvfb    # this does not work 2019-04-04
+      before_install:
+          - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+          - ./install_wine.sh
+          - ./install_wine_machine.sh
+          - ./install_wine_python3_preinstalled.sh
+          - ./install_wine_git_portable.sh
+    #################################################################################
+    - os: linux
+      language: sh
+      name: "WINE 64 Bit Python 3.7.3"
+      env:
+          - WINEPREFIX="${HOME}/wine/wine64"
+          - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - WINECMD="wine"
+      before_install:
+          - chmod 755 ./*.sh    # make shell scripts executable, just in case.
+          - ./install_wine.sh
+          - ./install_wine_machine.sh
+          - ./install_wine_python3_preinstalled.sh
+          - ./install_wine_git_portable.sh
+    #################################################################################
+    - os: osx
+      language: sh
+      name: "osX Python 2.7"
+    #################################################################################
+    - os: osx
+      language: sh
+      name: "osX Python 3.6"
+    #################################################################################
+    - os: windows
+      language: sh
+      name: "Windows Python 2.7"
+      before_install:
+          - choco install python2
+          - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+    #################################################################################
+    - os: windows
+      language: sh
+      name: "Windows Python 3.7"
+      before_install:
+        - choco install python3
+        - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+    #################################################################################
+    #################################################################################
 
 install:
   - ${WINECMD} python -m pip install --upgrade pip
