@@ -57,14 +57,13 @@ def test_if_pickable():
 
 
 def test_fake_xp():
-    if is_platform_windows:
-        save_current_release = platform.release()
+    if is_platform_windows and not is_platform_windows_wine:
         save_current_release_function = platform.release
         platform.release = fake_release_function_xp
         assert lib_platform.get_system() == 'windows_xp'
         assert get_is_platform_windows_xp() is True
         platform.release = save_current_release_function
-        assert lib_platform.get_system() == save_current_release
+        assert lib_platform.get_system() == 'windows'
         assert get_is_platform_windows_xp() is False
 
 
