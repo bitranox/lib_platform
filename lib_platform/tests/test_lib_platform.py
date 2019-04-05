@@ -6,26 +6,42 @@ from lib_platform.lib_platform import *
 from lib_registry import *
 
 
-def test_wine_support():
-    if is_platform_windows:
+def test_system_values():
+    if is_platform_linux:
+        assert system == 'linux'
+        assert is_platform_posix
+        assert not is_platform_darwin
+        assert not is_platform_windows
         assert not is_platform_windows_wine
+        assert not is_platform_windows_xp
+    if is_platform_darwin:
+        assert system == 'darwin'
+        assert is_platform_posix
+        assert not is_platform_linux
+        assert not is_platform_windows
+        assert not is_platform_windows_wine
+        assert not is_platform_windows_xp
 
-        """
-        # todo: we need admin rights to do that in travis
+    if is_platform_posix:
+        assert system == 'darwin' or system == 'linux'
+        assert is_platform_darwin or is_platform_linux
+        assert not is_platform_windows
+        assert not is_platform_windows_wine
+        assert not is_platform_windows_xp
 
-        create_wine_registry_entry()
-        is_wine = get_is_platform_windows_wine()
-        assert is_wine
-        delete_wine_registry_entry()
+    if is_platform_windows:
+        windows_flavours = ['windows', 'windows_wine', 'windows_xp']
+        assert system in windows_flavours
+        assert not is_platform_linux
+        assert not is_platform_darwin
+        assert not is_platform_posix
 
-        def create_wine_registry_entry():
-            # stub
-            pass
-
-        def delete_wine_registry_entry():
-            # stub
-            pass
-        """
+    if is_platform_windows_wine:
+        assert system == 'windows_wine'
+        assert is_platform_windows
+        assert not is_platform_linux
+        assert not is_platform_darwin
+        assert not is_platform_posix
 
 
 def test_function_to_pickle():
