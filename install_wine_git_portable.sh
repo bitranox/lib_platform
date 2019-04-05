@@ -3,6 +3,7 @@ save_path="`dirname \"$0\"`"
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/decompress
+mkdir -p ${decompress_dir}
 
 echo "Download Git Portable Binaries"
 wget -nc --no-check-certificate -O ${decompress_dir}/binaries_portable_git-master.zip https://github.com/bitranox/binaries_portable_git/archive/master.zip
