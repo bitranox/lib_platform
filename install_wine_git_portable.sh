@@ -8,16 +8,23 @@ mkdir -p ${decompress_dir}
 echo "Download Git Portable Binaries"
 wget -nc --no-check-certificate -O ${decompress_dir}/binaries_portable_git-master.zip https://github.com/bitranox/binaries_portable_git/archive/master.zip
 
-echo "Unzip Git Portable Binaries Master to ${HOME}"
+echo "Unzip Git Portable Binaries Master to ${decompress_dir}"
 unzip -nqq ${decompress_dir}/binaries_portable_git-master.zip -d ${decompress_dir}
+
+cat x* > ~/hugefile
+
 
 if [[ "${WINEARCH}" == "win32" ]]
     then
-        echo "Unzip Git Portable Binaries 32 Bit to ${decompress_dir}"
-        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit32* -d ${wine_drive_c_dir}
+        echo "Joining Multipart Zip in ${decompress_dir}/binaries_portable_git-master/bin"
+        cat ${decompress_dir}/binaries_portable_git-master/bin/PortableGit32* > ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip
     else
-        echo "Unzip Git Portable Binaries 64 Bit to ${decompress_dir}"
-        unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/PortableGit64* -d ${wine_drive_c_dir}
+        echo "Joining Multipart Zip in ${decompress_dir}/binaries_portable_git-master/bin"
+        cat ${decompress_dir}/binaries_portable_git-master/bin/PortableGit64* > ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip
     fi
+
+echo "Unzip Git Portable Binaries to ${wine_drive_c_dir}"
+unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip -d ${wine_drive_c_dir}
+
 
 cd ${save_path}
