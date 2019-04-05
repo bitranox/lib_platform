@@ -28,7 +28,7 @@ addons:
 matrix:
   include:
 
-- os: linux
+  - os: linux
     language: sh
     name: "WINE32 Python 2.7.16"
     env:
