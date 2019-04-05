@@ -5,9 +5,6 @@ save_path="`dirname \"$0\"`"
 # WINEARCH=win32    for 32 Bit Wine
 # WINEARCH=         for 64 Bit Wine
 # WINEPREFIX defaults to ${HOME}/.wine   or you need to pass it via environment variable
-# dont rely on the python version strings set below - they might change over time,
-# check https://github.com/bitranox/binaries_python27_wine
-# todo : shift python_version_full dependent code to  https://github.com/bitranox/binaries_${python_version_short}_wine/archive/master.zip
 
 ## set wine prefix to ${HOME}/.wine if not given by environment variable
 if [[ -z ${WINEPREFIX} ]]
