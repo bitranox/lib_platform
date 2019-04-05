@@ -28,6 +28,9 @@ addons:
 env:
   global:
     - github_master="https://github.com/bitranox/lib_platform/archive/master.zip"
+    - wineprefix32="${HOME}/wine/wine32"
+    - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+
 
 matrix:
   include:
@@ -36,10 +39,10 @@ matrix:
     language: sh
     name: "WINE32 Python 2.7.16"
     env:
-      global:
+      matrix:
         - WINEARCH="win32"
-        - WINEPREFIX="${HOME}/wine/wine32"
-        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+        - WINEPREFIX=${wineprefix32}
+      global:
         - WINECMD="wine"
 
     # services:
