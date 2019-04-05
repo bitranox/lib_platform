@@ -7,6 +7,7 @@ save_path="`dirname \"$0\"`"
 # WINEPREFIX={HOME}/.wine   or the wine prefix You are using
 # dont rely on the python version strings set below - they might change over time,
 # check https://github.com/bitranox/binaries_python27_wine
+# todo : shift python_version_full dependent code to  https://github.com/bitranox/binaries_${python_version_short}_wine/archive/master.zip
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/decompress
