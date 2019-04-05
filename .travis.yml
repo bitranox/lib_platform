@@ -36,10 +36,10 @@ matrix:
     language: sh
     name: "WINE32 Python 2.7.16"
     env:
-      - WINEARCH="win32"
-      - WINEPREFIX="${HOME}/wine/wine32"
-      - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
       global:
+        - WINEARCH="win32"
+        - WINEPREFIX="${HOME}/wine/wine32"
+        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
         - WINECMD="wine"
 
     # services:
