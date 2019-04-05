@@ -51,7 +51,7 @@ matrix:
       - wine c:/Python37-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
       - WINEPATH=c:/PortableGit32/cmd wine c:/Python37-32/Scripts/pip install -e .
     script:
-      - c:/Python37-32/python -m pytest --pep8 --cov
+      - c:/Python37-32/bin/python -m pytest --pep8 --cov
 
   - os: linux
     language: sh
@@ -71,7 +71,7 @@ matrix:
       - wine c:/Python37-64/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
       - WINEPATH=c:/PortableGit64/cmd wine c:/Python37-64/Scripts/pip install -e .
     script:
-      - wine c:/Python37-64/python -m pytest --pep8 --cov
+      - wine c:/Python37-64/bin/python -m pytest --pep8 --cov
 
   - os: osx
     language: sh
