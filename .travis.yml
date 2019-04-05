@@ -51,7 +51,7 @@ matrix:
       - wine c:/Python27-32/python -m pytest --pep8 --cov
     after_success:
       - wine c:/Python27-32/Scripts/coverage report
-      - wine c:/Python27-32/Scripts/codecov
+      - WINEPATH=c:/PortableGit32/cmd wine c:/Python27-32/Scripts/codecov
 
   - os: linux
     language: sh
@@ -72,7 +72,7 @@ matrix:
       - wine c:/Python27-64/python -m pytest --pep8 --cov
     after_success:
       - wine c:/Python27-64/Scripts/coverage report
-      - wine c:/Python27-64/Scripts/codecov
+      - WINEPATH=c:/PortableGit64/cmd wine c:/Python27-64/Scripts/codecov
 
   - os: linux
     language: sh
@@ -97,7 +97,7 @@ matrix:
       - wine c:/Python37-32/python -m pytest --pep8 --cov
     after_success:
       - wine c:/Python37-32/Scripts/coverage report
-      - wine c:/Python37-32/Scripts/codecov
+      - WINEPATH=c:/PortableGit32/cmd wine c:/Python37-32/Scripts/codecov
 
   - os: linux
     language: sh
@@ -118,7 +118,7 @@ matrix:
       - wine c:/Python37-64/python -m pytest --pep8 --cov
     after_success:
       - wine c:/Python37-64/Scripts/coverage report
-      - wine c:/Python37-64/Scripts/codecov
+      - WINEPATH=c:/PortableGit64/cmd wine c:/Python37-64/Scripts/codecov
 
 
   - os: osx

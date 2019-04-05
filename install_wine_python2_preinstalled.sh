@@ -5,6 +5,8 @@ save_path="`dirname \"$0\"`"
 # WINEARCH=win32    for 32 Bit Wine
 # WINEARCH=""       for 64 Bit Wine
 # WINEPREFIX={HOME}/.wine   or the wine prefix You are using
+# dont rely on the python version strings set below - they might change over time,
+# check https://github.com/bitranox/binaries_python27_wine
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/decompress
