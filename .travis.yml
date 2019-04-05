@@ -16,8 +16,6 @@ python:
 # - 'nightly'   # 2019-03-28 does not exist now
 - 'pypy2.7-6.0' # fails from 2019-04-05
 - 'pypy3.5-6.0' # fails from  2019-04-05
-# - 'pypy2.7-7.0' # fails 2019-04-05
-# - 'pypy3.5-7.0' # fails 2019-04-05
 
 
 ### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
@@ -50,7 +48,7 @@ matrix:
       - wine c:/Python37-32/Scripts/pip install codecov pytest pytest-pep8 pytest-cov dill
       - WINEPATH=c:/PortableGit32/cmd wine c:/Python37-32/Scripts/pip install -e .
     script:
-      - c:/Python37-32/python -m pytest --pep8 --cov
+      - wine c:/Python37-32/python -m pytest --pep8 --cov
 
   - os: linux
     language: sh
