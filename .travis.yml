@@ -28,8 +28,6 @@ addons:
 env:
   global:
     - github_master="https://github.com/bitranox/lib_platform/archive/master.zip"
-    - wineprefix32="${HOME}/wine/wine32"
-    - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
 
 
 matrix:
@@ -41,9 +39,10 @@ matrix:
     env:
       matrix:
         - WINEARCH="win32"
-        - WINEPREFIX=${wineprefix32}
+        - WINEPREFIX="${HOME}/wine/wine32"
       global:
         - WINECMD="wine"
+        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
 
     # services:
     #   - xvfb    # this does not work 2019-04-04
