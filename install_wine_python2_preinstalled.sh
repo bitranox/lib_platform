@@ -20,16 +20,12 @@ if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Joining Multipart Zip in ${decompress_dir}/binaries_${python_version_short}_wine-master/bin"
         cat ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/${python_version_full}_wine_32* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
-        echo "Unzip ${python_version_doc} to ${wine_drive_c_dir}"
-        unzip -qq ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip -d ${wine_drive_c_dir}
-        cp ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/${python_version_short}_32.dll ${wine_drive_c_dir}/windows/system32/${python_version_short}.dll
     else
         echo "Joining Multipart Zip in ${decompress_dir}/binaries_${python_version_short}_wine-master/bin"
         cat ${decompress_dir}/binaries_python_wine-master/bin/${python_version_full}_wine_64* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
-        echo "Unzip ${python_version_doc} to ${wine_drive_c_dir}"
-        unzip -qq ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip -d ${wine_drive_c_dir}
-        cp ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/${python_version_short}_64.dll ${wine_drive_c_dir}/windows/SysWOW64/${python_version_short}.dll
     fi
 
+echo "Unzip ${python_version_doc} to ${wine_drive_c_dir}"
+unzip -qq ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip -d ${wine_drive_c_dir}
 
 cd ${save_path}
