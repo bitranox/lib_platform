@@ -32,9 +32,9 @@ matrix:
     language: sh
     name: "WINE32 Python 2.7.16"
     env:
-      - WINEARCH=win32
-      - WINEPREFIX=${HOME}/wine/wine32
-      - WINEPATH=c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts
+      - WINEARCH="win32"
+      - WINEPREFIX="${HOME}/wine/wine32"
+      - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
 
     # services:
     #   - xvfb    # this does not work 2019-04-04
@@ -59,7 +59,7 @@ matrix:
     language: sh
     name: "WINE64 Python 2.7.16"
     env:
-      - WINEPREFIX=${HOME}/wine/wine64
+      - WINEPREFIX="${HOME}/wine/wine64"
       - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
 
     before_install:
@@ -82,9 +82,9 @@ matrix:
     language: sh
     name: "WINE32 Python 3.7.3"
     env:
-      - WINEARCH=win32
-      - WINEPREFIX=${HOME}/wine/wine32
-      - WINEPATH=c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts
+      - WINEARCH="win32"
+      - WINEPREFIX="${HOME}/wine/wine32"
+      - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
     # services:
     #   - xvfb    # this does not work 2019-04-04
 
@@ -108,8 +108,8 @@ matrix:
     language: sh
     name: "WINE64 Python 3.7.3"
     env:
-      - WINEPREFIX=${HOME}/wine/wine64
-      - WINEPATH=c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts
+      - WINEPREFIX="${HOME}/wine/wine64"
+      - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
     before_install:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
       - ./install_wine.sh
