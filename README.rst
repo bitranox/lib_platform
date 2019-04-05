@@ -5,9 +5,20 @@ lib_platform
 
 some convenience functions used in many scripts
 
-supports python 2.7 - python 3.7 and possibly other dialects.
+supports python 2.7 - python 3.7, pypy and possibly other dialects.
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Linux, OsX and Windows <https://travis-ci.org/bitranox/lib_platform>`_
+this is also a working example for travis.yml :
+
+- install WINE
+- install python 2.7 on wine
+- install python 3.7 on wine
+- run pytest on wine
+- osx Build for Python 2.7, Python 3.7
+- pypy Build for Python 2.7, Python 3.7
+- Windows Build Python 2.7
+- Windows Build Python 3.7
+
+`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/lib_platform>`_
 
 -----
 
