@@ -37,9 +37,7 @@ matrix:
     language: sh
     env:
       - WINEARCH="win32"
-      - WINEARCH="win64"
       - WINEPREFIX="${HOME}/wine/wine32"
-      - WINECMD="wine"
       - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
 
     name: "WINE ${WINEARCH} Python 2.7.16"
@@ -56,9 +54,9 @@ matrix:
       - wine python -m pip install --upgrade pip
       - wine pip install codecov pytest pytest-pep8 pytest-cov dill
       - wine pip install -e .
-    script:
-      - wine pip install ${github_master} --install-option test # test setup.py test option
-      - wine python -m pytest --pep8 --cov
+    # script:
+    #   - wine pip install ${github_master} --install-option test # test setup.py test option
+    #   - wine python -m pytest --pep8 --cov
     after_success:
       - wine coverage report
       - wine codecov
