@@ -60,7 +60,7 @@ matrix:
     name: "WINE64 Python 2.7.16"
     env:
       - WINEPREFIX=${HOME}/wine/wine64
-      - WINEPATH=c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts
+      - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
 
     before_install:
       - chmod 755 ./*.sh    # make shell scripts executable, just in case.
