@@ -38,12 +38,12 @@ matrix:
     env:
       global:
         - WINEPREFIX=${HOME}/wine/wine32
-        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+        - WINEPATH=c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts
         - WINECMD=wine
       matrix:
         - WINEARCH=win32
         - WINEPREFIX=${HOME}/wine/wine32
-        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+        - WINEPATH=c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts
         - WINECMD=wine
 
     # services:
