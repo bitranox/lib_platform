@@ -13,13 +13,11 @@ if [[ -z ${WINEPREFIX} ]]
         WINEPREFIX=${HOME}/.wine
     fi
 
-
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/bitranox_decompress
 mkdir -p ${decompress_dir}
 
 python_version_short=python37
-# python_version_full=python3.7.3
 python_version_doc="Python 3.7"
 
 echo "Download ${python_version_doc} Binaries"
@@ -32,11 +30,9 @@ unzip -nqq ${decompress_dir}/binaries_${python_version_short}_wine-master.zip -d
 if [[ "${WINEARCH}" == "win32" ]]
     then
         echo "Joining Multipart Zip in ${decompress_dir}/binaries_${python_version_short}_wine-master/bin"
-        # cat ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/${python_version_full}_wine_32* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
         cat ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/python*_wine_32* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
     else
         echo "Joining Multipart Zip in ${decompress_dir}/binaries_${python_version_short}_wine-master/bin"
-        # cat ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/${python_version_full}_wine_64* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
         cat ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/python*_wine_64* > ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip
     fi
 
