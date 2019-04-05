@@ -35,12 +35,13 @@ matrix:
 
   - os: linux
     language: sh
+    name: "WINE 32 Bit Python 2.7.16"
     env:
       - WINEARCH="win32"
       - WINEPREFIX="${HOME}/wine/wine32"
       - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+      - WINECMD="wine"
 
-    name: "WINE ${WINEARCH} Python 2.7.16"
     # services:
     #   - xvfb    # this does not work 2019-04-04
 
@@ -63,7 +64,7 @@ matrix:
 
   - os: linux
     language: sh
-    name: "WINE64 Python 2.7.16"
+    name: "WINE 64 Bit Python 2.7.16"
     env:
       - WINEPREFIX="${HOME}/wine/wine64"
       - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
@@ -87,7 +88,7 @@ matrix:
 
   - os: linux
     language: sh
-    name: "WINE32 Python 3.7.3"
+    name: "WINE 32 Bit Python 3.7.3"
     env:
       - WINEARCH="win32"
       - WINEPREFIX="${HOME}/wine/wine32"
@@ -114,7 +115,7 @@ matrix:
 
   - os: linux
     language: sh
-    name: "WINE64 Python 3.7.3"
+    name: "WINE 64 Bit Python 3.7.3"
     env:
       - WINEPREFIX="${HOME}/wine/wine64"
       - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
