@@ -37,12 +37,12 @@ matrix:
     language: sh
     name: "WINE32 Python 2.7.16"
     env:
-      matrix:
-        - WINEARCH="win32"
-        - WINEPREFIX="${HOME}/wine/wine32"
+      - WINEARCH="win32"
+      - WINEPREFIX="${HOME}/wine/wine32"
+      - WINECMD="wine"
+      - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
       global:
         - WINECMD="wine"
-        - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
 
     # services:
     #   - xvfb    # this does not work 2019-04-04
