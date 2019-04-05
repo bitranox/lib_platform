@@ -37,15 +37,14 @@ matrix:
     name: "WINE32 Python 2.7.16"
     env:
       global:
-        - WINEARCH="win32"
-        - WINEPREFIX="${HOME}/wine/wine32"
+        - WINEPREFIX=${HOME}/wine/wine32
         - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
-        - WINECMD="wine"
+        - WINECMD=wine
       matrix:
-        - WINEARCH="win32"
-        - WINEPREFIX="${HOME}/wine/wine32"
+        - WINEARCH=win32
+        - WINEPREFIX=${HOME}/wine/wine32
         - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
-        - WINECMD="wine"
+        - WINECMD=wine
 
     # services:
     #   - xvfb    # this does not work 2019-04-04
