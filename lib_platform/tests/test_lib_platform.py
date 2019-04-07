@@ -44,8 +44,17 @@ def test_system_values():
         assert not is_platform_posix
 
     if is_platform_windows_xp:
-        assert system == 'windows' or 'windows_wine'
+        assert system == 'windows_xp' or 'windows_wine_xp'
         assert is_platform_windows
+        assert not is_platform_linux
+        assert not is_platform_darwin
+        assert not is_platform_posix
+
+    if is_platform_windows_xp and is_platform_windows_wine:
+        assert system == 'windows_wine_xp'
+        assert is_platform_windows
+        assert is_platform_windows_xp
+        assert is_platform_windows_wine
         assert not is_platform_linux
         assert not is_platform_darwin
         assert not is_platform_posix
@@ -61,19 +70,6 @@ def test_function_to_pickle():
 def test_if_pickable():
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
-
-
-"""
-def test_fake_xp():
-    if is_platform_windows and not is_platform_windows_wine:
-        save_current_release_function = platform.release
-        platform.release = fake_release_function_xp
-        assert lib_platform.get_system() == 'windows_xp'
-        assert get_is_platform_windows_xp() is True
-        platform.release = save_current_release_function
-        assert lib_platform.get_system() == 'windows'
-        assert get_is_platform_windows_xp() is False
-"""
 
 
 def fake_release_function_xp():

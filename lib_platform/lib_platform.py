@@ -56,18 +56,18 @@ def get_system():
     :returns: darwin, linux, windows, windows_xp, windows_wine
 
     >>> result = get_system()
-    >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine']
+    >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp']
     >>> assert result in possible_results
     """
-    if get_is_platform_windows_wine():
-        return 'windows_wine'
-
-    _system = platform.system().lower()
-    if _system == 'windows':
-        release = platform.release().lower()
-        if release == 'xp':
-            _system = 'windows_xp'
-    return _system
+    if not is_platform_windows:
+        return platform.system().lower()
+    else:
+        if is_platform_windows_xp and not is_platform_windows_wine:
+            return 'windows_wine'
+        elif is_platform_windows_xp and is_platform_windows_wine:
+            return 'windows_wine_xp'
+        else:
+            return 'windows'
 
 
 def get_username():
@@ -85,9 +85,10 @@ def get_username():
 
 def get_is_platform_windows_xp():
     # type: () -> bool
+
     if is_platform_windows:
-        _system = get_system()
-        if _system == 'windows_xp':
+        release = platform.release().lower()
+        if release == 'xp':
             return True
         else:
             return False
@@ -131,12 +132,12 @@ def get_path_userhome():
     return s_userhome
 
 
-system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine'
 is_platform_linux = platform.system().lower() == 'linux'
 is_platform_darwin = platform.system().lower() == 'darwin'
 is_platform_posix = not is_platform_windows
 is_platform_windows_xp = get_is_platform_windows_xp()
 is_platform_windows_wine = get_is_platform_windows_wine()
+system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
 username = get_username()
 hostname = get_hostname()
 hostname_short = get_hostname_short()
