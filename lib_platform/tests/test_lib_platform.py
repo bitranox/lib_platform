@@ -30,7 +30,7 @@ def test_system_values():
         assert not is_platform_windows_xp
 
     if is_platform_windows:
-        windows_flavours = ['windows', 'windows_wine', 'windows_xp']
+        windows_flavours = ['windows', 'windows_wine', 'windows_xp', 'windows_wine_xp']
         assert system in windows_flavours
         assert not is_platform_linux
         assert not is_platform_darwin
