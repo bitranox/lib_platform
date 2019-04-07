@@ -37,7 +37,7 @@ def test_system_values():
         assert not is_platform_posix
 
     if is_platform_windows_wine:
-        assert system == 'windows_wine'
+        assert system == 'windows_wine' or 'windows_wine_xp'
         assert is_platform_windows
         assert not is_platform_linux
         assert not is_platform_darwin
