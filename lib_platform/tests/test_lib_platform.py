@@ -7,6 +7,7 @@ from lib_registry import *
 
 
 def test_system_values():
+    print('System is {}'.format(system))
     if is_platform_linux:
         assert system == 'linux'
         assert is_platform_posix
