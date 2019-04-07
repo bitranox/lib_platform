@@ -5,7 +5,7 @@ sudo: true
 
 env:
     global:
-        - github_master="https://github.com/bitranox/lib_platform/archive/master.zip"
+        - github_master="https://github.com/${TRAVIS_REPO_SLUG}/archive/master.zip"
 
 python:
     # you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
