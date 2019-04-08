@@ -63,9 +63,11 @@ def get_system():
         return platform.system().lower()
     else:
         if is_platform_windows_xp and not is_platform_windows_wine:
-            return 'windows_wine'
+            return 'windows_xp'
         elif is_platform_windows_xp and is_platform_windows_wine:
             return 'windows_wine_xp'
+        elif is_platform_windows_wine and not is_platform_windows_xp:
+            return 'windows_wine'
         else:
             return 'windows'
 

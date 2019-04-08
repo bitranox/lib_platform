@@ -70,3 +70,15 @@ def test_function_to_pickle():
 def test_if_pickable():
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
+
+
+def test_fake_xp_function():
+    return 'xp'
+
+
+def test_fake_xp():
+    if is_platform_windows and not is_platform_windows_wine:
+        save_platform_release_function = platform.release
+        platform.release = test_fake_xp_function
+        assert get_is_platform_windows_xp() is True
+        platform.release = save_platform_release_function
