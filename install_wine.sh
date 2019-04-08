@@ -20,7 +20,7 @@ echo "Wine Packages Update"
 sudo apt-get update
 echo "Wine Packages Install"
 sudo apt-get install --install-recommends winehq-${wine_version}
-sudo apt-get install -y winetricks
+# sudo apt-get install -y winetricks
 
 echo "Install latest Winetricks"
 cd /usr/bin
