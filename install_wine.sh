@@ -22,13 +22,10 @@ echo "Wine Packages Install"
 sudo apt-get install --install-recommends winehq-${wine_version}
 sudo apt-get install -y winetricks
 
-sudo updatedb
-sudo locate winetricks
-
-# echo "Install latest Winetricks"
-# cd ${HOME}
-# wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
-# sudo chmod +x winetricks
-# sudo winetricks -q --self-update
+echo "Install latest Winetricks"
+cd /usr/bin
+sudo wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
+sudo chmod +x winetricks
+sudo winetricks -q --self-update
 
 cd ${save_path}
