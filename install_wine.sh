@@ -1,4 +1,5 @@
 #!/bin/bash
+save_path="`dirname \"$0\"`"
 
 if [[ -z ${wine_version} ]]
     then
@@ -20,4 +21,14 @@ sudo apt-get update
 echo "Wine Packages Install"
 sudo apt-get install --install-recommends winehq-${wine_version}
 sudo apt-get install -y winetricks
-sudo winetricks -q --self-update
+
+sudo updatedb
+sudo locate winetricks
+
+# echo "Install latest Winetricks"
+# cd ${HOME}
+# wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
+# sudo chmod +x winetricks
+# sudo winetricks -q --self-update
+
+cd ${save_path}
