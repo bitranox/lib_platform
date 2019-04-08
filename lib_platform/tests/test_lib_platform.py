@@ -70,7 +70,3 @@ def test_function_to_pickle():
 def test_if_pickable():
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
-
-
-def fake_release_function_xp():
-    return 'xp'
