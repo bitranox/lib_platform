@@ -1,4 +1,13 @@
 #!/bin/bash
+
+if [[ -z ${wine_version} ]]
+    then
+        echo "WARNING - no wine_version in environment - set now to devel"
+        echo "available Versions: stable, devel, staging"
+        wine_version="devel"
+    fi
+
+
 echo "Build Start"
 echo "add 386 Architecture"
 sudo dpkg --add-architecture i386
@@ -9,5 +18,6 @@ sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial ma
 echo "Wine Packages Update"
 sudo apt-get update
 echo "Wine Packages Install"
-sudo apt-get install --install-recommends winehq-devel
+sudo apt-get install --install-recommends winehq-${wine_version}
 sudo apt-get install -y winetricks
+sudo winetricks -q --self-update
