@@ -59,6 +59,15 @@ def test_system_values():
         assert not is_platform_darwin
         assert not is_platform_posix
 
+    if is_platform_windows and not is_platform_windows_wine and not is_platform_windows_xp:
+        assert system == 'windows'
+        assert is_platform_windows
+        assert not is_platform_windows_xp
+        assert not is_platform_windows_wine
+        assert not is_platform_linux
+        assert not is_platform_darwin
+        assert not is_platform_posix
+
 
 def test_function_to_pickle():
     if is_platform_windows:
