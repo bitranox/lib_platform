@@ -9,3 +9,4 @@ except ImportError:
 
 __title__ = 'lib_platform'
 __version__ = '1.0.0'
+__name__ = 'lib_platform'

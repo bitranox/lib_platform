@@ -16,3 +16,4 @@ from .lib_platform import path_userhome
 
 __title__ = 'lib_platform'
 __version__ = '1.0.0'
+__name__ = 'lib_platform'
