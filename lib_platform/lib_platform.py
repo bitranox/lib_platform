@@ -87,6 +87,17 @@ def get_username():
     return _username
 
 
+def get_is_platform_windows():
+    """
+    >>> result = get_is_platform_windows()
+    """
+
+    if platform.system().lower() == 'windows':
+        return True
+    else:
+        return False
+
+
 def get_is_platform_windows_xp():
     # type: () -> bool
 
@@ -136,6 +147,7 @@ def get_path_userhome():
     return s_userhome
 
 
+is_platform_windows = get_is_platform_windows()
 is_platform_linux = platform.system().lower() == 'linux'
 is_platform_darwin = platform.system().lower() == 'darwin'
 is_platform_posix = not is_platform_windows

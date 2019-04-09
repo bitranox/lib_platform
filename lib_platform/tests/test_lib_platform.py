@@ -90,4 +90,10 @@ def test_fake_xp():
         save_platform_release_function = platform.release
         platform.release = test_fake_xp_function
         assert get_is_platform_windows_xp() is True
+        assert get_system() == 'windows_xp'
+        assert is_platform_windows
+        assert not is_platform_windows_wine
+        assert not is_platform_linux
+        assert not is_platform_darwin
+        assert not is_platform_posix
         platform.release = save_platform_release_function
