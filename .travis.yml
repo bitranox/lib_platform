@@ -14,22 +14,7 @@ env:
         # not set here - no pypi project for now
         # - secure: ""
 
-
-python:
-    # you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
-    - '2.7'
-    - '3.4'
-    - '3.5'
-    - '3.6'
-    - '3.7.1'     # 2019-03-25 latest Version
-    - '3.7-dev'   # 2018-03-25 development Version
-    # - '3.8-dev'   # 2019-03-28 does not exist now
-    # - 'nightly'   # 2019-03-28 does not exist now
-    - 'pypy2.7-6.0'
-    - 'pypy3.5-6.0'
-
-
-### install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
+# install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
     apt:
         packages:
