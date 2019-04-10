@@ -11,8 +11,8 @@ env:
         # password needs to be created for every repository with ruby gem travis:   travis encrypt pypi_password=******* --org from the project directory
         # option --org for travis.org
         # the secure password points to env_variable ${pypi_password}
-        # not set here - no pypi project for now
-        # - secure: ""
+        # oddly the secure password under env: global: causes that choco for windows builds fails
+        # so we put it into the matrix
 
 # install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
@@ -27,6 +27,8 @@ matrix:
       language: sh
       name: "Windows Python 2.7"
       before_install:
+          # oddly the secure password under env: global: causes that choco fails
+          # so we put it directly under the deploy section
           - choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
 
@@ -34,6 +36,8 @@ matrix:
       language: sh
       name: "Windows Python 3.7"
       before_install:
+        # oddly the secure password under env: global: causes that choco fails
+        # so we put it directly under the deploy section
         - choco install python3
         - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
@@ -55,6 +59,17 @@ matrix:
       # we can do that also with env - but we dont want to show it on the travis build overview
       before_install:
         - export deploy_on_pypi="True"
+
+
+      # password needs to be created for every repository with ruby gem travis:   travis encrypt pypi_password=******* --org from the project directory
+      # option --org for travis.org
+      # the secure password points to env_variable ${pypi_password}
+      # oddly the secure password under env: global: causes that choco for windows builds fails
+      # so we put it into the matrix
+      # ${pypi_password}
+      #  - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
+      env:
+        - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
 
     - os: linux
       language: python
@@ -383,27 +398,35 @@ script:
 after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
-    # PYPI - upload the project once with twine before, or travis build will not work
-    # due to travis bug deploy not working - so we do it our self, only for git tagged commits :
-    # pip install -U twine
-    # pip install wheel
-    # cd /<project_dir>
-    # python setup.py sdist bdist_wheel
-    # twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-    # twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/*
 
-    # This works for sure - lets do it our self and not rely on travis deploy: because its buggy
-    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
-    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
-    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel ; fi
-    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
+    # This works for sure - lets do it our self and not rely on travis deploy: , because its buggy
+    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
+    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
+    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel ; fi
+    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
 
-# NOT WORKING 2019-04-09 - again a travis bug. Its so annoying!
-deploy:
-  provider: pypi
-  user: bitranox
-  password: ${pypi_password}
-  distributions: "sdist bdist_wheel"
-  on:
-      tags: true
-      python: 3.6
+
+# ${pypi_password}
+# - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
+
+# since travis deploy: module is buggy, we dont use it.
+# NOT working, need to pass password !
+# deploy:
+#   provider: pypi
+#   user: bitranox
+#   password:
+#     secure: ...
+#   distributions: "sdist bdist_wheel"
+#   on:
+#     tags: true
+#     python: 3.6
+
+# WORKING, pass as env:
+# deploy:
+#   provider: pypi
+#   user: bitranox
+#   password: ${password}
+#   distributions: "sdist bdist_wheel"
+#   on:
+#     tags: true
+#     python: 3.6

@@ -37,8 +37,7 @@ setup(
     packages=['lib_platform'],
     install_requires=['pytest',
                       'typing',
-                      'lib_registry @ git+https://github.com/bitranox/lib_registry',
-                      ],
+                      'lib_registry'],
     classifiers=CLASSIFIERS,
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'dill'])

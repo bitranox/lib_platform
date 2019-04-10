@@ -55,7 +55,14 @@ From source code:
     # test without installing
     python setup.py test
 
-via pip (preferred):
+via pip latest Release:
+
+.. code-block:: bash
+
+    # latest Release from pypi
+    pip install lib_platform
+
+via pip latest Development Version:
 
 .. code-block:: bash
 
@@ -71,15 +78,22 @@ via requirements.txt:
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # https://github.com/bitranox/lib_platform/archive/master.zip
-    # to install and upgrade all modules mentioned in requirements.txt:
+    # for the latest Release:
+    lib_platform
+    # for the latest Development Version :
+    https://github.com/bitranox/lib_platform/archive/master.zip
 
+    # to install and upgrade all modules mentioned in requirements.txt:
     pip install --upgrade -r /<path>/requirements.txt
 
 via python:
 
 .. code-block:: bash
 
+    # for the latest Release
+    python -m pip install --upgrade lib_platform
+
+    # for the latest Development Version
     python -m pip install --upgrade https://github.com/bitranox/lib_platform/archive/master.zip
 
 
@@ -133,11 +147,11 @@ Basic Usage
 Requirements
 ------------
 
-lib_registry, see: https://github.com/bitranox/lib_registry
-
 pytest, see : https://github.com/pytest-dev/pytest
 
 typing, see : https://pypi.org/project/typing/
+
+lib_registry, see: https://pypi.org/project/lib-registry/
 
 Acknowledgement
 ---------------
