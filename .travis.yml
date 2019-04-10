@@ -20,46 +20,58 @@ addons:
         packages:
             - xvfb
             - winbind
-    #################################################################################
+
 matrix:
     include:
+    - os: windows
+      language: sh
+      name: "Windows Python 2.7"
+      before_install:
+          - choco install python2
+          - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+
+    - os: windows
+      language: sh
+      name: "Windows Python 3.7"
+      before_install:
+        - choco install python3
+        - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+
     - os: linux
       language: python
       python: '2.7'
-    #################################################################################
+
     - os: linux
       language: python
       python: '3.4'
-    #################################################################################
+
     - os: linux
       language: python
       python: '3.5'
-    #################################################################################
+
     - os: linux
       language: python
       python: '3.6'
       # we can do that also with env - but we dont want to show it on the travis build overview
       before_install:
         - export deploy_on_pypi="True"
-    #################################################################################
+
     - os: linux
       language: python
       python: '3.7.1'
-    #################################################################################
+
     - os: linux
       language: python
       python: '3.7-dev'
-    #################################################################################
+
     - os: linux
       language: python
       python: 'pypy2.7-6.0'
-    #################################################################################
+
     - os: linux
       language: python
       python: 'pypy3.5-6.0'
-    #################################################################################
-    # WINE Stable XP
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 32 Bit Python 2.7.16, Windows XP"
@@ -71,7 +83,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="stable"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 64 Bit Python 2.7.16, Windows XP"
@@ -82,7 +94,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="stable"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 32 Bit Python 3.7.3, Windows XP"
@@ -94,7 +106,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="stable"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 64 Bit Python 3.7.3, Windows XP"
@@ -105,9 +117,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="stable"
           - wine_python_version="python3"
-    #################################################################################
-    # WINE Stable WIN10
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 32 Bit Python 2.7.16, Windows 10"
@@ -119,7 +129,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="stable"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 64 Bit Python 2.7.16, Windows 10"
@@ -130,7 +140,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="stable"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 32 Bit Python 3.7.3, Windows 10"
@@ -142,7 +152,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="stable"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE stable 64 Bit Python 3.7.3, Windows 10"
@@ -153,9 +163,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="stable"
           - wine_python_version="python3"
-    #################################################################################
-    # WINE Develop XP
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 32 Bit Python 2.7.16, Windows XP"
@@ -167,7 +175,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="devel"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 64 Bit Python 2.7.16, Windows XP"
@@ -178,7 +186,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="devel"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 32 Bit Python 3.7.3, Windows XP"
@@ -190,7 +198,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="devel"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 64 Bit Python 3.7.3, Windows XP"
@@ -201,9 +209,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="devel"
           - wine_python_version="python3"
-    #################################################################################
-    # WINE Develop WIN10
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 32 Bit Python 2.7.16, Windows 10"
@@ -215,7 +221,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="devel"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 64 Bit Python 2.7.16, Windows 10"
@@ -226,7 +232,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="devel"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 32 Bit Python 3.7.3, Windows 10"
@@ -238,7 +244,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="devel"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE devel 64 Bit Python 3.7.3, Windows 10"
@@ -249,9 +255,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="devel"
           - wine_python_version="python3"
-    #################################################################################
-    # WINE Staging XP
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 32 Bit Python 2.7.16, Windows XP"
@@ -263,7 +267,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="staging"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 64 Bit Python 2.7.16, Windows XP"
@@ -274,7 +278,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="staging"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 32 Bit Python 3.7.3, Windows XP"
@@ -286,7 +290,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="staging"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 64 Bit Python 3.7.3, Windows XP"
@@ -297,9 +301,7 @@ matrix:
           - wine_windows_version="winxp"
           - wine_version="staging"
           - wine_python_version="python3"
-    #################################################################################
-    # WINE Develop WIN10
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 32 Bit Python 2.7.16, Windows 10"
@@ -311,7 +313,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="staging"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 64 Bit Python 2.7.16, Windows 10"
@@ -322,7 +324,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="staging"
           - wine_python_version="python2"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 32 Bit Python 3.7.3, Windows 10"
@@ -334,7 +336,7 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="staging"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: linux
       language: sh
       name: "WINE staging 64 Bit Python 3.7.3, Windows 10"
@@ -345,11 +347,11 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="staging"
           - wine_python_version="python3"
-    #################################################################################
+
     - os: osx
       language: sh
       name: "osX Python 2.7"
-    #################################################################################
+
     - os: osx
       language: sh
       name: "osX Python 3.7"
@@ -359,21 +361,6 @@ matrix:
         # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
         - pip_command="pip3"
         - python_command="python3"
-    #################################################################################
-    - os: windows
-      language: sh
-      name: "Windows Python 2.7"
-      before_install:
-          - choco -y install python2
-          - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
-    #################################################################################
-    - os: windows
-      language: sh
-      name: "Windows Python 3.7"
-      before_install:
-        - choco -y install python3
-        - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
-    #################################################################################
 
 
 install:
