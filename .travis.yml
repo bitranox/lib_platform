@@ -6,6 +6,14 @@ sudo: true
 env:
     global:
         - github_master="https://github.com/${TRAVIS_REPO_SLUG}/archive/master.zip"
+        - pip_command="pip"
+        - python_command="python"
+        # password needs to be created for every repository with ruby gem travis:   travis encrypt pypi_password=******* --org from the project directory
+        # option --org for travis.org
+        # the secure password points to env_variable ${pypi_password}
+        # not set here - no pypi project for now
+        # - secure: ""
+
 
 python:
     # you might check https://storage.googleapis.com/travis-ci-language-archives for available archives
@@ -30,6 +38,39 @@ addons:
     #################################################################################
 matrix:
     include:
+    - os: linux
+      language: python
+      python: '2.7'
+    #################################################################################
+    - os: linux
+      language: python
+      python: '3.4'
+    #################################################################################
+    - os: linux
+      language: python
+      python: '3.5'
+    #################################################################################
+    - os: linux
+      language: python
+      python: '3.6'
+      env:
+        - deploy_on_pypi="True"
+    #################################################################################
+    - os: linux
+      language: python
+      python: '3.7.1'
+    #################################################################################
+    - os: linux
+      language: python
+      python: '3.7-dev'
+    #################################################################################
+    - os: linux
+      language: python
+      python: 'pypy2.7-6.0'
+    #################################################################################
+    - os: linux
+      language: python
+      python: 'pypy3.5-6.0'
     #################################################################################
     # WINE Stable XP
     #################################################################################
@@ -318,12 +359,6 @@ matrix:
           - wine_windows_version="win10"
           - wine_version="staging"
           - wine_python_version="python3"
-
-    #################################################################################
-    #################################################################################
-    #################################################################################
-    #################################################################################
-    #################################################################################
     #################################################################################
     - os: osx
       language: sh
@@ -331,20 +366,26 @@ matrix:
     #################################################################################
     - os: osx
       language: sh
-      name: "osX Python 3.6"
+      name: "osX Python 3.7"
+      python: "3.7"
+      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+      env:
+        # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
+        - pip_command="pip3"
+        - python_command="python3"
     #################################################################################
     - os: windows
       language: sh
       name: "Windows Python 2.7"
       before_install:
-          - choco install python2
+          - choco -y install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
     #################################################################################
     - os: windows
       language: sh
       name: "Windows Python 3.7"
       before_install:
-        - choco install python3
+        - choco -y install python3
         - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
     #################################################################################
 
@@ -357,14 +398,39 @@ install:
     - if [[ ${wine_python_version} == "python3" ]]; then ./install_wine_python3_preinstalled.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine_git_portable.sh ; fi
 
-    - ${CMDPREFIX} python -m pip install --upgrade pip
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} pip install "pytest-cov==2.6.0"; fi
-    - ${CMDPREFIX} pip install codecov pytest pytest-pep8 pytest-cov dill
-    - ${CMDPREFIX} pip install -e .
+    - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
+    - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
+    - ${CMDPREFIX} ${pip_command} install -e .
 
 script:
-    - ${CMDPREFIX} pip install ${github_master} --install-option test # test setup.py test option
-    - ${CMDPREFIX} python -m pytest --pep8 --cov
+    - ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
+    - ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
+
 after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
+    # PYPI - upload the project once with twine before, or travis build will not work
+    # due to travis bug deploy not working - so we do it our self, only for git tagged commits :
+    # pip install -U twine
+    # pip install wheel
+    # cd /<project_dir>
+    # python setup.py sdist bdist_wheel
+    # twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+    # twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/*
+
+    # This works for sure - lets do it our self and not rely on travis deploy: because its buggy
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} python setup.py sdist bdist_wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
+
+# NOT WORKING 2019-04-09 - again a travis bug. Its so annoying!
+deploy:
+  provider: pypi
+  user: bitranox
+  password: ${pypi_password}
+  distributions: "sdist bdist_wheel"
+  on:
+      tags: true
+      python: 3.6

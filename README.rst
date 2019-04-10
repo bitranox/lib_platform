@@ -1,7 +1,7 @@
 lib_platform
 ============
 
-|Build Status| |jupyter| |Codecov Status| |Better Code| |snyk security|
+|Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |snyk security|
 
 some convenience functions used in many scripts
 
@@ -159,6 +159,9 @@ See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.
 
 .. |Build Status| image:: https://travis-ci.org/bitranox/lib_platform.svg?branch=master
    :target: https://travis-ci.org/bitranox/lib_platform
+.. for the pypi status link note the dashes, not the underscore !
+.. |Pypi Status| image:: https://badge.fury.io/py/lib-platform.svg
+   :target: https://badge.fury.io/py/lib_platform
 .. |Codecov Status| image:: https://codecov.io/gh/bitranox/lib_platform/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/bitranox/lib_platform
 .. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_platform?branch=master
