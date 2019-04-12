@@ -17,13 +17,10 @@ if [[ -z ${WINEPREFIX} ]]
 echo "Check if we run headless and xvfb Server is running"
 xvfb_framebuffer_service_active="False"
 systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
-# run winetricks with xvfb if needed
 if [[ ${xvfb_framebuffer_service_active} == "True" ]]
 	then
-		xvfb_prefix="xvfb-run"
 		echo "we run headless, xvfb service is running"
 	else
-	    xvfb_prefix=""
 	    echo "we run on normal console, xvfb service is not running"
 	fi
 
@@ -53,10 +50,10 @@ echo "Unzip Git Portable Binaries to ${wine_drive_c_dir}"
 unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip -d ${wine_drive_c_dir}
 
 echo "add Path Settings to Registry"
-wine_current_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+wine_current_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 wine_new_reg_path="${add_git_path};${wine_current_reg_path}"
-${xvfb_prefix} wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
-wine_actual_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
+wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 echo "Wine PATH=${wine_actual_reg_path}"
 
 rm -r ${decompress_dir}

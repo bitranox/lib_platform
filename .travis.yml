@@ -86,7 +86,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -97,7 +96,6 @@ matrix:
       name: "WINE stable 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -109,7 +107,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -120,7 +117,6 @@ matrix:
       name: "WINE stable 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -132,7 +128,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -143,7 +138,6 @@ matrix:
       name: "WINE stable 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -155,7 +149,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -166,7 +159,6 @@ matrix:
       name: "WINE stable 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -178,7 +170,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -189,7 +180,6 @@ matrix:
       name: "WINE devel 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -201,7 +191,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -212,7 +201,6 @@ matrix:
       name: "WINE devel 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -224,7 +212,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -235,7 +222,6 @@ matrix:
       name: "WINE devel 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -247,7 +233,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -258,7 +243,6 @@ matrix:
       name: "WINE devel 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -270,7 +254,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -281,7 +264,6 @@ matrix:
       name: "WINE staging 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -293,7 +275,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -304,7 +285,6 @@ matrix:
       name: "WINE staging 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -316,7 +296,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -327,7 +306,6 @@ matrix:
       name: "WINE staging 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -339,7 +317,6 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -350,7 +327,6 @@ matrix:
       name: "WINE staging 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -359,8 +335,6 @@ matrix:
     - os: osx
       language: python
       name: "osX Python 2.7"
-      before_install:
-        - export XVFB_PREFIX="xvfb-run"
 
     - os: osx
       language: python
@@ -371,14 +345,9 @@ matrix:
         # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
         - pip_command="pip3"
         - python_command="python3"
-      before_install:
-          - export XVFB_PREFIX="xvfb-run"
 
 
 install:
-    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then sudo apt install xvfb ; fi
-    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
-    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then sudo service xvfb start ; fi
     - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then chmod 755 ./*.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine.sh ; fi
@@ -387,18 +356,18 @@ install:
     - if [[ ${wine_python_version} == "python3" ]]; then ./install_wine_python3_preinstalled.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine_git_portable.sh ; fi
 
-    - ${XVFB_PREFIX} ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
-    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install -e .
+    - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
+    - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
+    - ${CMDPREFIX} ${pip_command} install -e .
 
 script:
-    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
-    - ${XVFB_PREFIX} ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
+    - ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
+    - ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
 
 after_success:
-    - ${XVFB_PREFIX} ${CMDPREFIX} coverage report
-    - ${XVFB_PREFIX} ${CMDPREFIX} codecov
+    - ${CMDPREFIX} coverage report
+    - ${CMDPREFIX} codecov
 
     # This works for sure - but might expose the secure password within the matrix,
     # because windows builds need filter_secrets: false at the Moment (2019-04-12)

@@ -7,10 +7,8 @@ systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
 # run winetricks with xvfb if needed
 if [[ ${xvfb_framebuffer_service_active} == "True" ]]
 	then
-		xvfb_prefix="xvfb-run"
 		echo "we run headless, xvfb service is running"
 	else
-	    xvfb_prefix=""
 	    echo "we run on normal console, xvfb service is not running"
 	fi
 
@@ -26,16 +24,16 @@ echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH}, wine_windows_ve
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 # xvfb-run --auto-servernum winecfg # fails marshal_object couldnt get IPSFactory buffer for interface ...
-${xvfb_prefix} winecfg
+winecfg
 
 echo "Disable GUI Crash Dialogs"
-${xvfb_prefix} winetricks nocrashdialog
+winetricks nocrashdialog
 
 echo "Set Windows Version to ${wine_windows_version}"
-${xvfb_prefix} winetricks -q ${wine_windows_version}
+winetricks -q ${wine_windows_version}
 
 echo "Install common Packets"
 
-${xvfb_prefix} winetricks -q windowscodecs
+winetricks -q windowscodecs
 
 cd ${save_path}
