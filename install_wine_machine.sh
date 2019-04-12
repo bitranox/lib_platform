@@ -20,7 +20,7 @@ winetricks nocrashdialog
 echo "Set Windows Version to ${wine_windows_version}"
 winetricks -q ${wine_windows_version}
 
-sudo apt-get install -y libxml32
+sudo apt-get install -y libxml2
 
 echo "Install common Packets"
 # check if we run headless with xvfb service
