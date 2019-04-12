@@ -8,6 +8,7 @@ env:
         - github_master="https://github.com/${TRAVIS_REPO_SLUG}/archive/master.zip"
         - pip_command="pip"
         - python_command="python"
+        - XVFB_PREFIX="xvfb-run"
 
 addons:
     apt:
