@@ -63,7 +63,8 @@ wine_new_reg_path="${add_pythonpath};${wine_current_reg_path}"
 wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
 wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 echo "Wine PATH=${wine_actual_reg_path}"
-
 rm -r ${decompress_dir}
-
 cd ${save_path}
+echo "******************************************************************************************************************"
+echo "******************************************************************************************************************"
+echo "******************************************************************************************************************"
