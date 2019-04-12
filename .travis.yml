@@ -88,7 +88,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -99,7 +99,7 @@ matrix:
       name: "WINE stable 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -111,7 +111,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -122,7 +122,7 @@ matrix:
       name: "WINE stable 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="stable"
@@ -134,7 +134,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -145,7 +145,7 @@ matrix:
       name: "WINE stable 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -157,7 +157,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -168,7 +168,7 @@ matrix:
       name: "WINE stable 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="stable"
@@ -180,7 +180,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -191,7 +191,7 @@ matrix:
       name: "WINE devel 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -203,7 +203,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -214,7 +214,7 @@ matrix:
       name: "WINE devel 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="devel"
@@ -226,7 +226,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -237,7 +237,7 @@ matrix:
       name: "WINE devel 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -249,7 +249,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -260,7 +260,7 @@ matrix:
       name: "WINE devel 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="devel"
@@ -272,7 +272,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -283,7 +283,7 @@ matrix:
       name: "WINE staging 64 Bit Python 2.7.16, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -295,7 +295,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -306,7 +306,7 @@ matrix:
       name: "WINE staging 64 Bit Python 3.7.3, Windows XP"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="winxp"
           - wine_version="staging"
@@ -318,7 +318,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python27-32;c:/Python27-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -329,7 +329,7 @@ matrix:
       name: "WINE staging 64 Bit Python 2.7.16, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python27-64;c:/Python27-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -341,7 +341,7 @@ matrix:
       env:
           - WINEARCH="win32"
           - WINEPREFIX="${HOME}/wine/wine32"
-          # - WINEPATH="c:/PortableGit32/cmd;c:/Python37-32;c:/Python37-32/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -352,7 +352,7 @@ matrix:
       name: "WINE staging 64 Bit Python 3.7.3, Windows 10"
       env:
           - WINEPREFIX="${HOME}/wine/wine64"
-          # - WINEPATH="c:/PortableGit64/cmd;c:/Python37-64;c:/Python37-64/Scripts"
+          - XVFB_PREFIX="xvfb-run"
           - CMDPREFIX="wine"
           - wine_windows_version="win10"
           - wine_version="staging"
@@ -381,18 +381,18 @@ install:
     - if [[ ${wine_python_version} == "python3" ]]; then ./install_wine_python3_preinstalled.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine_git_portable.sh ; fi
 
-    - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
-    - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - ${CMDPREFIX} ${pip_command} install -e .
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install -e .
 
 script:
-    - ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
-    - ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
 
 after_success:
-    - ${CMDPREFIX} coverage report
-    - ${CMDPREFIX} codecov
+    - ${XVFB_PREFIX} ${CMDPREFIX} coverage report
+    - ${XVFB_PREFIX} ${CMDPREFIX} codecov
 
     # This works for sure - but might expose the secure password within the matrix,
     # because windows builds need filter_secrets: false at the Moment (2019-04-12)
