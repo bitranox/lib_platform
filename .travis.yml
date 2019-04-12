@@ -8,36 +8,42 @@ env:
         - github_master="https://github.com/${TRAVIS_REPO_SLUG}/archive/master.zip"
         - pip_command="pip"
         - python_command="python"
-        # password needs to be created for every repository with ruby gem travis:   travis encrypt pypi_password=******* --org from the project directory
-        # option --org for travis.org
-        # the secure password points to env_variable ${pypi_password}
-        # oddly the secure password under env: global: causes that choco for windows builds fails
-        # so we put it into the matrix
 
-# install xvfb virtual framebuffer - start commands with xvfb-run <command> - this we need for WINE
 addons:
     apt:
         packages:
-            - xvfb
-            - winbind
+            - xvfb      # install xvfb virtual framebuffer - not really necessary because already installed on travis
+            - winbind   # needed for wine
+
+services:   # start the xvfb service. Strange choice of travis to use the keyword "services" for the command "service"
+  - xvfb    # can be used for wine - not needed if You test console applications, but we start it anyway
+
 
 matrix:
     include:
     - os: windows
       language: sh
       name: "Windows Python 2.7"
+
+      # oddly a secure password under env: global: causes that choco fails
+      # so we need to put the option : filter_secrets: false
+      # this can be a security issue, check that You dont leak secrets here !
+      filter_secrets: false
+
       before_install:
-          # oddly the secure password under env: global: causes that choco fails
-          # so we put it directly under the deploy section
           - choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
 
     - os: windows
       language: sh
       name: "Windows Python 3.7"
+
+      # oddly a secure password under env: global: causes that choco fails
+      # so we need to put the option : filter_secrets: false
+      # this can be a security issue, check that You dont leak secrets here !
+      filter_secrets: false
+
       before_install:
-        # oddly the secure password under env: global: causes that choco fails
-        # so we put it directly under the deploy section
         - choco install python3
         - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
 
@@ -59,17 +65,6 @@ matrix:
       # we can do that also with env - but we dont want to show it on the travis build overview
       before_install:
         - export deploy_on_pypi="True"
-
-
-      # password needs to be created for every repository with ruby gem travis:   travis encrypt pypi_password=******* --org from the project directory
-      # option --org for travis.org
-      # the secure password points to env_variable ${pypi_password}
-      # oddly the secure password under env: global: causes that choco for windows builds fails
-      # so we put it into the matrix
-      # ${pypi_password}
-      #  - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
-      env:
-        - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
 
     - os: linux
       language: python
@@ -399,34 +394,27 @@ after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
 
-    # This works for sure - lets do it our self and not rely on travis deploy: , because its buggy
-    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
-    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
-    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel ; fi
-    - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
+    # This works for sure - but might expose the secure password within the matrix,
+    # because windows builds need filter_secrets: false at the Moment (2019-04-12)
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
 
 
-# ${pypi_password}
-# - secure: "TG8PSOaymFpoF0y5gZQCxGm6cueqywcR/ryGikc7BOg2cTRUiOeYWl3iErDJYvTZfsY+YhYuW3hkmSiLIZoiXZX6CAF3LNNuWKcGAskVvnSUz2s+RXrZPbKQ7edpOW37qdepDev2H8C4JgVFWIUOjaRLhJvfC5hWO3mnEJUtrhXlRxIC8wAqhL222t52RQCIMh5sLEh7Q0TDjNzwLV963HWty46O4MDcCVdXSPhBkkUHNWPoIJqnEAZMVntFqPIO+Z381N/c2P3VzgB/GL0vgdmy5FBvwXMdTJAssCRD1EM+wabzXk/CIzTOfGKSb6vunbb4B4xuHuS6CQIYMJkfMwiqN+zShKtjbPzbtAK/SlJ1FMnGTqX8rL8yhK6tCtFK6wIt8QCcMtYX/PD1rwF/i6/Wg/8vmwIk0IxqlGlrESRzzIDB8RXE1UYrEUd18HV80QtFC55h9vP44KanfRXsn9BsSqyouTtjkJpYjYXwFZd7Dl/X/KbfX4m265eu3YQ+1VZVgXyIt6SV4NNH7UplfB0tVktULzk9Cp6VC59hl0pMUp9/6acOIPDRL6nmEPjS+gBw9NdwH46beLO0mdMKVuJ63lFk9evyRnICufTESLpQzGJdt7Co0BtjusPSkXDfmsUdmA906eoSqkOwakhfkaTeA23ainTCbGQDYScNPKI="
+# the password needs to be encrypted pointing to ${deploy.password}
+# password needs to be created from the project directory for every repository with ruby gem travis:   travis encrypt deploy.password="*******" --org
+# option --org for travis.org, --com for travis.com
 
-# since travis deploy: module is buggy, we dont use it.
-# NOT working, need to pass password !
-# deploy:
-#   provider: pypi
-#   user: bitranox
-#   password:
-#     secure: ...
-#   distributions: "sdist bdist_wheel"
-#   on:
-#     tags: true
-#     python: 3.6
-
-# WORKING, pass as env:
-# deploy:
-#   provider: pypi
-#   user: bitranox
-#   password: ${password}
-#   distributions: "sdist bdist_wheel"
-#   on:
-#     tags: true
-#     python: 3.6
+deploy:
+  provider: pypi
+  user: bitranox
+  password:
+    secure: "F7FVvNiBHDsbd6ewu+IfeIDCICDzFZ+z6hZSL0TSvW9Q3xklKdaSBnA3gxRTQ6F+hInWxeVum6JNZDJEwmwJ42h25MetY8cGXKX3wXglqody8YR9P+I/pUJwqozUEJwVTBXKZXuIH+eO7U6qP8znnyRxEIdxXxs71xyzHzw0WBY74Y0m6L3XSAW4KfaujQOIGUS75RRWweaZtE0FRmZ6A4RO7WyWswbhVz229RA5WPhQkqOEaTA5YJSMFEviQp1DQ6LCApogpm4ixYg1a/7JnE5oyLEi1iaH5MW/uK18aVEKZ42weNYW06oWfP2sQIkEYH2q6rdGFjJxA3rIH+e/P+/RE7Z54yEGlpVuVg0AoBocf41dp/1eJJvmyn+1gxnUyR9DnXiKT9qW8M5sC9TK1rXumQc0kRt8lFb+PJ0yKOfrNjzac6MZv0CpBKKO9UIkYPX0HFUrcs9FDG8guNrKdQoUZMUQiEfp6BSadFE6AQR1yPat3Rf3ScNe8LuNg1zN7JDiLUi7hGwhscsH07jMow0emE8Ofz7F+4tif02u4y8rP74zbGI3fHVlXIV4phyql4Iroi+XWYzLSdJgO4BkspQCnoy89jlywbO/M1/8g0jmQ04ixr5wF7rAVPJx7PHMUvQyvvYnRK6DvqcfwCEVHauvE/xLbcJHFFDuxmOyQeY="
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
+    # python: 3.6
+    # we need this, because on projects with windows builds only, we can not build on windows, because of
+    # the filter_secure issue. So we build on WINE, but need somehow to address the matrix include on which to build
+    condition: ${deploy_on_pypi} = "True"
