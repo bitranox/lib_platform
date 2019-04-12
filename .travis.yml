@@ -403,14 +403,14 @@ after_success:
 
 
 # the password needs to be encrypted pointing to ${deploy.password}
-# password needs to be created from the project directory for every repository with ruby gem travis:   travis encrypt deploy.password="*******" --org
+# password needs to be created from the project directory for every repository with ruby gem travis:   travis encrypt "*******" deploy.password --org
 # option --org for travis.org, --com for travis.com
 
 deploy:
   provider: pypi
   user: bitranox
   password:
-    secure: "F7FVvNiBHDsbd6ewu+IfeIDCICDzFZ+z6hZSL0TSvW9Q3xklKdaSBnA3gxRTQ6F+hInWxeVum6JNZDJEwmwJ42h25MetY8cGXKX3wXglqody8YR9P+I/pUJwqozUEJwVTBXKZXuIH+eO7U6qP8znnyRxEIdxXxs71xyzHzw0WBY74Y0m6L3XSAW4KfaujQOIGUS75RRWweaZtE0FRmZ6A4RO7WyWswbhVz229RA5WPhQkqOEaTA5YJSMFEviQp1DQ6LCApogpm4ixYg1a/7JnE5oyLEi1iaH5MW/uK18aVEKZ42weNYW06oWfP2sQIkEYH2q6rdGFjJxA3rIH+e/P+/RE7Z54yEGlpVuVg0AoBocf41dp/1eJJvmyn+1gxnUyR9DnXiKT9qW8M5sC9TK1rXumQc0kRt8lFb+PJ0yKOfrNjzac6MZv0CpBKKO9UIkYPX0HFUrcs9FDG8guNrKdQoUZMUQiEfp6BSadFE6AQR1yPat3Rf3ScNe8LuNg1zN7JDiLUi7hGwhscsH07jMow0emE8Ofz7F+4tif02u4y8rP74zbGI3fHVlXIV4phyql4Iroi+XWYzLSdJgO4BkspQCnoy89jlywbO/M1/8g0jmQ04ixr5wF7rAVPJx7PHMUvQyvvYnRK6DvqcfwCEVHauvE/xLbcJHFFDuxmOyQeY="
+    secure: "AH9It18Vttbvy0qjhReLky5+Lsce9QF1W/iNwnS1e7i+V1ivZq78T2CuFTjll0Mus6u6taaXHiGAwb08rWMIXjJUcEZAhVH+CYakvE6+ZbvkyTukiPiRjEbEW4Y4YFMTpdKtVevoz7hIQdkejdk7B4JSR4O80YFJ7exB48n6RKiebGorL8UxYaFXoDSSI904D3RNebb1Us4+0j4LouQ87a+wcwfMVQ7aPbeZ2oMCLq6PStwMYp2s7rDca/noxU/NaWGwSn6noZwlbz3W9WBvYIgNj1JvFv8FnR/C29ZzIo17UTfd4U1VyBGBz1CanrUhvXCUvfZAJgS8nh9sYESmr0/ckT57wDaKuxwXf1ChjcZvyXtFPAnMRaLpqUKppn92dw03H68J+EExajDx2JmJdMpheFnM96Uc7ZXJgWr/LoLuhfvYv7LykA91DkmcvxM/xzHqmYtt/zCoWG7gdL0HPtzn9sDguKKUkjYEMbdu9e2ZwqCev9VsnyuI4TJsAgAMMAEjUVKL8kqt5m91tPsEWd+KmGQ1Uw0QTusU04KNbAMxXsLmLj2G2GRK75HJJxyhhL34ugU9IA5QKOLCQW2WyKZov4ac+I6am/6+CdAkUvHFHNUoJIDzy0nUBgSQq8Ao1fcKoAWjZCx7kzto6KVUZ0RSxGZUd2twSvlYDbKxnEE="
   distributions: "sdist bdist_wheel"
   on:
     tags: true
