@@ -21,6 +21,7 @@ sudo apt-get update
 echo "Wine Packages Install"
 sudo apt-get install --install-recommends winehq-${wine_version}
 sudo apt-get install -y cabextract
+sudo apt-get install -y libxml2
 
 echo "Install latest Winetricks"
 cd /usr/bin

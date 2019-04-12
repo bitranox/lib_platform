@@ -1,6 +1,20 @@
 #!/bin/bash
 save_path="`dirname \"$0\"`"
 
+echo "Check if we run headless and xvfb Server is running"
+xvfb_framebuffer_service_active="False"
+systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
+# run winetricks with xvfb if needed
+if [[ ${xvfb_framebuffer_service_active} == "True" ]]
+	then
+		xvfb_prefix="xvfb_run"
+		echo "we run headless, xvfb service is running"
+	else
+	    xvfb_prefix=""
+	    echo "we run on normal console, xvfb service is not running"
+	fi
+
+
 if [[ -z ${wine_windows_version} ]]
     then
         echo "WARNING - no wine_windows_version in environment - set now to win10"
@@ -12,26 +26,16 @@ echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH}, wine_windows_ve
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 # xvfb-run --auto-servernum winecfg # fails marshal_object couldnt get IPSFactory buffer for interface ...
-winecfg
+${xvfb_prefix} winecfg
 
 echo "Disable GUI Crash Dialogs"
-winetricks nocrashdialog
+${xvfb_prefix} winetricks nocrashdialog
 
 echo "Set Windows Version to ${wine_windows_version}"
-winetricks -q ${wine_windows_version}
-
-sudo apt-get install -y libxml2
+${xvfb_prefix} winetricks -q ${wine_windows_version}
 
 echo "Install common Packets"
-# check if we run headless with xvfb service
-xvfb_framebuffer_service_active="False"
-systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
-# run winetricks with xvfb if needed
-if [[ ${xvfb_framebuffer_service_active} == "True" ]]
-	then
-		xvfb-run winetricks -q windowscodecs
-	else
-		winetricks -q windowscodecs
-	fi
+
+${xvfb_prefix} winetricks -q windowscodecs
 
 cd ${save_path}
