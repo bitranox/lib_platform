@@ -376,9 +376,9 @@ matrix:
 
 
 install:
-    - service xvfb status
-    - sudo service xvfb start
-    - service xvfb status
+    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
+    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb start ; fi
+    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then chmod 755 ./*.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine_machine.sh ; fi
