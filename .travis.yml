@@ -8,7 +8,6 @@ env:
         - github_master="https://github.com/${TRAVIS_REPO_SLUG}/archive/master.zip"
         - pip_command="pip"
         - python_command="python"
-        - XVFB_PREFIX="xvfb-run"
 
 addons:
     apt:
@@ -34,6 +33,7 @@ matrix:
       before_install:
           - choco install python2
           - export PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+          - export XVFB_PREFIX="xvfb-run"
 
     - os: windows
       language: sh
@@ -47,57 +47,42 @@ matrix:
       before_install:
         - choco install python3
         - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+        - export XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '2.7'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.4'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.5'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.6'
       # we can do that also with env - but we dont want to show it on the travis build overview
-      env:
-        - XVFB_PREFIX="xvfb-run"
       before_install:
         - export deploy_on_pypi="True"
 
     - os: linux
       language: python
       python: '3.7.1'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.7-dev'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: 'pypy2.7-6.0'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: 'pypy3.5-6.0'
-      env:
-        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: sh
@@ -378,6 +363,8 @@ matrix:
     - os: osx
       language: sh
       name: "osX Python 2.7"
+      before_install:
+        - export XVFB_PREFIX="xvfb-run"
 
     - os: osx
       language: sh
@@ -388,6 +375,8 @@ matrix:
         # on osx pip and python points to python 2.7 - therefore we have to use pip3 and python3 here
         - pip_command="pip3"
         - python_command="python3"
+      before_install:
+          - export XVFB_PREFIX="xvfb-run"
 
 
 install:
