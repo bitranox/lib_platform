@@ -24,16 +24,17 @@ echo "Setup Wine Machine at ${WINEPREFIX}, WINEARCH=${WINEARCH}, wine_windows_ve
 mkdir -p ${WINEPREFIX}
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 # xvfb-run --auto-servernum winecfg # fails marshal_object couldnt get IPSFactory buffer for interface ...
-winecfg
+xvfb-run winecfg
 
 echo "Disable GUI Crash Dialogs"
-winetricks nocrashdialog
+xvfb-run winetricks nocrashdialog
 
 echo "Set Windows Version to ${wine_windows_version}"
-winetricks -q ${wine_windows_version}
+xvfb-run winetricks -q ${wine_windows_version}
 
 echo "Install common Packets"
 
-winetricks -q windowscodecs
+xvfb-run winetricks -q windowscodecs
+xvfb-run winetricks -q msxml3
 
 cd ${save_path}
