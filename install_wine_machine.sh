@@ -26,18 +26,18 @@ wine_drive_c_dir=${WINEPREFIX}/drive_c
 # xvfb-run --auto-servernum winecfg # fails marshal_object couldnt get IPSFactory buffer for interface ...
 
 sudo service xvfb stop
-
-xvfb-run winecfg
+winecfg
+sudo service xvfb start
 
 echo "Disable GUI Crash Dialogs"
-xvfb-run winetricks nocrashdialog
+winetricks nocrashdialog
 
 echo "Set Windows Version to ${wine_windows_version}"
-xvfb-run winetricks -q ${wine_windows_version}
+winetricks -q ${wine_windows_version}
 
 echo "Install common Packets"
 
-xvfb-run winetricks -q windowscodecs
-xvfb-run winetricks -q msxml3
+winetricks -q windowscodecs
+winetricks -q msxml3
 
 cd ${save_path}
