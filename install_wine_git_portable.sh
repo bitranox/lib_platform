@@ -20,7 +20,7 @@ systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
 # run winetricks with xvfb if needed
 if [[ ${xvfb_framebuffer_service_active} == "True" ]]
 	then
-		xvfb_prefix="xvfb_run"
+		xvfb_prefix="xvfb-run"
 		echo "we run headless, xvfb service is running"
 	else
 	    xvfb_prefix=""

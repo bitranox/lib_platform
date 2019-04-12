@@ -390,7 +390,7 @@ install:
     - ${XVFB_PREFIX} ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
     - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
     - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - ${CMDPREFIX} ${pip_command} install -e .    # here no ${XVFB_PREFIX} it does not work on Wine Python 2.7 Systems but not really needed here
+    - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install -e .
 
 script:
     - ${XVFB_PREFIX} ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test # test setup.py test option
