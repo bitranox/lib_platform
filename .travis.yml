@@ -92,6 +92,7 @@ matrix:
           - wine_version="stable"
           - wine_python_version="python2"
       before_install:
+        - service xvfb status
         - sudo service xvfb start
         - service xvfb status
 
