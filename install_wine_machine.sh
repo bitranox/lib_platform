@@ -20,10 +20,18 @@ winetricks nocrashdialog
 echo "Set Windows Version to ${wine_windows_version}"
 winetricks -q ${wine_windows_version}
 
+sudo apt-get install -y libxml32
+
 echo "Install common Packets"
-# winetricks -q msxml6
-# winetricks -q dotnet462
-# winetricks -q allfonts
-xvfb-run winetricks -q windowscodecs
+# check if we run headless with xvfb service
+xvfb_framebuffer_service_active="False"
+systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
+# run winetricks with xvfb if needed
+if [[ ${xvfb_framebuffer_service_active} == "True" ]]
+	then
+		xvfb-run winetricks -q windowscodecs
+	else
+		winetricks -q windowscodecs
+	fi
 
 cd ${save_path}
