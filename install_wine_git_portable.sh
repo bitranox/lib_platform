@@ -1,12 +1,32 @@
 #!/bin/bash
 save_path="`dirname \"$0\"`"
 
-## set wine prefix to ${HOME}/.wine if not given by environment variable
+# if used outside github/travis You need to set :
+# WINEARCH=win32    for 32 Bit Wine
+# WINEARCH=         for 64 Bit Wine
+# WINEPREFIX defaults to ${HOME}/.wine   or you need to pass it via environment variable
+
+# if running headless, the xvfb service needs to run
+
 if [[ -z ${WINEPREFIX} ]]
     then
         echo "WARNING - no WINEPREFIX in environment - set now to ${HOME}/.wine"
         WINEPREFIX=${HOME}/.wine
     fi
+
+echo "Check if we run headless and xvfb Server is running"
+xvfb_framebuffer_service_active="False"
+systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
+# run winetricks with xvfb if needed
+if [[ ${xvfb_framebuffer_service_active} == "True" ]]
+	then
+		xvfb_prefix="xvfb_run"
+		echo "we run headless, xvfb service is running"
+	else
+	    xvfb_prefix=""
+	    echo "we run on normal console, xvfb service is not running"
+	fi
+
 
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/bitranox_decompress
@@ -33,10 +53,10 @@ echo "Unzip Git Portable Binaries to ${wine_drive_c_dir}"
 unzip -qq ${decompress_dir}/binaries_portable_git-master/bin/joined_PortableGit.zip -d ${wine_drive_c_dir}
 
 echo "add Path Settings to Registry"
-wine_current_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+wine_current_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 wine_new_reg_path="${add_git_path};${wine_current_reg_path}"
-wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
-wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+${xvfb_prefix} wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
+wine_actual_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 echo "Wine PATH=${wine_actual_reg_path}"
 
 rm -r ${decompress_dir}

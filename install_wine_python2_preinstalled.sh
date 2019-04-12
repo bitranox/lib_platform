@@ -6,6 +6,8 @@ save_path="`dirname \"$0\"`"
 # WINEARCH=         for 64 Bit Wine
 # WINEPREFIX defaults to ${HOME}/.wine   or you need to pass it via environment variable
 
+# if running headless, the xvfb service needs to run
+
 ## set wine prefix to ${HOME}/.wine if not given by environment variable
 if [[ -z ${WINEPREFIX} ]]
     then
