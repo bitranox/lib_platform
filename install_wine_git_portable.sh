@@ -60,5 +60,6 @@ rm -r ${decompress_dir}
 
 cd ${save_path}
 echo "******************************************************************************************************************"
-echo "installed Git Portable on WINE, Wine Registry PATH=${wine_actual_reg_path}"
+echo "******************************************************************************************************************"
+echo "FINISHED installing Git Portable on WINE, Wine Registry PATH=${wine_actual_reg_path}"
 echo "******************************************************************************************************************"

@@ -65,5 +65,6 @@ wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControl
 rm -r ${decompress_dir}
 cd ${save_path}
 echo "******************************************************************************************************************"
-echo "installed Python 2.7 on WINE, Wine Registry PATH=${wine_actual_reg_path}"
+echo "******************************************************************************************************************"
+echo "FINISHED installing Python 2.7 on WINE, Wine Registry PATH=${wine_actual_reg_path}"
 echo "******************************************************************************************************************"
