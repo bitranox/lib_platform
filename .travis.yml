@@ -376,6 +376,7 @@ matrix:
 
 
 install:
+    - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then sudo apt install xvfb ; fi
     - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
     - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then sudo service xvfb start ; fi
     - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
