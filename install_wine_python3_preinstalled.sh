@@ -13,6 +13,21 @@ if [[ -z ${WINEPREFIX} ]]
         WINEPREFIX=${HOME}/.wine
     fi
 
+
+echo "Check if we run headless and xvfb Server is running"
+xvfb_framebuffer_service_active="False"
+systemctl is-active --quiet xvfb && xvfb_framebuffer_service_active="True"
+# run winetricks with xvfb if needed
+if [[ ${xvfb_framebuffer_service_active} == "True" ]]
+	then
+		xvfb_prefix="xvfb_run"
+		echo "we run headless, xvfb service is running"
+	else
+	    xvfb_prefix=""
+	    echo "we run on normal console, xvfb service is not running"
+	fi
+
+
 wine_drive_c_dir=${WINEPREFIX}/drive_c
 decompress_dir=${HOME}/bitranox_decompress
 mkdir -p ${decompress_dir}
@@ -42,10 +57,10 @@ echo "Unzip ${python_version_doc} to ${wine_drive_c_dir}"
 unzip -qq ${decompress_dir}/binaries_${python_version_short}_wine-master/bin/joined_${python_version_short}.zip -d ${wine_drive_c_dir}
 
 echo "add Path Settings to Registry"
-wine_current_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+wine_current_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 wine_new_reg_path="${add_pythonpath};${wine_current_reg_path}"
-wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
-wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
+${xvfb_prefix} wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
+wine_actual_reg_path="`${xvfb_prefix} wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
 echo "Wine PATH=${wine_actual_reg_path}"
 
 rm -r ${decompress_dir}
