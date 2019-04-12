@@ -15,7 +15,7 @@ addons:
             - xvfb      # install xvfb virtual framebuffer - not really necessary because already installed on travis
             - winbind   # needed for wine
 
-services:   # start the xvfb service. Strange choice of travis to use the keyword "services" for the command "service"
+services:   # start services
   - xvfb    # can be used for wine - not needed if You test console applications, but we start it anyway
 
 

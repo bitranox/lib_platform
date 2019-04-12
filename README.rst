@@ -7,7 +7,7 @@ some convenience functions used in many scripts
 
 supports python 2.7 - python 3.7, pypy and possibly other dialects.
 
-this is also a working example for travis.yml :
+this is also a working example for travis.yml for multi-platform testing :
 
 - install WINE
 - install python 2.7 on wine 32 Bit
@@ -104,7 +104,7 @@ Basic Usage
 
     >>> from lib_platform import *
 
-    >>> # possible values : lowercase, returns:  'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine'
+    >>> # possible values : lowercase, returns:  'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
     >>> system
     'linux'
 
@@ -124,6 +124,9 @@ Basic Usage
     False
 
     >>> is_platform_windows_wine
+    False
+
+    >>> is_platform_windows_wine_xp
     False
 
     >>> username
