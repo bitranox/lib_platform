@@ -16,7 +16,7 @@ addons:
             - winbind   # needed for wine
 
 services:   # start services
-  - xvfb    # can be used for wine - not needed if You test console applications, but we start it anyway
+  - xvfb    # is needed for wine on headless installation
 
 
 matrix:
@@ -50,37 +50,53 @@ matrix:
     - os: linux
       language: python
       python: '2.7'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.4'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.5'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.6'
       # we can do that also with env - but we dont want to show it on the travis build overview
+      env:
+        - XVFB_PREFIX="xvfb-run"
       before_install:
         - export deploy_on_pypi="True"
 
     - os: linux
       language: python
       python: '3.7.1'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: '3.7-dev'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: 'pypy2.7-6.0'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: python
       python: 'pypy3.5-6.0'
+      env:
+        - XVFB_PREFIX="xvfb-run"
 
     - os: linux
       language: sh
@@ -411,7 +427,7 @@ deploy:
   provider: pypi
   user: bitranox
   password:
-    secure: BzUL5nF99Yd4cxagGvbv4HejJItbUo2bUiky7ZKClJzYi11slJxoo8e5OFUNWHXwyCWSXO23Bo4v4n4dXU147CkZOmvjIBcbjw2uW6ZEvSyqSshFynPxVPmHQmKY5h4A+8K7Xc7ahYAKyOEElAzRDsqH9yEnKKlmbA45T4ymEg3HTQp5Gh5j6BG9CcFFqotWP2IJlFlgtIN+6DsVuOD3ElsMjhJ9Cg9Uh4cZF1wUU573hDwHz1pHQ60jNEQ6NXB/URIdJDIm63dTlbclDdLM4bvrn2Q0jHBRKwLHImwQZY9VAPt8ZDlr6DQn9+FRfWrF04aovvQxX5GQvNG4nJ/yszzlWDGCCtEzm4Gf6s8FKrM5HDL6ZT1MbEPPIk4kyJxibXVA2fBCVbePrE+JEv3GdavsKOxBW8U1hrDVCocqYsyK8X0PWqeLi1R7XfM9UKK/JPZC0n9hu4UoIFwmXczMhChm5+P8o4jWPKVg2iR/Psu9G17jKkJCnPFdDKfAliwH5kyLgdGrdtdKlom0yJV4LVK3v3JA2dUCsyT3ii2TePfOBTlKfjpH2q/P5OkLK1Wd56mxiiKUB47+nSqowdN4qV6YfkjwSn8Q9zkXJ99aiD6xuCObMkpi+DOXH5yxZTvI0q37eOhGY3rLJuqgjn7ck/KDNSUL5d0+MfyFDrAwWWc=
+    secure: uxzN4I6caTU3qP0UrKqsZEj5SHch2ZAY78sq0s/PJQnnFEydAL4Cpc3ljlZBu5aTxeveYxnfI3gSAjz5IgyT5aCmTCO1xzS55KMIky1rW+MO34MFCDcm/DG33sjm5m6cZmWt5YaIJqBPGNntc/FgicRsTS89wbboVKxvFqez6L4IqdjRJ/gNh2kvHXxten4/b5VtUr9rMm+781ozPub1olD2ca7Zw+72IEYd7NJ9c5wvgk6U9Tmzc4FCrWA8oxhLUHFX0Hz01BrJQg+/LwbMMNFUGRBPtecEOw1RtBN31CLENvzruqMoFCZBZXs+8fyVg00xKZ1QbuwnrLhKluK7iOO1exz+vmMIU5aRXZepZmkV4n0E8IfQBQdr3qwku/1AjXduF9gE/m2usqhsg/QaB/GpRydqxRulx23xwbUvNHBulfvh9RtrlmhKTawTSqMFDLy7sLkm7w9NuzTDPzEWfwzS8VqZJlXiLp/L7XVMOqSfAOL6gg1kcIgCyI5Zv6QBzplcitkDj1sXmiaQcCt8P/1uCFH+xudyBKpb5lMayFZMxjiVkxUgrmpfRgMxonYxD7SrOPoyZuRnm+WhXKv4jPtPMJtiZqZKo9qrRx2HHT6TVfgw6mJ2vcGzeiEgl7L8z89AVOtBKskcShppd2gki4SK8kuryFAwBNMNNrEys2k=
   distributions: "sdist bdist_wheel"
   on:
     tags: true
