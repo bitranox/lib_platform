@@ -370,7 +370,6 @@ script:
     - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; fi
     - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; fi
 
-
 after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
