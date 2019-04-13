@@ -13,7 +13,7 @@ function fail {
 function check_wine_version {
     if [[ -z ${wine_version} ]]
         then
-            crl_bold clr_red "WARNING - no wine_version in environment set - set now to default: devel"
+            clr_bold clr_red "WARNING - no wine_version in environment set - set now to default: devel"
             echo "available Versions: stable, devel, staging"
             export wine_version="devel"
         fi
@@ -24,7 +24,7 @@ function check_wine_prefix {
     ## set wine prefix to ${HOME}/.wine if not given by environment variable
     if [[ -z ${WINEPREFIX} ]]
         then
-            crl_bold clr_red "WARNING - no WINEPREFIX in environment - set now to ${HOME}/.wine"
+            clr_bold clr_red "WARNING - no WINEPREFIX in environment - set now to ${HOME}/.wine"
             export WINEPREFIX=${HOME}/.wine
         fi
 }
@@ -32,9 +32,9 @@ function check_wine_prefix {
 function check_wine_arch {
     if [[ -z ${WINEARCH} ]]
         then
-            crl_bold clr_red "WARNING - no WINEARCH in environment - will install 64 Bit Wine"
-            crl_bold clr_red "in Order to install 32Bit You need to set WINEARCH=\"win32\""
-            crl_bold clr_red "in Order to install 64Bit You need to set WINEARCH=\"\""
+            clr_bold clr_red "WARNING - no WINEARCH in environment - will install 64 Bit Wine"
+            clr_bold clr_red "in Order to install 32Bit You need to set WINEARCH=\"win32\""
+            clr_bold clr_red "in Order to install 64Bit You need to set WINEARCH=\"\""
         fi
 }
 
@@ -42,8 +42,8 @@ function check_wine_arch {
 function check_wine_windows_version {
     if [[ -z ${wine_windows_version} ]]
         then
-            crl_bold clr_red "WARNING - no wine_windows_version in environment - set now to win10"
-            crl_bold clr_red "available Versions: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp"
+            clr_bold clr_red "WARNING - no wine_windows_version in environment - set now to win10"
+            clr_bold clr_red "available Versions: win10, win2k, win2k3, win2k8, win31, win7, win8, win81, win95, win98, winxp"
             export wine_windows_version="win10"
         fi
 }
@@ -69,8 +69,8 @@ function prepend_path_to_wine_registry {
     wine_new_reg_path="${add_pythonpath};${wine_current_reg_path}"
     wine reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /t REG_SZ /v PATH /d "${wine_new_reg_path}" /f
     wine_actual_reg_path="`wine reg QUERY \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\" /v PATH | grep REG_SZ | sed 's/^.*REG_SZ\s*//'`"
-    crl_green "adding Path done"
-    crl_bold crl_green "Wine Registry PATH=${wine_actual_reg_path}"
+    clr_green "adding Path done"
+    clr_green clr_green "Wine Registry PATH=${wine_actual_reg_path}"
 }
 
 
