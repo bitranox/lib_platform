@@ -20,7 +20,6 @@ clr_green "Wine Packages Install"
 retry sudo apt-get install --install-recommends winehq-${wine_version}
 retry sudo apt-get install -y cabextract
 retry sudo apt-get install -y libxml2
-retry sudo apt-get install -y libpng
 
 clr_green "Install latest Winetricks"
 cd /usr/bin
