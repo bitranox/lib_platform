@@ -1,6 +1,10 @@
 #!/bin/bash
 my_dir="$(dirname "${0}")"
 source ${my_dir}/lib_color.sh
+source ${my_dir}/lib_bash/lib_color.sh
+# source ${my_dir}/lib_color.sh >/dev/null 2>&1
+# source ${my_dir}/lib_bash/lib_color.sh >/dev/null 2>&1
+
 
 function fail {
   clr_bold clr_red "${1}" >&2

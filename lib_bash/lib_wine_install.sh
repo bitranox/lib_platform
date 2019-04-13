@@ -1,6 +1,8 @@
 #!/bin/bash
 my_dir="$(dirname "${0}")"
 chmod +x ${my_dir}/lib_bash/*.sh
+source ${my_dir}/lib_color.sh
+source ${my_dir}/lib_retry.sh
 source ${my_dir}/lib_bash/lib_color.sh
 source ${my_dir}/lib_bash/lib_retry.sh
 
