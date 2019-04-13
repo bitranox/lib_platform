@@ -4,12 +4,6 @@ chmod +x ${my_dir}/*.sh
 source ${my_dir}/lib_color.sh
 source ${my_dir}/lib_retry.sh
 
-test="$( dirname "${BASH_SOURCE[0]}" )"
-echo "test: ${test}"
-
-test2="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"
-echo "test2: ${test2}"
-
 
 function fail {
   clr_bold clr_red "${1}" >&2
@@ -79,9 +73,6 @@ function prepend_path_to_wine_registry {
     clr_green "adding Path done"
     clr_green clr_green "Wine Registry PATH=${wine_actual_reg_path}"
 }
-
-
-
 
 
 ## make it possible to call functions without source include
