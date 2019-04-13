@@ -68,6 +68,7 @@ function check_headless_xvfb {
         fi
 }
 
+
 function prepend_path_to_wine_registry {
     add_pythonpath=${1}
     clr_green "add Path Settings to Registry"
