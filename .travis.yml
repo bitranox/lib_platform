@@ -364,8 +364,9 @@ install:
     - if [[ -f setup.py ]]; then ${CMDPREFIX} ${pip_command} install -e . ; else ./lib_bash/lib_color.sh clr_bold clr_red "*** no setup.py found, nothing to install" ; fi
 
 script:
-    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi  # test setup.py test option
-    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi
+    - if [[ -f setup.py ]]; then export setup_py_found="True" ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; fi
 
 
 after_success:
