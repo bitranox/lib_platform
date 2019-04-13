@@ -3,6 +3,7 @@ my_dir="$(dirname "${0}")"
 chmod +x ${my_dir}/lib_bash/*.sh
 source ${my_dir}/lib_bash/lib_color.sh
 source ${my_dir}/lib_bash/lib_retry.sh
+source ${my_dir}/lib_bash/lib_wine_install.sh
 
 # if used outside github/travis You need to set :
 # WINEARCH=win32    for 32 Bit Wine

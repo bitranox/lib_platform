@@ -394,7 +394,7 @@ deploy:
   distributions: "sdist bdist_wheel"
   on:
     tags: true
-    # python: 3.6
+    # python: 3.6  # that would be the usual option, but we can not use it.
     # we need this, because on projects with windows builds only, we can not build on windows, because of
     # the filter_secure issue. So we build on WINE, but need somehow to address the matrix include on which to build
     condition: ${deploy_on_pypi} = "True"
