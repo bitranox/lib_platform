@@ -1,5 +1,5 @@
 #!/bin/bash
-my_dir="$(dirname "${0}")"
+my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
 chmod +x ${my_dir}/lib_bash/*.sh
 source ${my_dir}/lib_bash/lib_color.sh
 source ${my_dir}/lib_bash/lib_retry.sh
@@ -51,4 +51,4 @@ clr_green "done"
 clr_green "******************************************************************************************************************"
 clr_bold clr_green "FINISHED installing Python 2.7 on Wine Machine ${WINEPREFIX}"
 clr_green "******************************************************************************************************************"
-cd ${my_dir}
+

@@ -1,18 +1,6 @@
 #!/bin/bash
-my_dir="$(dirname "${0}")"
+my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
 source ${my_dir}/lib_color.sh
-source ${my_dir}/lib_bash/lib_color.sh
-# source ${my_dir}/lib_color.sh >/dev/null 2>&1
-# source ${my_dir}/lib_bash/lib_color.sh >/dev/null 2>&1
-
-
-test="$( dirname "${BASH_SOURCE[0]}" )"
-echo "test: ${test}"
-
-test2="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"
-echo "test2: ${test2}"
-
-
 
 function fail {
   clr_bold clr_red "${1}" >&2

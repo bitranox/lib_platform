@@ -1,10 +1,8 @@
 #!/bin/bash
-my_dir="$(dirname "${0}")"
-chmod +x ${my_dir}/lib_bash/*.sh
+my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
+chmod +x ${my_dir}/*.sh
 source ${my_dir}/lib_color.sh
 source ${my_dir}/lib_retry.sh
-source ${my_dir}/lib_bash/lib_color.sh
-source ${my_dir}/lib_bash/lib_retry.sh
 
 test="$( dirname "${BASH_SOURCE[0]}" )"
 echo "test: ${test}"

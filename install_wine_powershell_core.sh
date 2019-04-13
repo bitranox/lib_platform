@@ -1,5 +1,5 @@
 #!/bin/bash
-save_path="`dirname \"$0\"`"
+my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
 
 ## set wine prefix to ${HOME}/.wine if not given by environment variable
 if [[ -z ${WINEPREFIX} ]]
@@ -27,4 +27,3 @@ unzip -qq ./powershell.zip -d ${powershell_install_dir}
 rm ./powershell.zip
 wine ${powershell_install_dir}/pwsh -ExecutionPolicy unrestricted -Command "get-executionpolicy"
 
-cd ${save_path}
