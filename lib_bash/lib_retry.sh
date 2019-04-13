@@ -2,6 +2,7 @@
 my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
 source ${my_dir}/lib_color.sh
 
+
 function fail {
   clr_bold clr_red "${1}" >&2
   exit 1
