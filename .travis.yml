@@ -361,10 +361,10 @@ install:
     - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
     - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
     - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${pip_command} install -e . ; else ./lib_bash/lib_color.sh clr_bold clr_red "*** no setup.py found, nothing to install" ; fi
+    - if [[ -f setup.py ]]; then export setup_py_found="True" ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install -e . ; fi
 
 script:
-    - if [[ -f setup.py ]]; then export setup_py_found="True" ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi
     - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; fi
     - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; fi
 
@@ -393,7 +393,7 @@ deploy:
     secure: uxzN4I6caTU3qP0UrKqsZEj5SHch2ZAY78sq0s/PJQnnFEydAL4Cpc3ljlZBu5aTxeveYxnfI3gSAjz5IgyT5aCmTCO1xzS55KMIky1rW+MO34MFCDcm/DG33sjm5m6cZmWt5YaIJqBPGNntc/FgicRsTS89wbboVKxvFqez6L4IqdjRJ/gNh2kvHXxten4/b5VtUr9rMm+781ozPub1olD2ca7Zw+72IEYd7NJ9c5wvgk6U9Tmzc4FCrWA8oxhLUHFX0Hz01BrJQg+/LwbMMNFUGRBPtecEOw1RtBN31CLENvzruqMoFCZBZXs+8fyVg00xKZ1QbuwnrLhKluK7iOO1exz+vmMIU5aRXZepZmkV4n0E8IfQBQdr3qwku/1AjXduF9gE/m2usqhsg/QaB/GpRydqxRulx23xwbUvNHBulfvh9RtrlmhKTawTSqMFDLy7sLkm7w9NuzTDPzEWfwzS8VqZJlXiLp/L7XVMOqSfAOL6gg1kcIgCyI5Zv6QBzplcitkDj1sXmiaQcCt8P/1uCFH+xudyBKpb5lMayFZMxjiVkxUgrmpfRgMxonYxD7SrOPoyZuRnm+WhXKv4jPtPMJtiZqZKo9qrRx2HHT6TVfgw6mJ2vcGzeiEgl7L8z89AVOtBKskcShppd2gki4SK8kuryFAwBNMNNrEys2k=
   distributions: "sdist bdist_wheel"
   on:
-    tags: true
+    tags: true    # we release only on PyPi on tagged Releases (Release on Github)
     # python: 3.6  # that would be the usual option, but we can not use it.
     # we need this, because on projects with windows builds only, we can not build on windows, because of
     # the filter_secure issue. So we build on WINE, but need somehow to address the matrix include on which to build
