@@ -23,10 +23,9 @@ retry sudo apt-get install -y libxml2
 retry sudo apt-get install -y libpng-dev
 
 clr_green "Install latest Winetricks"
-cd /usr/bin
-sudo rm -f winetricks
-retry sudo wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
-sudo chmod +x winetricks
+sudo rm -f /usr/bin/winetricks
+retry sudo wget --directory-prefix=/usr/bin/ https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
+sudo chmod +x /usr/bin/winetricks
 retry sudo winetricks -q --self-update
 clr_green "Install latest Winetricks - done"
 
