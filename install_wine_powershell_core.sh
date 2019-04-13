@@ -1,5 +1,12 @@
 #!/bin/bash
-my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
+function include_dependencies{
+    local my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
+    chmod +x ${my_dir}/lib_bash/*.sh
+    source ${my_dir}/lib_bash/lib_color.sh
+    source ${my_dir}/lib_bash/lib_retry.sh
+    source ${my_dir}/lib_bash/lib_wine_install.sh
+}
+include_dependencies  # me need to do that via a function to have local scope of my_dir
 
 ## set wine prefix to ${HOME}/.wine if not given by environment variable
 if [[ -z ${WINEPREFIX} ]]

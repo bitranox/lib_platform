@@ -1,7 +1,11 @@
 #!/bin/bash
-my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
-source ${my_dir}/lib_color.sh
 
+function include_dependencies{
+    local my_dir="$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"  # this gives the full path, even for sourced scripts
+    source ${my_dir}/lib_color.sh
+}
+
+include_dependencies
 
 function fail {
   clr_bold clr_red "${1}" >&2
