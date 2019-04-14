@@ -1,7 +1,7 @@
 lib_platform
 ============
 
-|Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |snyk security|
+|license| |maintenance| |Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |snyk security|
 
 some convenience functions used in many scripts
 
@@ -174,6 +174,9 @@ This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/M
 
 See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.txt>`_
 
+.. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
+   :target: http://en.wikipedia.org/wiki/MIT_License
+.. |maintenance| image:: https://img.shields.io/maintenance/yes/2019.svg
 .. |Build Status| image:: https://travis-ci.org/bitranox/lib_platform.svg?branch=master
    :target: https://travis-ci.org/bitranox/lib_platform
 .. for the pypi status link note the dashes, not the underscore !
