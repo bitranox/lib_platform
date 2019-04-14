@@ -12,8 +12,7 @@ function include_dependencies {
 include_dependencies  # me need to do that via a function to have local scope of my_dir
 
 get_linux_codename
-
-clr_bold clr_green "Install WINE"
+clr_bold clr_green "Install WINE on ${linux_codename}"
 check_wine_version
 
 clr_green "add 386 Architecture"
