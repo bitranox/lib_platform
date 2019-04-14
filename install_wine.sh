@@ -20,7 +20,8 @@ retry sudo dpkg --add-architecture i386
 clr_green "add Wine Keys"
 retry wget https://dl.winehq.org/wine-builds/winehq.key
 sudo apt-key add winehq.key
-sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${linux_codename} main'
+repository="deb https://dl.winehq.org/wine-builds/ubuntu/ \"${linux_codename}\" main"
+sudo apt-add-repository $repository
 clr_green "Wine Packages Update"
 retry sudo apt-get update
 clr_green "Wine Packages Install"
