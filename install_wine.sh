@@ -11,7 +11,7 @@ function include_dependencies {
 
 include_dependencies  # me need to do that via a function to have local scope of my_dir
 
-# get_linux_codename
+get_linux_codename
 
 clr_bold clr_green "Install WINE on ${linux_codename}"
 
@@ -22,8 +22,9 @@ retry wget https://dl.winehq.org/wine-builds/winehq.key
 sudo apt-key add winehq.key
 
 # this does not work - strange !
-# sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${linux_codename} main'
-sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
+# sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${linux_codename} main'  # funktioniert nicht
+sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ ${linux_codename} main"
+# sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 clr_green "Wine Packages Update"
 retry sudo apt-get update
 clr_green "Wine Packages Install"
