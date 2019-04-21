@@ -3,7 +3,6 @@ lib_platform
 
 |Pypi Status| |license| |maintenance| |jupyter|
 
-
 |Build Status| |Codecov Status| |Better Code| |code climate| |snyk security|
 
 
