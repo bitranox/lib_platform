@@ -1,7 +1,8 @@
 lib_platform
 ============
 
-|license| |maintenance| |Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |snyk security|
+|license| |maintenance| |Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |code climate| |snyk security|
+
 
 some convenience functions used in many scripts
 
@@ -190,3 +191,6 @@ See `License file <https://github.com/bitranox/lib_platform/blob/master/LICENSE.
    :target: https://snyk.io/test/github/bitranox/lib_platform
 .. |jupyter| image:: https://mybinder.org/badge.svg
    :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb
+.. |code climate| image:: https://api.codeclimate.com/v1/badges/15acaf0e7747a042c505/maintainability
+   :target: https://codeclimate.com/github/bitranox/lib_platform/maintainability
+   :alt: Maintainability
