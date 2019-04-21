@@ -1,7 +1,9 @@
 lib_platform
 ============
 
-|license| |maintenance| |Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code| |code climate| |snyk security|
+|license| |maintenance| |Build Status| |jupyter| |Pypi Status| |Codecov Status| |Better Code|
+
+|code climate| |snyk security|
 
 
 some convenience functions used in many scripts
