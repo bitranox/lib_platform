@@ -53,25 +53,24 @@ def get_hostname_short():
 def get_system():
     # type: () -> str
     """
-    :returns: darwin, linux, windows, windows_xp, windows_wine
-
     >>> result = get_system()
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp']
     >>> assert result in possible_results
     """
     if not is_platform_windows:
-        return platform.system().lower()
+        s_system = platform.system().lower()
     else:
         _is_platform_windows_xp = get_is_platform_windows_xp()
         _is_platform_windows_wine = get_is_platform_windows_wine()
         if _is_platform_windows_xp and not _is_platform_windows_wine:
-            return 'windows_xp'
+            s_system = 'windows_xp'
         elif _is_platform_windows_xp and _is_platform_windows_wine:
-            return 'windows_wine_xp'
+            s_system = 'windows_wine_xp'
         elif _is_platform_windows_wine and not _is_platform_windows_xp:
-            return 'windows_wine'
+            s_system = 'windows_wine'
         else:
-            return 'windows'
+            s_system = 'windows'
+    return s_system
 
 
 def get_username():
