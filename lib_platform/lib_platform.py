@@ -57,19 +57,40 @@ def get_system():
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp']
     >>> assert result in possible_results
     """
-    if not is_platform_windows:
-        s_system = platform.system().lower()
+    if is_platform_windows:
+        s_system = _get_system_windows()
     else:
-        _is_platform_windows_xp = get_is_platform_windows_xp()
-        _is_platform_windows_wine = get_is_platform_windows_wine()
-        if _is_platform_windows_xp and not _is_platform_windows_wine:
-            s_system = 'windows_xp'
-        elif _is_platform_windows_xp and _is_platform_windows_wine:
-            s_system = 'windows_wine_xp'
-        elif _is_platform_windows_wine and not _is_platform_windows_xp:
-            s_system = 'windows_wine'
-        else:
-            s_system = 'windows'
+        s_system = platform.system().lower()
+    return s_system
+
+
+def _get_system_windows():
+    # type: () -> str
+    _is_platform_windows_wine = get_is_platform_windows_wine()
+    if _is_platform_windows_wine:
+        s_system = _get_system_windows_wine()
+    else:
+        s_system = _get_system_windows_not_wine()
+    return s_system
+
+
+def _get_system_windows_wine():
+    # type: () -> str
+    _is_platform_windows_xp = get_is_platform_windows_xp()
+    if _is_platform_windows_xp:
+        s_system = 'windows_wine_xp'
+    else:
+        s_system = 'windows_wine'
+    return s_system
+
+
+def _get_system_windows_not_wine():
+    # type: () -> str
+    _is_platform_windows_xp = get_is_platform_windows_xp()
+    if _is_platform_windows_xp:
+        s_system = 'windows_xp'
+    else:
+        s_system = 'windows'
     return s_system
 
 
