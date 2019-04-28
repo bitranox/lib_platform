@@ -26,10 +26,18 @@ changes_filename = os.path.join(dirname, 'CHANGES.rst')
 
 long_description = description
 if os.path.exists(readme_filename):
-    long_description = codecs.open(readme_filename, encoding='utf-8').read()
+    try:
+        readme_content = codecs.open(readme_filename, encoding='utf-8').read()
+        long_description = readme_content
+    except Exception:
+        pass
 
 if os.path.exists(changes_filename):
-    long_description = '\n'.join((long_description, codecs.open(changes_filename, encoding='utf-8').read()))
+    try:
+        changes_content = codecs.open(changes_filename, encoding='utf-8').read()
+        long_description = '\n'.join((long_description, changes_content))
+    except Exception:
+        pass
 
 setup(
     name='lib_platform',
