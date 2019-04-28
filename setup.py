@@ -18,17 +18,23 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries :: Python Modules'
 ]
 
-dirname = os.path.dirname(__file__)
+description = 'some small helpers used in many scripts'
 
-long_description = (
-    codecs.open(os.path.join(dirname, 'README.rst'), encoding='utf-8').read() + '\n' +
-    codecs.open(os.path.join(dirname, 'CHANGES.rst'), encoding='utf-8').read()
-)
+dirname = os.path.dirname(__file__)
+readme_filename = os.path.join(dirname, 'README.rst')
+changes_filename = os.path.join(dirname, 'CHANGES.rst')
+
+long_description = description
+if os.path.exists(readme_filename):
+    long_description = codecs.open(readme_filename, encoding='utf-8').read()
+
+if os.path.exists(changes_filename):
+    long_description = '\n'.join((long_description, codecs.open(changes_filename, encoding='utf-8').read()))
 
 setup(
     name='lib_platform',
     version='1.0.1',
-    description='some small helpers used in many scripts',
+    description=description,
     long_description=long_description,
     long_description_content_type='text/x-rst',
     author='Robert Nowotny',
