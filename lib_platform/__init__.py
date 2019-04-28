@@ -18,4 +18,4 @@ from .lib_platform import get_is_platform_windows_xp        # this we need for p
 
 __title__ = 'lib_platform'
 __name__ = 'lib_platform'
-__version__ = '1.0.1'
+__version__ = '1.0.2'

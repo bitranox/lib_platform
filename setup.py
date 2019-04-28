@@ -41,7 +41,7 @@ if os.path.exists(changes_filename):
 
 setup(
     name='lib_platform',
-    version='1.0.1',
+    version='1.0.2',
     description=description,
     long_description=long_description,
     long_description_content_type='text/x-rst',
