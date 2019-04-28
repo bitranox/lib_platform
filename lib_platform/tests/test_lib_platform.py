@@ -1,7 +1,6 @@
 """lib_platform tests"""
 
 import dill
-from lib_platform import *
 from lib_platform.lib_platform import *
 from lib_registry import *
 
@@ -55,7 +54,6 @@ def test_system_values():
     >>> ### do not remove this line - marker doc basic usage end
 
     """
-
 
     if is_platform_linux:
         assert system == 'linux'
