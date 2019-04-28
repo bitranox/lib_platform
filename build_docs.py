@@ -2,6 +2,14 @@ import argparse
 import errno
 import logging
 import os
+import sys
+
+if sys.version_info < (3, 5):
+    logging.basicConfig(level=logging.ERROR)
+    main_logger = logging.getLogger('init')
+    main_logger.error('only Python 3 is supported, exit with exitcode 0')
+    sys.exit(0)
+
 from rst_include import *
 from rst_include.libs import lib_log
 import subprocess
