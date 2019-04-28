@@ -5,9 +5,9 @@ import os
 import sys
 
 if sys.version_info < (3, 5):
-    logging.basicConfig(level=logging.ERROR)
+    logging.basicConfig(level=logging.info)
     main_logger = logging.getLogger('init')
-    main_logger.error('only Python 3 is supported, exit with exitcode 0')
+    main_logger.info('only Python Versions from 3.5 are supported, exit with exitcode 0')
     sys.exit(0)
 
 from rst_include import *
