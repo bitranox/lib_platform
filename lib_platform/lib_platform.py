@@ -173,6 +173,7 @@ is_platform_darwin = platform.system().lower() == 'darwin'
 is_platform_posix = not is_platform_windows
 is_platform_windows_xp = get_is_platform_windows_xp()
 is_platform_windows_wine = get_is_platform_windows_wine()
+is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
 system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
 username = get_username()
 hostname = get_hostname()

@@ -7,6 +7,56 @@ from lib_registry import *
 
 
 def test_system_values():
+    """
+    >>> ### do not remove this line - marker doc basic usage start
+    >>> import lib_platform
+
+    >>> # get system as string
+    >>> system = lib_platform.system
+
+    >>> # bool is_platform_linux
+    >>> is_platform_linux = lib_platform.is_platform_linux
+
+    >>> # bool is_platform_darwin
+    >>> is_platform_darwin = lib_platform.is_platform_darwin
+
+    >>> # bool is_platform_posix
+    >>> is_platform_posix = lib_platform.is_platform_posix        # either darwin or linux
+
+    >>> # bool is_platform_windows
+    >>> is_platform_windows = lib_platform.is_platform_posix      # also True for windows_xp or windows_wine
+
+    >>> # bool is_platform_windows_xp
+    >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
+
+    >>> # bool is_platform_windows_wine
+    >>> is_platform_windows_wine = lib_platform.is_platform_windows_wine
+
+    >>> # bool is_platform_windows_wine_xp
+    >>> is_platform_windows_wine_xp = lib_platform.is_platform_windows_wine_xp
+
+    >>> # string username lib_platform.username
+    >>> username = lib_platform.username
+
+    >>> # string fqdn hostname
+    >>> hostname = lib_platform.hostname
+
+    >>> # string hostname short
+    >>> hostname_short = lib_platform.hostname_short
+
+    >>> # bool is_python2
+    >>> is_python2 = lib_platform.is_python2
+
+    >>> # bool is_python3
+    >>> is_python3 = lib_platform.is_python3
+
+    >>> # path to userhome
+    >>> path_userhome = lib_platform.path_userhome
+    >>> ### do not remove this line - marker doc basic usage end
+
+    """
+
+
     if is_platform_linux:
         assert system == 'linux'
         assert is_platform_posix
