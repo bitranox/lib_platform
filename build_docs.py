@@ -10,6 +10,7 @@ if sys.version_info < (3, 5):
     main_logger.info('only Python Versions from 3.5 are supported, exit with exitcode 0')
     sys.exit(0)
 
+
 from rst_include import *
 from rst_include.libs import lib_log
 import subprocess
