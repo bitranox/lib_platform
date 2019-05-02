@@ -44,7 +44,7 @@ this is also a working example for travis.yml for multi-platform testing :
 - Windows Build Python 3.7
 - build rst documentation with rst_include for github and PyPi
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds  and monitoring
+`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, mypy static type checking, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds  and monitoring
 
 ----
 

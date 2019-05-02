@@ -121,12 +121,10 @@ def get_is_platform_windows():
 def get_is_platform_windows_xp():
     # type: () -> bool
 
-    if is_platform_windows:
-        release = platform.release().lower()
-        if release == 'xp':
-            return True
-        else:
-            return False
+    if is_platform_windows and platform.release().lower() == 'xp':
+        return True
+    else:
+        return False
 
 
 def get_is_platform_windows_wine():
