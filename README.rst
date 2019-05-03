@@ -48,6 +48,7 @@ this is also a working example for travis.yml for multi-platform testing :
 
 ----
 
+- `Try it Online`_
 - `Installation and Upgrade`_
 - `Basic Usage`_
 - `Requirements`_
@@ -59,6 +60,11 @@ this is also a working example for travis.yml for multi-platform testing :
 - `License`_
 
 ----
+
+Try it Online
+-------------
+
+You might try it right away in Jupyter Notebook by using the "launch binder" badge, or click `here <https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb>`_
 
 Installation and Upgrade
 ------------------------

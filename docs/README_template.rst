@@ -27,6 +27,7 @@ this is also a working example for travis.yml for multi-platform testing :
 
 ----
 
+- `Try it Online`_
 - `Installation and Upgrade`_
 - `Basic Usage`_
 - `Requirements`_
@@ -38,6 +39,11 @@ this is also a working example for travis.yml for multi-platform testing :
 - `License`_
 
 ----
+
+Try it Online
+-------------
+
+.. include:: ./try_in_jupyter.rst
 
 Installation and Upgrade
 ------------------------
