@@ -52,8 +52,8 @@ def test_system_values():
     >>> # path to userhome
     >>> path_userhome = lib_platform.path_userhome
 
-    >>> # is user administrator
-    >>> path_userhome = lib_platform.is_user_admin
+    >>> # is user administrator (has user admin rights)
+    >>> is_user_admin = lib_platform.is_user_admin
     >>> ### do not remove this line - marker doc basic usage end
 
     """

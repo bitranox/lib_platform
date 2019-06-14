@@ -19,4 +19,4 @@ from .lib_platform import is_user_admin
 
 __title__ = 'lib_platform'
 __name__ = 'lib_platform'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
