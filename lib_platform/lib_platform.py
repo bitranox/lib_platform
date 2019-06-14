@@ -1,3 +1,4 @@
+import ctypes
 import getpass
 import os
 import platform
@@ -9,6 +10,11 @@ is_platform_windows = platform.system().lower() == 'windows'
 
 if is_platform_windows:
     import lib_registry
+
+
+class AdminStateUnknownError(Exception):
+    """Cannot determine whether the user is an admin."""
+    pass
 
 
 def get_hostname():
@@ -163,6 +169,29 @@ def get_path_userhome():
 
     s_userhome = os.path.realpath(os.path.expanduser("~"))
     return s_userhome
+
+
+def get_is_user_admin():
+    # type: () -> bool
+    """Return True if user has admin privileges.
+
+    Raises:
+        AdminStateUnknownError if user privileges cannot be determined.
+
+    >>> result = get_is_user_admin()
+    >>> assert type(result) == bool
+
+    """
+    try:
+
+        if get_is_platform_windows():
+            is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1
+        else:
+            is_user_admin = os.getuid() == 0
+        return is_user_admin
+
+    except AttributeError:
+        raise AdminStateUnknownError
 
 
 is_platform_windows = get_is_platform_windows()
