@@ -12,11 +12,6 @@ if is_platform_windows:
     import lib_registry
 
 
-class AdminStateUnknownError(Exception):
-    """Cannot determine whether the user is an admin."""
-    pass
-
-
 def get_hostname():
     # type: () -> str
     """
@@ -182,16 +177,12 @@ def get_is_user_admin():
     >>> assert type(result) == bool
 
     """
-    try:
 
-        if get_is_platform_windows():
-            is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1
-        else:
-            is_user_admin = os.getuid() == 0
-        return is_user_admin
-
-    except AttributeError:
-        raise AdminStateUnknownError
+    if get_is_platform_windows():
+        is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
+    else:
+        is_user_admin = os.getuid() == 0
+    return is_user_admin
 
 
 is_platform_windows = get_is_platform_windows()
@@ -201,6 +192,7 @@ is_platform_posix = not is_platform_windows
 is_platform_windows_xp = get_is_platform_windows_xp()
 is_platform_windows_wine = get_is_platform_windows_wine()
 is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
+is_user_admin = get_is_user_admin()
 system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
 username = get_username()
 hostname = get_hostname()

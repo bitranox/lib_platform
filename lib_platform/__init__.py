@@ -15,8 +15,7 @@ from .lib_platform import is_python3
 from .lib_platform import path_userhome
 from .lib_platform import get_system                        # this we need for pytest
 from .lib_platform import get_is_platform_windows_xp        # this we need for pytest
-from .lib_platform import get_is_user_admin
-from .lib_platform import AdminStateUnknownError
+from .lib_platform import is_user_admin
 
 __title__ = 'lib_platform'
 __name__ = 'lib_platform'
