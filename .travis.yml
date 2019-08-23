@@ -85,21 +85,25 @@ matrix:
       language: python
       python: '3.8-dev'
 
-    - os: linux
-      language: python
-      python: 'pypy'
-
+    # works on xenial
     # - os: linux
     #   language: python
-    #   python: 'pypy2.7-6.0'
+    #   python: 'pypy'
 
+    # works on bionic
     - os: linux
       language: python
-      python: 'pypy3'
+      python: 'pypy2.7-6.0'
 
+    # works on xenial
     # - os: linux
     #   language: python
-    #   python: 'pypy3.5-6.0'
+    #   python: 'pypy3'
+
+    # works on bionic
+    - os: linux
+      language: python
+      python: 'pypy3.5-6.0'
 
     - os: linux
       language: python
