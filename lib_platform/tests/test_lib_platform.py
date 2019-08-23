@@ -1,11 +1,12 @@
 """lib_platform tests"""
 
-import dill
-from lib_platform.lib_platform import *
-from lib_registry import *
+import dill                                 # type: ignore
+import lib_platform
+import platform
 
 
 def test_system_values():
+    # type: () -> None
     """
     >>> ### do not remove this line - marker doc basic usage start
     >>> import lib_platform
@@ -58,93 +59,97 @@ def test_system_values():
 
     """
 
-    if is_platform_linux:
-        assert system == 'linux'
-        assert is_platform_posix
-        assert not is_platform_darwin
-        assert not is_platform_windows
-        assert not is_platform_windows_wine
-        assert not is_platform_windows_xp
-    if is_platform_darwin:
-        assert system == 'darwin'
-        assert is_platform_posix
-        assert not is_platform_linux
-        assert not is_platform_windows
-        assert not is_platform_windows_wine
-        assert not is_platform_windows_xp
+    if lib_platform.is_platform_linux:
+        assert lib_platform.system == 'linux'
+        assert lib_platform.is_platform_posix
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_windows_xp
+    if lib_platform.is_platform_darwin:
+        assert lib_platform.system == 'darwin'
+        assert lib_platform.is_platform_posix
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_windows_xp
 
-    if is_platform_posix:
-        assert system == 'darwin' or system == 'linux'
-        assert is_platform_darwin or is_platform_linux
-        assert not is_platform_windows
-        assert not is_platform_windows_wine
-        assert not is_platform_windows_xp
+    if lib_platform.is_platform_posix:
+        assert lib_platform.system == 'darwin' or lib_platform.system == 'linux'
+        assert lib_platform.is_platform_darwin or lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_windows_xp
 
-    if is_platform_windows:
+    if lib_platform.is_platform_windows:
         windows_flavours = ['windows', 'windows_wine', 'windows_xp', 'windows_wine_xp']
-        assert system in windows_flavours
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+        assert lib_platform.system in windows_flavours
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
 
-    if is_platform_windows_wine:
-        assert system == 'windows_wine' or 'windows_wine_xp'
-        assert is_platform_windows
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+    if lib_platform.is_platform_windows_wine:
+        assert lib_platform.system == 'windows_wine' or 'windows_wine_xp'
+        assert lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
 
-    if is_platform_windows_xp:
-        assert system == 'windows_xp' or 'windows_wine_xp'
-        assert is_platform_windows
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+    if lib_platform.is_platform_windows_xp:
+        assert lib_platform.system == 'windows_xp' or 'windows_wine_xp'
+        assert lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
 
-    if is_platform_windows_xp and is_platform_windows_wine:
-        assert system == 'windows_wine_xp'
-        assert is_platform_windows
-        assert is_platform_windows_xp
-        assert is_platform_windows_wine
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+    if lib_platform.is_platform_windows_xp and lib_platform.is_platform_windows_wine:
+        assert lib_platform.system == 'windows_wine_xp'
+        assert lib_platform.is_platform_windows
+        assert lib_platform.is_platform_windows_xp
+        assert lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
 
-    if is_platform_windows and not is_platform_windows_wine and not is_platform_windows_xp:
-        assert system == 'windows'
-        assert is_platform_windows
-        assert not is_platform_windows_xp
-        assert not is_platform_windows_wine
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+    if lib_platform.is_platform_windows and not lib_platform.is_platform_windows_wine and not lib_platform.is_platform_windows_xp:
+        assert lib_platform.system == 'windows'
+        assert lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_windows_xp
+        assert not lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
 
 
 def test_function_to_pickle():
-    if is_platform_windows:
+    # type: () -> None
+    if lib_platform.is_platform_windows:
         print('windows')
-    if get_system() == 'windows':
+    if lib_platform.get_system() == 'windows':
         print('windows')
 
 
 def test_if_pickable():
+    # type: () -> None
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
 
 
 def test_fake_xp_function():
+    # type: () -> str
     return 'xp'
 
 
 def test_fake_xp():
-    if is_platform_windows and not is_platform_windows_wine:
+    # type: () -> None
+    if lib_platform.is_platform_windows and not lib_platform.is_platform_windows_wine:
         save_platform_release_function = platform.release
         platform.release = test_fake_xp_function
-        assert get_is_platform_windows_xp() is True
-        assert get_system() == 'windows_xp'
-        assert is_platform_windows
-        assert not is_platform_windows_wine
-        assert not is_platform_linux
-        assert not is_platform_darwin
-        assert not is_platform_posix
+        assert lib_platform.get_is_platform_windows_xp() is True
+        assert lib_platform.get_system() == 'windows_xp'
+        assert lib_platform.is_platform_windows
+        assert not lib_platform.is_platform_windows_wine
+        assert not lib_platform.is_platform_linux
+        assert not lib_platform.is_platform_darwin
+        assert not lib_platform.is_platform_posix
         platform.release = save_platform_release_function

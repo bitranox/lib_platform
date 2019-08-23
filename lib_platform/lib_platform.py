@@ -32,8 +32,8 @@ def get_hostname():
     else:
         _hostname = socket.gethostbyaddr(socket.gethostname())[0]
 
-    _hostname = _hostname.lower()
-    return _hostname
+    _hostname = str(_hostname.lower())
+    return str(_hostname)
 
 
 def get_hostname_short():
@@ -109,6 +109,7 @@ def get_username():
 
 
 def get_is_platform_windows():
+    # type: () -> bool
     """
     >>> result = get_is_platform_windows()
     """
@@ -139,7 +140,7 @@ def get_is_platform_windows_wine():
         _is_platform_windows_wine = lib_registry.key_exist(r'HKEY_LOCAL_MACHINE\Software\Wine')
     else:
         _is_platform_windows_wine = False
-    return _is_platform_windows_wine
+    return bool(_is_platform_windows_wine)
 
 
 def get_is_python_2():
@@ -156,6 +157,7 @@ def get_is_python_2():
 
 
 def get_path_userhome():
+    # type: () -> str
     """
     >>> result = get_path_userhome()
     >>> assert len(result) > 1
@@ -179,10 +181,10 @@ def get_is_user_admin():
     """
 
     if get_is_platform_windows():
-        is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
+        _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
-        is_user_admin = os.getuid() == 0
-    return is_user_admin
+        _is_user_admin = os.getuid() == 0
+    return bool(_is_user_admin)
 
 
 is_platform_windows = get_is_platform_windows()

@@ -174,10 +174,9 @@ Requirements
 
 following modules will be automatically installed :
 
-.. code-block:: shell
+.. code-block:: bash
 
-    pytest          # see : https://github.com/pytest-dev/pytest
-    typing          # see : https://pypi.org/project/typing/
+    typing          # we need this for python 2.7
     lib_registry    # see: https://pypi.org/project/lib-registry/
 
 Acknowledgements

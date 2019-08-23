@@ -1,6 +1,24 @@
 """Setuptools entry point."""
 import codecs
 import os
+import subprocess
+import sys
+
+
+def install_requirements_when_using_setup_py():
+    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '--upgrade', '-r', './requirements_setup.txt'],
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+    stdout, stderr = proc.communicate()
+    encoding = sys.getdefaultencoding()
+    print(stdout.decode(encoding))
+    print(stderr.decode(encoding))
+
+    if proc.returncode != 0:
+        raise RuntimeError('Error installing requirements_setup.txt')
+
+
 
 try:
     from setuptools import setup
@@ -39,6 +57,8 @@ if os.path.exists(changes_filename):
     except Exception:
         pass
 
+install_requirements_when_using_setup_py()
+
 setup(
     name='lib_platform',
     version='1.0.3',
@@ -49,9 +69,8 @@ setup(
     author_email='rnowotny1966@gmail.com',
     url='https://github.com/bitranox/lib_platform',
     packages=['lib_platform'],
-    install_requires=['pytest',
-                      'typing',
-                      'lib_registry'],
     classifiers=CLASSIFIERS,
+    install_requires=[],
     setup_requires=['pytest-runner'],
-    tests_require=['pytest', 'dill'])
+    tests_require=['pytest', 'typing']  # we need typing for python 2.7
+    )
