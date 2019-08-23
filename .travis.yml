@@ -1,6 +1,6 @@
 language: python
 group: travis_latest
-dist: xenial
+dist: bionic
 sudo: true
 
 env:
@@ -75,7 +75,7 @@ matrix:
 
     - os: linux
       language: python
-      python: '3.7.1'
+      python: '3.7'
 
     - os: linux
       language: python
@@ -83,11 +83,23 @@ matrix:
 
     - os: linux
       language: python
-      python: 'pypy2.7-6.0'
+      python: '3.8-dev'
 
     - os: linux
       language: python
-      python: 'pypy3.5-6.0'
+      python: 'pypy'
+
+    # - os: linux
+    #   language: python
+    #   python: 'pypy2.7-6.0'
+
+    - os: linux
+      language: python
+      python: 'pypy3'
+
+    # - os: linux
+    #   language: python
+    #   python: 'pypy3.5-6.0'
 
     - os: linux
       language: python
