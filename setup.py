@@ -19,7 +19,6 @@ def install_requirements_when_using_setup_py():
         raise RuntimeError('Error installing requirements_setup.txt')
 
 
-
 try:
     from setuptools import setup
 except ImportError:
