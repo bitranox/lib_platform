@@ -59,18 +59,17 @@ if os.path.exists(changes_filename):
 
 install_requirements_when_using_setup_py()
 
-setup(
-    name='lib_platform',
-    version='1.0.3',
-    description=description,
-    long_description=long_description,
-    long_description_content_type='text/x-rst',
-    author='Robert Nowotny',
-    author_email='rnowotny1966@gmail.com',
-    url='https://github.com/bitranox/lib_platform',
-    packages=['lib_platform'],
-    classifiers=CLASSIFIERS,
-    install_requires=[],
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest', 'typing']  # we need typing for python 2.7
-    )
+setup(name='lib_platform',
+      version='1.0.3',
+      description=description,
+      long_description=long_description,
+      long_description_content_type='text/x-rst',
+      author='Robert Nowotny',
+      author_email='rnowotny1966@gmail.com',
+      url='https://github.com/bitranox/lib_platform',
+      packages=['lib_platform'],
+      classifiers=CLASSIFIERS,
+      install_requires=[],
+      setup_requires=['pytest-runner'],
+      tests_require=['pytest', 'typing']  # we need typing for python 2.7
+      )
