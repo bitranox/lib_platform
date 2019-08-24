@@ -68,7 +68,7 @@ setup(name='lib_platform',
       url='https://github.com/bitranox/lib_platform',
       packages=['lib_platform'],
       classifiers=CLASSIFIERS,
-      install_requires=['typing', 'lib_registry'],
+      install_requires=['lib_registry'],
       setup_requires=['pytest-runner'],
       tests_require=['pytest', 'typing']  # we need typing for python 2.7
       )
