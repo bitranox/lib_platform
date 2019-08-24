@@ -70,5 +70,5 @@ setup(name='lib_platform',
       classifiers=CLASSIFIERS,
       install_requires=['typing', 'lib_registry'],          # we need typing for python 2.7
       setup_requires=['pytest-runner', 'lib_registry'],
-      tests_require=['pytest', 'typing', 'lib_registry']    # we need typing for python 2.7
+      tests_require=['typing', 'pytest', 'lib_registry']    # we need typing for python 2.7
       )
