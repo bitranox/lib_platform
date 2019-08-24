@@ -10,7 +10,7 @@ import dill                                 # type: ignore
 try:
     from . import lib_platform
 except ImportError:
-    import lib_platform
+    import lib_platform  # type: ignore
 
 
 def test_system_values():
