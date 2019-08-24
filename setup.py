@@ -68,12 +68,9 @@ setup(name='lib_platform',
       url='https://github.com/bitranox/lib_platform',
       packages=['lib_platform'],
       classifiers=CLASSIFIERS,
-      install_requires=['typing', 'lib_registry'],                  # specify what a project minimally needs to run correctly
-      setup_requires=['typing', 'pytest-runner'],                   # minimally needs to run the setup script
+      # specify what a project minimally needs to run correctly
+      install_requires=['typing', 'lib_registry'],
+      # minimally needs to run the setup script, dependencies needs also to put here for setup.py install test
+      setup_requires=['typing', 'pytest-runner', 'lib_registry'],
       tests_require=['typing', 'pytest']                            # minimally needs to run tests
       )
-
-# install_requires = ['typing', 'lib_registry'],  # specify what a project minimally needs to run correctly
-# setup_requires = ['typing', 'pytest-runner', 'lib_registry'],  # minimally needs to run the setup script
-# tests_require = ['typing', 'pytest', 'lib_registry']  # minimally needs to run tests
-
