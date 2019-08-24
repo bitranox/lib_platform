@@ -21,4 +21,5 @@ git+https://github.com/pytest-dev/pytest-runner.git ; python_version >= "3.5"
 typing ; python_version < "3.6"                                                     # we need this for python 2.7
 
 ### project specific
+lib_registry
 dill
