@@ -176,8 +176,8 @@ following modules will be automatically installed :
 
 .. code-block:: bash
 
-    typing          # we need this for python 2.7
-    lib_registry    # see: https://pypi.org/project/lib-registry/
+    typing ; python_version < "3.6"                                 # we need this for python 2.7
+    lib_registry                                                    # see: https://pypi.org/project/lib-registry/
 
 Acknowledgements
 ----------------
