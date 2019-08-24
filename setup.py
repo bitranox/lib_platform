@@ -72,5 +72,6 @@ setup(name='lib_platform',
       install_requires=['typing', 'lib_registry'],
       # minimally needs to run the setup script, dependencies needs also to put here for setup.py install test
       setup_requires=['typing', 'pytest-runner', 'lib_registry'],
-      tests_require=['typing', 'pytest']                            # minimally needs to run tests
+      # minimally needs to run tests
+      tests_require=['typing', 'pytest']
       )
