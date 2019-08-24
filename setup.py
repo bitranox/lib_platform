@@ -5,8 +5,9 @@ import subprocess
 import sys
 
 
-def install_requirements_when_using_setup_py():
-    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '--upgrade', '-r', './requirements_setup.txt'],
+def install_requirements_when_using_setup_py(requirement_file: str):
+    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '--upgrade', '-r',
+                             '{requirement_file}'.format(requirement_file=requirement_file)],
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
@@ -56,7 +57,8 @@ if os.path.exists(changes_filename):
     except Exception:
         pass
 
-install_requirements_when_using_setup_py()
+install_requirements_when_using_setup_py(requirement_file='./requirements_setup.txt')
+# install_requirements_when_using_setup_py(requirement_file='./requirements.txt')
 
 setup(name='lib_platform',
       version='1.0.3',
@@ -68,7 +70,7 @@ setup(name='lib_platform',
       url='https://github.com/bitranox/lib_platform',
       packages=['lib_platform'],
       classifiers=CLASSIFIERS,
-      install_requires=[],
+      install_requires=['lib_registry'],
       setup_requires=['pytest-runner'],
       tests_require=['pytest', 'typing']  # we need typing for python 2.7
       )
