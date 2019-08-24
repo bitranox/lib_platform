@@ -1,8 +1,16 @@
 """lib_platform tests"""
 
-import dill                                 # type: ignore
-import lib_platform
+# STDLIB
 import platform
+
+# DEPS
+import dill                                 # type: ignore
+
+# OWN
+try:
+    from . import lib_platform
+except ImportError:
+    import lib_platform
 
 
 def test_system_values():
