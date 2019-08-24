@@ -6,7 +6,7 @@ import sys
 
 
 def install_requirements_when_using_setup_py():
-    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '--upgrade', '-r', './requirements_setup.txt'],
+    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '-r', './requirements_setup.txt'],
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
@@ -69,6 +69,6 @@ setup(name='lib_platform',
       packages=['lib_platform'],
       classifiers=CLASSIFIERS,
       install_requires=['typing', 'lib_registry'],          # we need typing for python 2.7
-      setup_requires=['pytest-runner', 'lib_registry'],
+      setup_requires=['typing', 'pytest-runner', 'lib_registry'],
       tests_require=['typing', 'pytest', 'lib_registry']    # we need typing for python 2.7
       )
