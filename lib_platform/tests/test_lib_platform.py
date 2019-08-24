@@ -8,9 +8,9 @@ import dill                                 # type: ignore
 
 # OWN
 try:
-    from . import lib_platform
+    from . import lib_platform              # type: ignore
 except ImportError:
-    import lib_platform  # type: ignore
+    import lib_platform                     # type: ignore
 
 
 def test_system_values():
