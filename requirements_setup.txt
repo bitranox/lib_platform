@@ -28,5 +28,5 @@ pytest-runner
 typing ; python_version < "3.6"                                                     # we need this for python 2.7
 
 ### project specific
-lib_registry
+git+https://githib.com/bitranox/lib_registry.git
 dill
