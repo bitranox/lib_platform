@@ -1,2 +1,2 @@
 typing ; python_version < "3.6"                                 # we need this for python 2.7
-git+https://githib.com/bitranox/lib_registry.git
+git+https://github.com/bitranox/lib_registry.git
