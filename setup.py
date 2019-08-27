@@ -1,28 +1,27 @@
 """Setuptools entry point."""
 import codecs
 import os
-import subprocess
-import sys
-
-
-def install_requirements_when_using_setup_py():
-    proc = subprocess.Popen([sys.executable, "-m", "pip", "install", '-r', './requirements_setup.txt'],
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
-    stdout, stderr = proc.communicate()
-    encoding = sys.getdefaultencoding()
-    print(stdout.decode(encoding))
-    print(stderr.decode(encoding))
-
-    if proc.returncode != 0:
-        raise RuntimeError('Error installing requirements_setup.txt')
-
+# we can not import typing or pathlib here - because of Python 2.7 - lib_registry is needed for lib_platform
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
+
+package_name = 'lib_platform'
+# type: ignore   # no typing here because of Python 2.7 - lib_registry is needed for lib_platform
+required = ['lib_registry @ git+https://github.com/bitranox/lib_registry.git']
+# type: ignore   # no typing here because of Python 2.7 - lib_registry is needed for lib_platform
+entry_points = dict()
+
+
+def get_version(dist_directory):
+    # type: (str) -> str
+    # PYTHON 2.7 compatible version - lib_registry is needed for lib_platform
+    path_version_file = os.path.join(os.path.dirname(__file__), dist_directory, 'version.txt')
+    with open(path_version_file, mode='r') as version_file:
+        version = version_file.readline()
+    return version
 
 
 CLASSIFIERS = [
@@ -35,43 +34,44 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries :: Python Modules'
 ]
 
-description = 'some small helpers used in many scripts'
 
-dirname = os.path.dirname(__file__)
-readme_filename = os.path.join(dirname, 'README.rst')
-changes_filename = os.path.join(dirname, 'CHANGES.rst')
-
-long_description = description
-if os.path.exists(readme_filename):
+# PYTHON 2.7 compatible version - lib_registry is needed for lib_platform
+long_description = package_name
+path_readme = os.path.join(os.path.dirname(__file__), 'README.rst')
+if os.path.exists(path_readme):
+    # noinspection PyBroadException
     try:
-        readme_content = codecs.open(readme_filename, encoding='utf-8').read()
+        readme_content = codecs.open(path_readme, encoding='utf-8').read()
         long_description = readme_content
     except Exception:
         pass
 
-if os.path.exists(changes_filename):
-    try:
-        changes_content = codecs.open(changes_filename, encoding='utf-8').read()
-        long_description = '\n'.join((long_description, changes_content))
-    except Exception:
-        pass
 
-install_requirements_when_using_setup_py()
-
-setup(name='lib_platform',
-      version='1.0.3',
-      description=description,
+setup(name=package_name,
+      version=get_version(package_name),
+      url='https://github.com/bitranox/{package_name}'.format(package_name=package_name),
+      packages=[package_name],
+      description=package_name,
       long_description=long_description,
       long_description_content_type='text/x-rst',
       author='Robert Nowotny',
       author_email='rnowotny1966@gmail.com',
-      url='https://github.com/bitranox/lib_platform',
-      packages=['lib_platform'],
       classifiers=CLASSIFIERS,
+      entry_points=entry_points,
+      # minimally needs to run tests - no project requirements here
+      tests_require=['typing',
+                     'pathlib',
+                     'mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"',
+                     'pytest',
+                     'pytest-pep8 ; python_version < "3.5"',
+                     'pytest-codestyle ; python_version >= "3.5"',
+                     'pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"'
+                     ],
+
       # specify what a project minimally needs to run correctly
-      install_requires=['typing', 'lib_registry'],
+      install_requires=['typing', 'pathlib'] + required,
       # minimally needs to run the setup script, dependencies needs also to put here for setup.py install test
-      setup_requires=['typing', 'pytest-runner', 'lib_registry'],
-      # minimally needs to run tests
-      tests_require=['typing', 'pytest']
+      setup_requires=['typing',
+                      'pathlib',
+                      'pytest-runner'] + required
       )
