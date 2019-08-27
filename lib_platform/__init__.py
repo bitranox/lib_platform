@@ -18,7 +18,7 @@ from .lib_platform import get_is_platform_windows_xp        # this we need for p
 from .lib_platform import is_user_admin
 
 
-def get_version() -> str:
+def get_version():   # type: ignore
     with open(pathlib.Path(__file__).parent / 'version.txt', mode='r') as version_file:
         version = version_file.readline()
     return version
