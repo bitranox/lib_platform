@@ -8,12 +8,10 @@ try:
 except ImportError:
     from distutils.core import setup
 
-package_name = 'lib_platform'
-# type: ignore   # no typing here because of Python 2.7 - lib_registry is needed for lib_platform
-required = ['lib_registry @ git+https://github.com/bitranox/lib_registry.git']
-# type: ignore   # no typing here because of Python 2.7 - lib_registry is needed for lib_platform
-entry_points = dict()
-# type: ignore   # no typing here because of Python 2.7 - lib_registry is needed for lib_platform
+# no typing here because of Python 2.7 - lib_registry is needed for lib_platform
+package_name = 'lib_platform'   # type: ignore
+required = ['lib_registry @ git+https://github.com/bitranox/lib_registry.git']  # type: ignore
+entry_points = dict()           # type: ignore
 
 
 def get_version(dist_directory):
