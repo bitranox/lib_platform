@@ -26,4 +26,4 @@ def get_version():   # type: ignore
 
 __title__ = 'lib_platform'
 __name__ = 'lib_platform'
-__version__ = get_version()
+__version__ = get_version()  # type: ignore
