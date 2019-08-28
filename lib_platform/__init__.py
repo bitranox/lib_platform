@@ -1,4 +1,7 @@
-import pathlib
+# STDLIB
+import os
+
+# PROJECT
 from .lib_platform import system
 from .lib_platform import is_platform_linux
 from .lib_platform import is_platform_darwin
@@ -19,7 +22,7 @@ from .lib_platform import is_user_admin
 
 
 def get_version():   # type: ignore
-    with open(pathlib.Path(__file__).parent / 'version.txt', mode='r') as version_file:
+    with open(os.path.join(os.path.dirname(__file__), 'version.txt'), mode='r') as version_file:
         version = version_file.readline()
     return version
 
