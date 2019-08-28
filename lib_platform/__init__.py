@@ -20,7 +20,7 @@ from .lib_platform import get_system                        # this we need for p
 from .lib_platform import get_is_platform_windows_xp        # this we need for pytest
 from .lib_platform import is_user_admin
 
-
+# Python 2.7 Version
 def get_version():   # type: ignore
     with open(os.path.join(os.path.dirname(__file__), 'version.txt'), mode='r') as version_file:
         version = version_file.readline()

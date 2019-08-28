@@ -8,7 +8,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-# no typing here because of Python 2.7 - lib_registry is needed for lib_platform
+# PYTHON 2.7 compatible version - no typing here because of Python 2.7
 package_name = 'lib_platform'   # type: ignore
 required = ['lib_registry @ git+https://github.com/bitranox/lib_registry.git']  # type: ignore
 required_for_tests = ['dill']   # type: ignore
