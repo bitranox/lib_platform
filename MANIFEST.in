@@ -1,2 +1,2 @@
 include *.rst
-recursive-include version.txt
+recursive-include * version.txt
