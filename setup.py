@@ -1,7 +1,7 @@
 """Setuptools entry point."""
 import codecs
 import os
-# we can not import typing or pathlib here - because of Python 2.7 - lib_registry is needed for lib_platform
+# we can not import typing or pathlib here - because of Python 2.7
 
 try:
     from setuptools import setup
