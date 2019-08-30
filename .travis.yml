@@ -315,12 +315,6 @@ script:
                   exit 1;
               fi
 
-
-          ${lib_bash_banner} "Installing Pytest requirements";
-          ${CMDPREFIX} ${pip_command} install -r ./requirements.txt;
-          ${CMDPREFIX} ${pip_command} install codecov;
-          ${CMDPREFIX} ${pip_command} install pytest-cov;
-
           ${lib_bash_banner} "running pytest";
           ${CMDPREFIX} ${python_command} -m pytest --cov;
               if [[ $? -eq 0 ]]; then
