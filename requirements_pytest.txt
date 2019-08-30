@@ -9,7 +9,3 @@ pytest-pep8 ; python_version < "3.5"
 pytest-codestyle ; python_version >= "3.5"
 pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
 pytest-runner
-
-## Project Requirements
-dill
-lib_registry @ git+https://github.com/bitranox/lib_registry.git
