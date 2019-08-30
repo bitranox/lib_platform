@@ -249,7 +249,6 @@ matrix:
         - python_command="python3"
 
 
-# SPECIAL VERSION FOR PYTHON 2.7 - SEE SCRIPT setup.py install
 install:
     # install lib_bash_wine - this installs also lib_bash
     - $(command -v sudo 2>/dev/null) git clone https://github.com/bitranox/lib_bash_wine.git /usr/local/lib_bash_wine
@@ -289,7 +288,6 @@ install:
           ${lib_bash_banner_warning} "no setup.py found, skipping Installation";
       fi
 
-# SPECIAL VERSION FOR PYTHON 2.7 - SEE SCRIPT setup.py install
 script:
     - if [[ -f ./setup.py ]]; then
           ${lib_bash_banner} "Installing Pytest requirements";
