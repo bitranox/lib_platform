@@ -292,18 +292,19 @@ install:
 # SPECIAL VERSION FOR PYTHON 2.7 - SEE SCRIPT setup.py install
 script:
     - if [[ -f ./setup.py ]]; then
-          if [[ "$TRAVIS_PYTHON_VERSION" != "2.7" ]]; then
-              ${lib_bash_banner} "running setup.py test";
-              ${CMDPREFIX} ${python_command} ./setup.py test;
-                  if [[ $? -eq 0 ]]; then
-                      ${lib_bash_banner} "setup.py test - OK";
-                  else
-                      ${lib_bash_banner_warning} "setup.py test - FAILED";
-                      exit 1;
-                  fi
-          else
-              ${lib_bash_banner_warning} "running setup.py test skipped for Python 2.7";
-          fi
+          ${lib_bash_banner} "Installing Pytest requirements";
+          ${CMDPREFIX} ${pip_command} install -r ./requirements.txt;
+          ${CMDPREFIX} ${pip_command} install codecov;
+          ${CMDPREFIX} ${pip_command} install pytest-cov;
+
+          ${lib_bash_banner} "running setup.py test";
+          ${CMDPREFIX} ${python_command} ./setup.py test;
+              if [[ $? -eq 0 ]]; then
+                  ${lib_bash_banner} "setup.py test - OK";
+              else
+                  ${lib_bash_banner_warning} "setup.py test - FAILED";
+                  exit 1;
+              fi
 
           ${lib_bash_banner} "running pip install --upgrade";
           ${CMDPREFIX} ${pip_command} install ${github_master} --upgrade;
