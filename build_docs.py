@@ -2,8 +2,8 @@
 import argparse
 import errno
 import logging
-import os
 import sys
+
 
 # OWN
 import lib_log_utils
