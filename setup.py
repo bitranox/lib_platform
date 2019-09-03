@@ -24,6 +24,32 @@ def get_version(dist_directory):
     return version
 
 
+def is_travis_deploy():
+    # type: () -> bool
+    if 'travis_deploy' in os.environ:
+        if os.environ['travis_deploy'] == 'True':
+            return True
+    return False
+
+
+def strip_links_from_required(l_required):
+    # type: ignore
+    """
+    >>> required = ['lib_regexp @ git+https://github.com/bitranox/lib_regexp.git', 'test']
+    >>> assert strip_links_from_required(required) == ['lib_regexp', 'test']
+
+    """
+    l_req_stripped = list()                                        # type: ignore
+    for req in l_required:
+        req_stripped = req.split('@')[0].strip()
+        l_req_stripped.append(req_stripped)
+    return l_req_stripped
+
+
+if is_travis_deploy():
+    required = strip_links_from_required(required)
+
+
 CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
