@@ -106,8 +106,8 @@ ENV/
 
 # rotek specific
 docs/
-lib_bash/
 !*.py
+!**/version.txt
 
 build_docs.py
 conftest.py
