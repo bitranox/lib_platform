@@ -188,17 +188,18 @@ def get_is_user_admin():
 
 
 is_platform_windows = get_is_platform_windows()
-is_platform_linux = platform.system().lower() == 'linux'
-is_platform_darwin = platform.system().lower() == 'darwin'
-is_platform_posix = not is_platform_windows
-is_platform_windows_xp = get_is_platform_windows_xp()
-is_platform_windows_wine = get_is_platform_windows_wine()
-is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
-is_user_admin = get_is_user_admin()
-system = get_system()  # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
-username = get_username()
-hostname = get_hostname()
-hostname_short = get_hostname_short()
-is_python2 = get_is_python_2()
-is_python3 = not is_python2
-path_userhome = get_path_userhome()
+is_platform_linux = platform.system().lower() == 'linux'              # type: bool
+is_platform_darwin = platform.system().lower() == 'darwin'            # type: bool
+is_platform_posix = not is_platform_windows                           # type: bool
+is_platform_windows_xp = get_is_platform_windows_xp()                 # type: bool
+is_platform_windows_wine = get_is_platform_windows_wine()             # type: bool
+is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine       # type: bool
+is_user_admin = get_is_user_admin()                                                     # type: bool
+# 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
+system = get_system()                                                 # type: str
+username = get_username()                                             # type: str
+hostname = get_hostname()                                             # type: str
+hostname_short = get_hostname_short()                                 # type: str
+is_python2 = get_is_python_2()                                        # type: bool
+is_python3 = not is_python2                                           # type: bool
+path_userhome = get_path_userhome()                                   # type: str
