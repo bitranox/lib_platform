@@ -30,7 +30,9 @@ def get_hostname():
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
     else:
-        _hostname = socket.gethostbyaddr(socket.gethostname())[0]
+        # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6.
+        # _hostname = socket.gethostbyaddr(socket.gethostname())[0]
+        _hostname = socket.getfqdn()
 
     _hostname = str(_hostname.lower())
     return str(_hostname)
