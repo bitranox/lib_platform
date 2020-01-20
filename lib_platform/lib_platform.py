@@ -3,6 +3,7 @@ import getpass
 import os
 import platform
 import socket
+import subprocess
 import sys
 
 
@@ -30,9 +31,14 @@ def get_hostname():
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
     else:
-        # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6.
+        # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6. - and sometimes give WRONG HOSTNAME
         # _hostname = socket.gethostbyaddr(socket.gethostname())[0]
-        _hostname = socket.getfqdn()
+
+        # sometimes gives WRONG HOSTNAME on a bridge after reboot - WEIRD !
+        # _hostname = socket.getfqdn()
+
+        # this always works
+        _hostname = subprocess.getoutput('uname -n')
 
     _hostname = str(_hostname.lower())
     return str(_hostname)
