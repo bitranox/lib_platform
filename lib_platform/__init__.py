@@ -2,7 +2,10 @@
 import os
 
 # PROJECT
-from .lib_platform import *
+try:
+    from .lib_platform import *
+except (ImportError, ModuleNotFoundError):      # sometimes Module Not Found Error under Windows
+    from lib_platform import *
 
 
 # Python 2.7 Version
