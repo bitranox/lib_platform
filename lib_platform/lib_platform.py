@@ -194,7 +194,7 @@ def get_is_user_admin():
     if get_is_platform_windows():
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
-        _is_user_admin = os.getuid() == 0                             # type: ignore
+        _is_user_admin = os.getuid() == 0
     return bool(_is_user_admin)
 
 
