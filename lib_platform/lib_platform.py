@@ -5,10 +5,7 @@ import os
 import platform
 import socket
 import subprocess
-import sys
 
-
-is_platform_windows = platform.system().lower() == 'windows'
 
 # OWN
 import lib_registry
@@ -30,7 +27,7 @@ def get_hostname() -> str:
                                                value_name='ComputerName')
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
-    elif is_platform_windows:
+    elif get_is_platform_windows():
         _hostname = socket.getfqdn()
     else:
         # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6. - and sometimes give WRONG HOSTNAME
@@ -67,7 +64,7 @@ def get_system() -> str:
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp']
     >>> assert result in possible_results
     """
-    if is_platform_windows:
+    if get_is_platform_windows():
         s_system = _get_system_windows()
     else:
         s_system = platform.system().lower()
@@ -113,12 +110,20 @@ def get_username() -> str:
     return _username
 
 
+def get_is_platform_windows() -> bool:
+    """
+    >>> result = get_is_platform_windows()
+    """
+    is_platform_windows = platform.system().lower() == 'windows'
+    return is_platform_windows
+
+
 def get_is_platform_windows_xp() -> bool:
     """
     >>> result = get_is_platform_windows_xp()
     """
 
-    if is_platform_windows and platform.release().lower() == 'xp':
+    if get_is_platform_windows() and platform.release().lower() == 'xp':
         return True
     else:
         return False
@@ -130,7 +135,7 @@ def get_is_platform_windows_wine() -> bool:
 
     """
 
-    if is_platform_windows:
+    if get_is_platform_windows():
         _is_platform_windows_wine = lib_registry.key_exist(r'HKEY_LOCAL_MACHINE\Software\Wine')
     else:
         _is_platform_windows_wine = False
@@ -160,16 +165,17 @@ def get_is_user_admin() -> bool:
 
     """
 
-    if is_platform_windows:
+    if get_is_platform_windows():
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
         _is_user_admin = os.getuid() == 0
     return bool(_is_user_admin)
 
 
+is_platform_windows = get_is_platform_windows()
 is_platform_linux = platform.system().lower() == 'linux'
 is_platform_darwin = platform.system().lower() == 'darwin'
-is_platform_posix = not is_platform_windows
+is_platform_posix = not get_is_platform_windows()
 is_platform_windows_xp = get_is_platform_windows_xp()
 is_platform_windows_wine = get_is_platform_windows_wine()
 is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
