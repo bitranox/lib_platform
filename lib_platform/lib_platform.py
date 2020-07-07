@@ -10,14 +10,13 @@ import sys
 
 is_platform_windows = platform.system().lower() == 'windows'
 
-if is_platform_windows:
-    import lib_registry
+# OWN
+import lib_registry
 
 
-def get_hostname():
-    # type: () -> str
+def get_hostname() -> str:
     """
-    :returns: fqdn hostname lowercase
+    Returns fqdn hostname lowercase, also for WINE
 
     >>> result = get_hostname()
     >>> assert len(result) > 1
@@ -31,7 +30,7 @@ def get_hostname():
                                                value_name='ComputerName')
         except Exception:
             _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
-    elif get_is_platform_windows():
+    elif is_platform_windows:
         _hostname = socket.getfqdn()
     else:
         # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6. - and sometimes give WRONG HOSTNAME
@@ -47,10 +46,9 @@ def get_hostname():
     return str(_hostname)
 
 
-def get_hostname_short():
-    # type: () -> str
+def get_hostname_short() -> str:
     """
-    :returns: hostname lowercase
+    Returns hostname lowercase without domain part
 
     >>> result = get_hostname_short()
     >>> assert len(result) > 1
@@ -62,9 +60,9 @@ def get_hostname_short():
     return _hostname_short
 
 
-def get_system():
-    # type: () -> str
+def get_system() -> str:
     """
+    gets system - but more detailed
     >>> result = get_system()
     >>> possible_results = ['darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp']
     >>> assert result in possible_results
@@ -76,8 +74,7 @@ def get_system():
     return s_system
 
 
-def _get_system_windows():
-    # type: () -> str
+def _get_system_windows() -> str:
     _is_platform_windows_wine = get_is_platform_windows_wine()
     if _is_platform_windows_wine:
         s_system = _get_system_windows_wine()
@@ -86,8 +83,7 @@ def _get_system_windows():
     return s_system
 
 
-def _get_system_windows_wine():
-    # type: () -> str
+def _get_system_windows_wine() -> str:
     _is_platform_windows_xp = get_is_platform_windows_xp()
     if _is_platform_windows_xp:
         s_system = 'windows_wine_xp'
@@ -96,8 +92,7 @@ def _get_system_windows_wine():
     return s_system
 
 
-def _get_system_windows_not_wine():
-    # type: () -> str
+def _get_system_windows_not_wine() -> str:
     _is_platform_windows_xp = get_is_platform_windows_xp()
     if _is_platform_windows_xp:
         s_system = 'windows_xp'
@@ -106,10 +101,9 @@ def _get_system_windows_not_wine():
     return s_system
 
 
-def get_username():
-    # type: () -> str
+def get_username() -> str:
     """
-    :returns: username lowercase
+    Returns username lowercase
 
     >>> username = get_username()
     >>> assert len(username) > 1
@@ -119,20 +113,10 @@ def get_username():
     return _username
 
 
-def get_is_platform_windows():
-    # type: () -> bool
+def get_is_platform_windows_xp() -> bool:
     """
-    >>> result = get_is_platform_windows()
+    >>> result = get_is_platform_windows_xp()
     """
-
-    if platform.system().lower() == 'windows':
-        return True
-    else:
-        return False
-
-
-def get_is_platform_windows_xp():
-    # type: () -> bool
 
     if is_platform_windows and platform.release().lower() == 'xp':
         return True
@@ -140,8 +124,7 @@ def get_is_platform_windows_xp():
         return False
 
 
-def get_is_platform_windows_wine():
-    # type: () -> bool
+def get_is_platform_windows_wine() -> bool:
     """
     >>> result = get_is_platform_windows_wine()
 
@@ -154,21 +137,7 @@ def get_is_platform_windows_wine():
     return bool(_is_platform_windows_wine)
 
 
-def get_is_python_2():
-    # type: () -> bool
-    """
-    >>> result = get_is_python_2()
-
-    """
-
-    if sys.version_info < (3, 0):
-        return True
-    else:
-        return False
-
-
-def get_path_userhome():
-    # type: () -> str
+def get_path_userhome() -> str:
     """
     >>> result = get_path_userhome()
     >>> assert len(result) > 1
@@ -179,8 +148,8 @@ def get_path_userhome():
     return s_userhome
 
 
-def get_is_user_admin():
-    # type: () -> bool
+def get_is_user_admin() -> bool:
+
     """Return True if user has admin privileges.
 
     Raises:
@@ -191,26 +160,23 @@ def get_is_user_admin():
 
     """
 
-    if get_is_platform_windows():
+    if is_platform_windows:
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
         _is_user_admin = os.getuid() == 0
     return bool(_is_user_admin)
 
 
-is_platform_windows = get_is_platform_windows()
-is_platform_linux = platform.system().lower() == 'linux'              # type: bool
-is_platform_darwin = platform.system().lower() == 'darwin'            # type: bool
-is_platform_posix = not is_platform_windows                           # type: bool
-is_platform_windows_xp = get_is_platform_windows_xp()                 # type: bool
-is_platform_windows_wine = get_is_platform_windows_wine()             # type: bool
-is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine       # type: bool
-is_user_admin = get_is_user_admin()                                                     # type: bool
+is_platform_linux = platform.system().lower() == 'linux'
+is_platform_darwin = platform.system().lower() == 'darwin'
+is_platform_posix = not is_platform_windows
+is_platform_windows_xp = get_is_platform_windows_xp()
+is_platform_windows_wine = get_is_platform_windows_wine()
+is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
+is_user_admin = get_is_user_admin()
 # 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
-system = get_system()                                                 # type: str
-username = get_username()                                             # type: str
-hostname = get_hostname()                                             # type: str
-hostname_short = get_hostname_short()                                 # type: str
-is_python2 = get_is_python_2()                                        # type: bool
-is_python3 = not is_python2                                           # type: bool
-path_userhome = get_path_userhome()                                   # type: str
+system = get_system()
+username = get_username()
+hostname = get_hostname()
+hostname_short = get_hostname_short()
+path_userhome = get_path_userhome()

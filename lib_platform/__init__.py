@@ -1,20 +1,10 @@
-# STDLIB
-import os
+from .lib_platform import *
 
-# PROJECT
-try:
-    from .lib_platform import *
-except (ImportError, ModuleNotFoundError):      # sometimes Module Not Found Error under Windows
-    from lib_platform import *
-
-
-# Python 2.7 Version
-def get_version():   # type: ignore
-    with open(os.path.join(os.path.dirname(__file__), 'version.txt'), mode='r') as version_file:
-        version = version_file.readline()
-    return version
-
-
-__title__ = 'lib_platform'
-__name__ = 'lib_platform'
-__version__ = get_version()  # type: ignore
+# imports from __init__conf__ should happen after Your imports
+from . import __init__conf__
+__title__ = __init__conf__.title
+__version__ = __init__conf__.version
+__name__ = __init__conf__.name
+__url__ = __init__conf__.url
+__author__ = __init__conf__.author
+__author_email__ = __init__conf__.author_email

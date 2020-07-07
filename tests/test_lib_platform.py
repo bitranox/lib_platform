@@ -1,5 +1,3 @@
-"""lib_platform tests"""
-
 # STDLIB
 import platform
 
@@ -7,16 +5,11 @@ import platform
 import dill                                 # type: ignore
 
 # OWN
-try:
-    from . import lib_platform              # type: ignore
-except ImportError:
-    import lib_platform                     # type: ignore
+import lib_platform                         # type: ignore
 
 
-def test_system_values():
-    # type: () -> None
+def test_system_values() -> None:
     """
-    >>> ### do not remove this line - marker doc basic usage start
     >>> import lib_platform
 
     >>> # get system as string
@@ -29,10 +22,12 @@ def test_system_values():
     >>> is_platform_darwin = lib_platform.is_platform_darwin
 
     >>> # bool is_platform_posix
-    >>> is_platform_posix = lib_platform.is_platform_posix        # either darwin or linux
+    >>> # either darwin or linux
+    >>> is_platform_posix = lib_platform.is_platform_posix
 
     >>> # bool is_platform_windows
-    >>> is_platform_windows = lib_platform.is_platform_posix      # also True for windows_xp or windows_wine
+    >>> # also True for windows_xp or windows_wine
+    >>> is_platform_windows = lib_platform.is_platform_windows
 
     >>> # bool is_platform_windows_xp
     >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
@@ -52,18 +47,11 @@ def test_system_values():
     >>> # string hostname short
     >>> hostname_short = lib_platform.hostname_short
 
-    >>> # bool is_python2
-    >>> is_python2 = lib_platform.is_python2
-
-    >>> # bool is_python3
-    >>> is_python3 = lib_platform.is_python3
-
     >>> # path to userhome
     >>> path_userhome = lib_platform.path_userhome
 
     >>> # is user administrator (has user admin rights)
     >>> is_user_admin = lib_platform.is_user_admin
-    >>> ### do not remove this line - marker doc basic usage end
 
     """
 
@@ -129,27 +117,23 @@ def test_system_values():
         assert not lib_platform.is_platform_posix
 
 
-def test_function_to_pickle():
-    # type: () -> None
+def test_function_to_pickle() -> None:
     if lib_platform.is_platform_windows:
         print('windows')
     if lib_platform.get_system() == 'windows':
         print('windows')
 
 
-def test_if_pickable():
-    # type: () -> None
+def test_if_pickable() -> None:
     pickled_object = dill.dumps(test_function_to_pickle)
     unpickled_object = dill.loads(pickled_object)
 
 
-def test_fake_xp_function():
-    # type: () -> str
+def test_fake_xp_function() -> str:
     return 'xp'
 
 
-def test_fake_xp():
-    # type: () -> None
+def test_fake_xp() -> None:
     if lib_platform.is_platform_windows and not lib_platform.is_platform_windows_wine:
         save_platform_release_function = platform.release
         platform.release = test_fake_xp_function

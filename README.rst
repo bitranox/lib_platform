@@ -1,51 +1,64 @@
 lib_platform
 ============
 
-|Pypi Status| |license| |maintenance| |jupyter|
+|travis_build| |license| |jupyter| |pypi|
 
-|Build Status| |Codecov Status| |Better Code| |code climate| |snyk security|
+|codecov| |better_code| |cc_maintain| |cc_issues| |cc_coverage| |snyk|
+
+
+.. |travis_build| image:: https://img.shields.io/travis/bitranox/lib_platform/master.svg
+   :target: https://travis-ci.org/bitranox/lib_platform
 
 .. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
    :target: http://en.wikipedia.org/wiki/MIT_License
-.. |maintenance| image:: https://img.shields.io/maintenance/yes/{last_update_yyyy}.svg
-.. |Build Status| image:: https://travis-ci.org/bitranox/lib_platform.svg?branch=master
-   :target: https://travis-ci.org/bitranox/lib_platform
+
+.. |jupyter| image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=lib_platform.ipynb
+
 .. for the pypi status link note the dashes, not the underscore !
-.. |Pypi Status| image:: https://badge.fury.io/py/lib-platform.svg
+.. |pypi| image:: https://img.shields.io/pypi/status/lib-platform?label=PyPI%20Package
    :target: https://badge.fury.io/py/lib_platform
-.. |Codecov Status| image:: https://codecov.io/gh/bitranox/lib_platform/branch/master/graph/badge.svg
+
+.. |codecov| image:: https://img.shields.io/codecov/c/github/bitranox/lib_platform
    :target: https://codecov.io/gh/bitranox/lib_platform
-.. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_platform?branch=master
+
+.. |better_code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_platform?branch=master
    :target: https://bettercodehub.com/results/bitranox/lib_platform
-.. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_platform/badge.svg
-   :target: https://snyk.io/test/github/bitranox/lib_platform
-.. |jupyter| image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb
-.. |code climate| image:: https://api.codeclimate.com/v1/badges/15acaf0e7747a042c505/maintainability
+
+.. |cc_maintain| image:: https://img.shields.io/codeclimate/maintainability-percentage/bitranox/lib_platform?label=CC%20maintainability
    :target: https://codeclimate.com/github/bitranox/lib_platform/maintainability
    :alt: Maintainability
 
-some convenience functions used in many scripts
+.. |cc_issues| image:: https://img.shields.io/codeclimate/issues/bitranox/lib_platform?label=CC%20issues
+   :target: https://codeclimate.com/github/bitranox/lib_platform/maintainability
+   :alt: Maintainability
 
-supports python 3.7, pypy and possibly other dialects.
+.. |cc_coverage| image:: https://img.shields.io/codeclimate/coverage/bitranox/lib_platform?label=CC%20coverage
+   :target: https://codeclimate.com/github/bitranox/lib_platform/test_coverage
+   :alt: Code Coverage
 
-this is also a working example for travis.yml for multi-platform testing :
+.. |snyk| image:: https://img.shields.io/snyk/vulnerabilities/github/bitranox/lib_platform
+   :target: https://snyk.io/test/github/bitranox/lib_platform
 
-- install WINE
-- install python 3.7 on wine 32 Bit
-- install python 3.7 on wine 64 Bit
-- run pytest on wine (all Versions mentioned above)
-- run code coverage on wine (all Versions mentioned above)
-- Windows Build Python 3.7
-- build rst documentation with rst_include for github and PyPi
+some platform related functions, which also work correctly on wine
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, mypy static type checking, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds  and monitoring
+----
+
+automated tests, Travis Matrix, Documentation, Badges, etc. are managed with `PizzaCutter <https://github
+.com/bitranox/PizzaCutter>`_ (cookiecutter on steroids)
+
+Python version required: 3.6.0 or newer
+
+tested on linux "bionic" with python 3.6, 3.7, 3.8, 3.8-dev, pypy3
+
+`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, codestyle checking ,mypy static type checking ,tested under `Linux, macOS, Windows <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds and monitoring
 
 ----
 
 - `Try it Online`_
 - `Installation and Upgrade`_
-- `Basic Usage`_
+- `Usage`_
+- `Usage from Commandline`_
 - `Requirements`_
 - `Acknowledgements`_
 - `Contribute`_
@@ -53,142 +66,177 @@ this is also a working example for travis.yml for multi-platform testing :
 - `Pull Request <https://github.com/bitranox/lib_platform/blob/master/PULL_REQUEST_TEMPLATE.md>`_
 - `Code of Conduct <https://github.com/bitranox/lib_platform/blob/master/CODE_OF_CONDUCT.md>`_
 - `License`_
+- `Changelog`_
 
 ----
 
 Try it Online
 -------------
 
-You might try it right away in Jupyter Notebook by using the "launch binder" badge, or click `here <https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=jupyter_test_lib_platform.ipynb>`_
+You might try it right away in Jupyter Notebook by using the "launch binder" badge, or click `here <https://mybinder.org/v2/gh/{{rst_include.
+repository_slug}}/master?filepath=lib_platform.ipynb>`_
 
 Installation and Upgrade
 ------------------------
 
-From source code:
+- Before You start, its highly recommended to update pip and setup tools:
+
+
+.. code-block:: bash
+
+    python -m pip --upgrade pip
+    python -m pip --upgrade setuptools
+    python -m pip --upgrade wheel
+
+- to install the latest release from PyPi via pip (recommended):
+
+.. code-block:: bash
+
+    # install latest release from PyPi
+    python -m pip install --upgrade lib_platform
+
+    # test latest release from PyPi without installing (can be skipped)
+    python -m pip install lib_platform --install-option test
+
+- to install the latest development version from github via pip:
+
 
 .. code-block:: bash
 
     # normal install
-    python setup.py install
-    # test without installing
-    python setup.py test
+    python -m pip install --upgrade git+https://github.com/bitranox/lib_platform.git
 
-via pip latest Release:
+    # to test without installing (can be skipped)
+    python -m pip install git+https://github.com/bitranox/lib_platform.git --install-option test
 
-.. code-block:: bash
+    # to install and upgrade all dependencies regardless of version number
+    python -m pip install --upgrade git+https://github.com/bitranox/lib_platform.git --upgrade-strategy eager
 
-    # latest Release from pypi
-    pip install lib_platform
 
-    # test without installing
-    pip install lib_platform --install-option test
-
-via pip latest Development Version:
-
-.. code-block:: bash
-
-    # upgrade all dependencies regardless of version number (PREFERRED)
-    pip install --upgrade git+https://github.com/bitranox/lib_platform.git --upgrade-strategy eager
-    # normal install
-    pip install --upgrade git+https://github.com/bitranox/lib_platform.git
-    # test without installing
-    pip install git+https://github.com/bitranox/lib_platform.git --install-option test
-
-via requirements.txt:
+- include it into Your requirements.txt:
 
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # for the latest Release:
+    # for the latest Release on pypi:
     lib_platform
-    # for the latest Development Version :
-    git+https://github.com/bitranox/lib_platform.git
+
+    # for the latest development version :
+    lib_platform @ git+https://github.com/bitranox/lib_platform.git
 
     # to install and upgrade all modules mentioned in requirements.txt:
-    pip install --upgrade -r /<path>/requirements.txt
+    python -m pip install --upgrade -r /<path>/requirements.txt
 
-via python:
 
-.. code-block:: python
 
-    # for the latest Release
-    python -m pip install upgrade lib_platform
+- to install the latest development version from source code:
 
-    # for the latest Development Version
-    python -m pip install upgrade git+https://github.com/bitranox/lib_platform.git
+.. code-block:: bash
 
-Basic Usage
+    # cd ~
+    $ git clone https://github.com/bitranox/lib_platform.git
+    $ cd lib_platform
+
+    # to test without installing (can be skipped)
+    python setup.py test
+
+    # normal install
+    python setup.py install
+
+- via makefile:
+  makefiles are a very convenient way to install. Here we can do much more,
+  like installing virtual environments, clean caches and so on.
+
+.. code-block:: shell
+
+    # from Your shell's homedirectory:
+    $ git clone https://github.com/bitranox/lib_platform.git
+    $ cd lib_platform
+
+    # to run the tests:
+    $ make test
+
+    # to install the package
+    $ make install
+
+    # to clean the package
+    $ make clean
+
+    # uninstall the package
+    $ make uninstall
+
+Usage
 -----------
 
 .. code-block:: python
 
-        >>> import lib_platform
+    >>> import lib_platform
 
-        >>> # get system as string
-        >>> system = lib_platform.system
+    >>> # get system as string
+    >>> system = lib_platform.system
 
-        >>> # bool is_platform_linux
-        >>> is_platform_linux = lib_platform.is_platform_linux
+    >>> # bool is_platform_linux
+    >>> is_platform_linux = lib_platform.is_platform_linux
 
-        >>> # bool is_platform_darwin
-        >>> is_platform_darwin = lib_platform.is_platform_darwin
+    >>> # bool is_platform_darwin
+    >>> is_platform_darwin = lib_platform.is_platform_darwin
 
-        >>> # bool is_platform_posix
-        >>> is_platform_posix = lib_platform.is_platform_posix        # either darwin or linux
+    >>> # bool is_platform_posix
+    >>> # either darwin or linux
+    >>> is_platform_posix = lib_platform.is_platform_posix
 
-        >>> # bool is_platform_windows
-        >>> is_platform_windows = lib_platform.is_platform_posix      # also True for windows_xp or windows_wine
+    >>> # bool is_platform_windows
+    >>> # also True for windows_xp or windows_wine
+    >>> is_platform_windows = lib_platform.is_platform_windows
 
-        >>> # bool is_platform_windows_xp
-        >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
+    >>> # bool is_platform_windows_xp
+    >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
 
-        >>> # bool is_platform_windows_wine
-        >>> is_platform_windows_wine = lib_platform.is_platform_windows_wine
+    >>> # bool is_platform_windows_wine
+    >>> is_platform_windows_wine = lib_platform.is_platform_windows_wine
 
-        >>> # bool is_platform_windows_wine_xp
-        >>> is_platform_windows_wine_xp = lib_platform.is_platform_windows_wine_xp
+    >>> # bool is_platform_windows_wine_xp
+    >>> is_platform_windows_wine_xp = lib_platform.is_platform_windows_wine_xp
 
-        >>> # string username lib_platform.username
-        >>> username = lib_platform.username
+    >>> # string username lib_platform.username
+    >>> username = lib_platform.username
 
-        >>> # string fqdn hostname
-        >>> hostname = lib_platform.hostname
+    >>> # string fqdn hostname
+    >>> hostname = lib_platform.hostname
 
-        >>> # string hostname short
-        >>> hostname_short = lib_platform.hostname_short
+    >>> # string hostname short
+    >>> hostname_short = lib_platform.hostname_short
 
-        >>> # bool is_python2
-        >>> is_python2 = lib_platform.is_python2
+    >>> # path to userhome
+    >>> path_userhome = lib_platform.path_userhome
 
-        >>> # bool is_python3
-        >>> is_python3 = lib_platform.is_python3
+    >>> # is user administrator (has user admin rights)
+    >>> is_user_admin = lib_platform.is_user_admin
 
-        >>> # path to userhome
-        >>> path_userhome = lib_platform.path_userhome
+Usage from Commandline
+------------------------
 
-        >>> # is user administrator (has user admin rights)
-        >>> is_user_admin = lib_platform.is_user_admin
+.. code-block:: bash
+
+   Usage: lib_platform [OPTIONS] COMMAND [ARGS]...
+
+     some platform related functions, which also work correctly on wine
+
+   Options:
+     --version   Show the version and exit.
+     -h, --help  Show this message and exit.
+
+   Commands:
+     info  get program informations
 
 Requirements
 ------------
-
 following modules will be automatically installed :
 
 .. code-block:: bash
 
-    ## Test Requirements
-    ## following Requirements will be installed temporarily for
-    ## "setup.py install test" or "pip install <package> --install-option test"
-    typing ; python_version < "3.5"
-    pathlib; python_version < "3.4"
-    mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
-    pytest
-    pytest-pep8 ; python_version < "3.5"
-    pytest-pycodestyle ; python_version >= "3.5"
-    pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
-    pytest-runner
-
     ## Project Requirements
+    click
     lib_registry @ git+https://github.com/bitranox/lib_registry.git
 
 Acknowledgements
@@ -206,4 +254,34 @@ License
 -------
 
 This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/MIT_License>`_
+
+---
+
+Changelog
+=========
+
+- new MAJOR version for incompatible API changes,
+- new MINOR version for added functionality in a backwards compatible manner
+- new PATCH version for backwards compatible bug fixes
+
+
+0.2.0
+-----
+2020-07-07 : service release
+    - new click cli
+    - use PizzaCutter Template
+    - added jupyter notebook
+    - dropped python2.7 - python3.5 support
+
+1.0.3
+-----
+2019-06-14: add is_user_admin (check for administration rights)
+
+1.0.2
+-----
+2019-04-28: Documentation Update, minor Fixes in setup.py
+
+1.0.0
+-----
+2019-03-28: Initial public release, PyPi Release
 

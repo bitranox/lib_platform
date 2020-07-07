@@ -1,62 +1,41 @@
 lib_platform
 ============
 
-.. include:: ./badges_with_jupyter.rst
+.. include:: ./badges.rst
 
-some convenience functions used in many scripts
+.. include:: ./description.rst
 
-supports python 3.7, pypy and possibly other dialects.
+----
 
-this is also a working example for travis.yml for multi-platform testing :
+automated tests, Travis Matrix, Documentation, Badges, etc. are managed with `PizzaCutter <https://github
+.com/bitranox/PizzaCutter>`_ (cookiecutter on steroids)
 
-- install WINE
-- install python 3.7 on wine 32 Bit
-- install python 3.7 on wine 64 Bit
-- run pytest on wine (all Versions mentioned above)
-- run code coverage on wine (all Versions mentioned above)
-- Windows Build Python 3.7
-- build rst documentation with rst_include for github and PyPi
-
+Python version required: 3.6.0 or newer
 
 .. include:: ./tested_under.rst
 
 ----
 
-- `Try it Online`_
-- `Installation and Upgrade`_
-- `Basic Usage`_
-- `Requirements`_
-- `Acknowledgements`_
-- `Contribute`_
-- `Report Issues <https://github.com/{repository_slug}/blob/master/ISSUE_TEMPLATE.md>`_
-- `Pull Request <https://github.com/{repository_slug}/blob/master/PULL_REQUEST_TEMPLATE.md>`_
-- `Code of Conduct <https://github.com/{repository_slug}/blob/master/CODE_OF_CONDUCT.md>`_
-- `License`_
+.. include:: ./index.rst
 
 ----
-
-Try it Online
--------------
 
 .. include:: ./try_in_jupyter.rst
 
 Installation and Upgrade
 ------------------------
-
 .. include:: ./installation.rst
 
-
-Basic Usage
+Usage
 -----------
+.. include:: ./usage.rst
 
-.. include:: ../lib_platform/tests/test_lib_platform.py
-    :code: python
-    :start-after: >>> ### do not remove this line - marker doc basic usage start
-    :end-before: >>> ### do not remove this line - marker doc basic usage end
+Usage from Commandline
+------------------------
+.. include:: ./commandline_help.rst
 
 Requirements
 ------------
-
 following modules will be automatically installed :
 
 .. include:: ../requirements.txt
@@ -73,3 +52,7 @@ Contribute
 License
 -------
 .. include:: ./licence_mit.rst
+
+---
+
+.. include:: ../CHANGES.rst

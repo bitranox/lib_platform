@@ -1,52 +1,58 @@
-From source code:
+- Before You start, its highly recommended to update pip and setup tools:
+
+
+.. code-block:: bash
+
+    python -m pip --upgrade pip
+    python -m pip --upgrade setuptools
+    python -m pip --upgrade wheel
+
+.. include:: ./installation_via_pypi.rst
+
+- to install the latest development version from github via pip:
+
 
 .. code-block:: bash
 
     # normal install
-    python setup.py install
-    # test without installing
-    python setup.py test
+    python -m pip install --upgrade git+https://github.com/bitranox/lib_platform.git
 
-via pip latest Release:
+    # to test without installing (can be skipped)
+    python -m pip install git+https://github.com/bitranox/lib_platform.git --install-option test
 
-.. code-block:: bash
+    # to install and upgrade all dependencies regardless of version number
+    python -m pip install --upgrade git+https://github.com/bitranox/lib_platform.git --upgrade-strategy eager
 
-    # latest Release from pypi
-    pip install {repository}
 
-    # test without installing
-    pip install {repository} --install-option test
-
-via pip latest Development Version:
-
-.. code-block:: bash
-
-    # upgrade all dependencies regardless of version number (PREFERRED)
-    pip install --upgrade git+https://github.com/{repository_slug}.git --upgrade-strategy eager
-    # normal install
-    pip install --upgrade git+https://github.com/{repository_slug}.git
-    # test without installing
-    pip install git+https://github.com/{repository_slug}.git --install-option test
-
-via requirements.txt:
+- include it into Your requirements.txt:
 
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # for the latest Release:
-    {repository}
-    # for the latest Development Version :
-    git+https://github.com/{repository_slug}.git
+    # for the latest Release on pypi:
+    lib_platform
+
+    # for the latest development version :
+    lib_platform @ git+https://github.com/bitranox/lib_platform.git
 
     # to install and upgrade all modules mentioned in requirements.txt:
-    pip install --upgrade -r /<path>/requirements.txt
+    python -m pip install --upgrade -r /<path>/requirements.txt
 
-via python:
 
-.. code-block:: python
 
-    # for the latest Release
-    python -m pip install upgrade {repository}
+- to install the latest development version from source code:
 
-    # for the latest Development Version
-    python -m pip install upgrade git+https://github.com/{repository_slug}.git
+.. code-block:: bash
+
+    # cd ~
+    $ git clone https://github.com/bitranox/lib_platform.git
+    $ cd lib_platform
+
+    # to test without installing (can be skipped)
+    python setup.py test
+
+    # normal install
+    python setup.py install
+
+
+.. include:: ./installation_via_makefile.rst

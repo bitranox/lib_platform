@@ -1,6 +1,19 @@
 Changelog
 =========
 
+- new MAJOR version for incompatible API changes,
+- new MINOR version for added functionality in a backwards compatible manner
+- new PATCH version for backwards compatible bug fixes
+
+
+0.2.0
+-----
+2020-07-07 : service release
+    - new click cli
+    - use PizzaCutter Template
+    - added jupyter notebook
+    - dropped python2.7 - python3.5 support
+
 1.0.3
 -----
 2019-06-14: add is_user_admin (check for administration rights)
