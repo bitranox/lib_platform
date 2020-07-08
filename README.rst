@@ -238,7 +238,6 @@ following modules will be automatically installed :
     ## Project Requirements
     click
     lib_registry @ git+https://github.com/bitranox/lib_registry.git
-    lib_fake_registry @ git+https://github.com/bitranox/lib_fake_registry.git
 
 Acknowledgements
 ----------------
