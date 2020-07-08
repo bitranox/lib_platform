@@ -23,10 +23,16 @@ def get_hostname() -> str:
     if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - would give name of the host
         # noinspection PyBroadException
         try:
-            _hostname = lib_registry.get_value(key_name=r'HKLM\System\CurrentControlSet\Control\ComputerName',
-                                               value_name='ComputerName')
+            result_wine_reg = lib_registry.get_value(key_name=r'HKLM\System\CurrentControlSet\Control\ComputerName', value_name='ComputerName')
+            assert isinstance(result_wine_reg, str)
+            _hostname = result_wine_reg
         except Exception:
-            _hostname = os.getenv('COMPUTERNAME')  # max 15 Zeichen
+            result_wine_env = os.getenv('COMPUTERNAME')  # max 15 Zeichen
+            if result_wine_env is None:
+                raise RuntimeError('can not determine Username on Wine')
+            else:
+                _hostname = result_wine_env
+
     elif get_is_platform_windows():
         _hostname = socket.getfqdn()
     else:
