@@ -2,10 +2,9 @@
 ## following Requirements will be installed temporarily for
 ## "setup.py install test" or "pip install <package> --install-option test"
 coloredlogs
-# You should test if Your module is pickable for multiprocessing on windows - use dill, see project gh/bitranox/lib_platform/tests
-dill
 mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
 pytest
 pytest-pycodestyle ; python_version >= "3.5"
 pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
 pytest-runner
+dill

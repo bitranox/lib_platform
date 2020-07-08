@@ -166,10 +166,24 @@ def get_is_user_admin() -> bool:
     """
 
     if get_is_platform_windows():
+        os.getuid = dummy_function
+
+    if get_is_platform_windows():
+        # type ignore is needed here, because does not exist on linux
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
-        _is_user_admin = os.getuid() == 0                             # type: ignore
+        # type ignore is needed here, because os.getuid does not exist on windows
+        _is_user_admin = os.getuid() == 0
+
+    if get_is_platform_windows():
+        del os.getuid
+
     return bool(_is_user_admin)
+
+
+def dummy_function() -> int:
+    # to suppress 'unused type ignore' messages on strict mypy checking under linux
+    return 42
 
 
 is_platform_windows = get_is_platform_windows()

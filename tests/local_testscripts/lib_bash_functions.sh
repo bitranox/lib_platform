@@ -2,6 +2,12 @@
 save_dir="$PWD"
 own_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" || exit && pwd -P)" # this gives the full path, even for sourced scripts
 
+# shellcheck disable=SC2050
+if [[ "True" != "True" ]]; then
+    echo "exit - ${BASH_SOURCE[0]} is not configured by PizzaCutter"
+    exit 0
+fi
+
 sleeptime_on_error=5
 sudo_askpass="$(command -v ssh-askpass)"
 export SUDO_ASKPASS="${sudo_askpass}"
@@ -9,36 +15,14 @@ export NO_AT_BRIDGE=1                        # get rid of (ssh-askpass:25930): d
 
 tests_dir="$(dirname "${own_dir}")"          # one level up
 project_root_dir="$(dirname "${tests_dir}")" # one level up
-export PYTHONPATH="${PYTHONPATH}:${project_root_dir}"
-export PYTHONPATH="${PYTHONPATH}:/media/srv-main-softdev/rotek-apps/lib"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_parameter"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/wrapt_timeout_decorator"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/bash"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_path"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_ip"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/fingerprint"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_shell"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_path_tree"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_platform"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/PizzaCutter_backup"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_platform_backup"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_detect_encoding"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_programname"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_log_utils"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_registry"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/rst_include"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_cast"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/pizzacutter_default_python_template"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_csv"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/PizzaCutter"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/pizzacutter_configs"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_list"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_regexp"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/pathlib3x"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_fake_registry"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/wrapt_timeout_decorator_backup"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/Arpeggio"
-export MYPYPATH="${MYPYPATH}:/media/srv-main-softdev/rotek-apps/lib/bitranox/lib_doctest_pycharm"
+
+cd "$own_dir"||exit
+# shellcheck disable=SC2155
+export PYTHONPATH="$(python3 ./testing_tools.py append_directory_to_python_path "${project_root_dir}")"
+# following lines are not only a comment, they get actually replaced
+export PYTHONPATH="$(python3 ./testing_tools.py append_directory_to_python_path "/media/srv-main-softdev/rotek-apps/lib")"
+export MYPYPATH="$(python3 ./testing_tools.py append_immediate_subdirs_to_mypy_path "/media/srv-main-softdev/rotek-apps/lib/bitranox")"
+cd "$save_dir"||exit
 
 function install_or_update_lib_bash() {
   if [[ ! -f /usr/local/lib_bash/install_or_update.sh ]]; then
@@ -92,6 +76,8 @@ function install_test_requirements() {
   python3 -m pip install --upgrade pip
   python3 -m pip install --upgrade setuptools
   python3 -m pip install --upgrade wheel
+  # this we need for local testscripts
+  python3 -m pip install --upgrade click
 
   if test -f "${project_root_dir}/requirements_test.txt"; then
     clr_green "installing/updating test requirements from \"requirements_test.txt\""
