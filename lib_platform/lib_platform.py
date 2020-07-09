@@ -163,8 +163,8 @@ def get_is_user_admin() -> bool:
 
     """Return True if user has admin privileges.
 
-    Raises:
-        AdminStateUnknownError if user privileges cannot be determined.
+    Raises:  AdminStateUnknownError under Windows if user privileges cannot be determined.
+
 
     >>> result = get_is_user_admin()
     >>> assert type(result) == bool
@@ -176,10 +176,7 @@ def get_is_user_admin() -> bool:
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
         # type ignore is needed here, because os.getuid does not exist on windows
-        if hasattr(os, 'getuid'):
-            _is_user_admin = os.getuid() == 0
-        else:
-            raise RuntimeError('can not get UID')
+        _is_user_admin = os.getuid() == 0   # type: ignore
 
     return bool(_is_user_admin)
 
