@@ -21,11 +21,11 @@ def pytest_cmdline_preparse(args: List[str]) -> None:
     # add mypy only on 3.x versions
     # mypy does not find some functions on python 3.6
 
-    additional_arg: List[str]
+    additional_mypy_args: List[str] = list()
+    additional_pycodestyle_args: List[str] = list()
 
-    if platform.python_implementation() != "PyPy" and sys.version_info >= (3, 5) and sys.version_info != (3, 6):  # type: ignore
-        additional_arg = ["--mypy"]
-        args[:] = additional_arg + args
+    # if platform.python_implementation() != "PyPy" and sys.version_info >= (3, 5) and sys.version_info != (3, 6):  # type: ignore
+    additional_mypy_args = ['--mypy']
 
-    additional_arg = ["--pycodestyle"]
-    args[:] = additional_arg + args
+    additional_pycodestyle_args = ['--pycodestyle']
+    args[:] = list(set(args + additional_mypy_args + additional_pycodestyle_args))
