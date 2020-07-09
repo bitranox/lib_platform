@@ -171,19 +171,15 @@ def get_is_user_admin() -> bool:
 
     """
 
-    # if get_is_platform_windows():
-    #     setattr(os, 'getuid', dummy_function)
-
     if get_is_platform_windows():
         # type ignore is needed here, because does not exist on linux
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
         # type ignore is needed here, because os.getuid does not exist on windows
-        assert hasattr(os, 'getuid')
-        _is_user_admin = os.getuid() == 0
-
-    # if get_is_platform_windows():
-    #     delattr(os, 'getuid')
+        if hasattr(os, 'getuid'):
+            _is_user_admin = os.getuid() == 0
+        else:
+            raise RuntimeError('can not get UID')
 
     return bool(_is_user_admin)
 
