@@ -23,7 +23,7 @@ def get_hostname() -> str:
     if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - would give name of the host
         # noinspection PyBroadException
         try:
-            result_wine_reg = lib_registry.get_value(key_name=r'HKLM\System\CurrentControlSet\Control\ComputerName', value_name='ComputerName')
+            result_wine_reg = lib_registry.Registry().get_value(key=r'HKLM\System\CurrentControlSet\Control\ComputerName', value_name='ComputerName')
             assert isinstance(result_wine_reg, str)
             _hostname = result_wine_reg
         except Exception:
@@ -142,7 +142,7 @@ def get_is_platform_windows_wine() -> bool:
     """
 
     if get_is_platform_windows():
-        _is_platform_windows_wine = lib_registry.key_exist(r'HKEY_LOCAL_MACHINE\Software\Wine')
+        _is_platform_windows_wine = lib_registry.Registry().key_exist(r'HKEY_LOCAL_MACHINE\Software\Wine')
     else:
         _is_platform_windows_wine = False
     return bool(_is_platform_windows_wine)

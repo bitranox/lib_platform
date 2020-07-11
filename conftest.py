@@ -1,5 +1,4 @@
 import platform
-import sys
 from typing import List
 
 collect_ignore = ['setup.py']
@@ -22,7 +21,7 @@ def pytest_cmdline_preparse(args: List[str]) -> None:
 
     # add mypy option if not pypy
     # if platform.python_implementation() != "PyPy" and sys.version_info >= (3, 5) and sys.version_info != (3, 6):  # type: ignore
-    if platform.python_implementation() != "PyPy":  # type: ignore
+    if platform.python_implementation() != "PyPy":
         additional_mypy_args = ['--mypy']
 
     additional_pycodestyle_args = ['--pycodestyle']
