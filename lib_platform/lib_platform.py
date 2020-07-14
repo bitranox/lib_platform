@@ -175,6 +175,7 @@ def get_is_user_admin() -> bool:
         # type ignore is needed here, because does not exist on linux
         _is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() == 1   # type: ignore
     else:
+        assert hasattr(os, 'getuid')
         _is_user_admin = os.getuid() == 0
 
     return bool(_is_user_admin)
