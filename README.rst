@@ -267,7 +267,7 @@ Changelog
 0.2.1
 -----
 2020-07-14 : patch release
-    - make it compatible with latest lib_winreg
+    - make it compatible with latest lib_registry
 
 
 0.2.0
