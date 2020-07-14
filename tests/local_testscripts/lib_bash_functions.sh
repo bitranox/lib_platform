@@ -124,7 +124,7 @@ function run_pytest() {
 
 function mypy_strict() {
   my_banner "mypy strict"
-  if ! python3 -m mypy "${project_root_dir}" --strict --warn-unused-ignores --implicit-reexport --follow-imports=silent; then
+  if ! python3 -m mypy "${project_root_dir}" --strict --implicit-reexport --follow-imports=silent --no-warn-unused-ignores; then
     my_banner_warning "mypy strict ERROR"
     beep
     sleep "${sleeptime_on_error}"
@@ -134,7 +134,7 @@ function mypy_strict() {
 
 function mypy_strict_with_imports() {
   my_banner "mypy strict including imports"
-  if ! python3 -m mypy "${project_root_dir}" --strict --warn-unused-ignores --implicit-reexport --follow-imports=normal; then
+  if ! python3 -m mypy "${project_root_dir}" --strict --implicit-reexport --follow-imports=normal --no-warn-unused-ignores; then
     my_banner_warning "mypy strict including imports ERROR"
     beep
     sleep "${sleeptime_on_error}"
