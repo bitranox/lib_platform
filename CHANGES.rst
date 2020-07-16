@@ -5,23 +5,19 @@ Changelog
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
 
-0.2.3
------
-development
-
-0.2.2
+1.2.2
 -----
 2020-07-16: feature release
     - fix cli test
     - enable traceback option on cli errors
 
-0.2.1
+1.2.1
 -----
 2020-07-14 : patch release
     - make it compatible with latest lib_registry
 
 
-0.2.0
+1.2.0
 -----
 2020-07-07 : service release
     - new click cli
