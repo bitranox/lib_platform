@@ -223,8 +223,9 @@ Usage from Commandline
      some platform related functions, which also work correctly on wine
 
    Options:
-     --version   Show the version and exit.
-     -h, --help  Show this message and exit.
+     --version                     Show the version and exit.
+     --traceback / --no-traceback  return traceback information on cli
+     -h, --help                    Show this message and exit.
 
    Commands:
      info  get program informations
@@ -263,6 +264,12 @@ Changelog
 - new MAJOR version for incompatible API changes,
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
+
+0.2.2
+-----
+2020-07-16: feature release
+    - fix cli test
+    - enable traceback option on cli errors
 
 0.2.1
 -----
