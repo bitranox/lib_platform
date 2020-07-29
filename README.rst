@@ -1,3 +1,7 @@
+Version 1.2.3 as of 2020-07-29, see changelog_
+
+=======================================================
+
 lib_platform
 ============
 
@@ -56,9 +60,9 @@ tested on linux "bionic" with python 3.6, 3.7, 3.8, 3.8-dev, pypy3
 ----
 
 - `Try it Online`_
-- `Installation and Upgrade`_
 - `Usage`_
 - `Usage from Commandline`_
+- `Installation and Upgrade`_
 - `Requirements`_
 - `Acknowledgements`_
 - `Contribute`_
@@ -75,6 +79,71 @@ Try it Online
 
 You might try it right away in Jupyter Notebook by using the "launch binder" badge, or click `here <https://mybinder.org/v2/gh/{{rst_include.
 repository_slug}}/master?filepath=lib_platform.ipynb>`_
+
+Usage
+-----------
+
+.. code-block:: python
+
+    >>> import lib_platform
+
+    >>> # get system as string
+    >>> system = lib_platform.system
+
+    >>> # bool is_platform_linux
+    >>> is_platform_linux = lib_platform.is_platform_linux
+
+    >>> # bool is_platform_darwin
+    >>> is_platform_darwin = lib_platform.is_platform_darwin
+
+    >>> # bool is_platform_posix
+    >>> # either darwin or linux
+    >>> is_platform_posix = lib_platform.is_platform_posix
+
+    >>> # bool is_platform_windows
+    >>> # also True for windows_xp or windows_wine
+    >>> is_platform_windows = lib_platform.is_platform_windows
+
+    >>> # bool is_platform_windows_xp
+    >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
+
+    >>> # bool is_platform_windows_wine
+    >>> is_platform_windows_wine = lib_platform.is_platform_windows_wine
+
+    >>> # bool is_platform_windows_wine_xp
+    >>> is_platform_windows_wine_xp = lib_platform.is_platform_windows_wine_xp
+
+    >>> # string username lib_platform.username
+    >>> username = lib_platform.username
+
+    >>> # string fqdn hostname
+    >>> hostname = lib_platform.hostname
+
+    >>> # string hostname short
+    >>> hostname_short = lib_platform.hostname_short
+
+    >>> # path to userhome
+    >>> path_userhome = lib_platform.path_userhome
+
+    >>> # is user administrator (has user admin rights)
+    >>> is_user_admin = lib_platform.is_user_admin
+
+Usage from Commandline
+------------------------
+
+.. code-block:: bash
+
+   Usage: lib_platform [OPTIONS] COMMAND [ARGS]...
+
+     some platform related functions, which also work correctly on wine
+
+   Options:
+     --version                     Show the version and exit.
+     --traceback / --no-traceback  return traceback information on cli
+     -h, --help                    Show this message and exit.
+
+   Commands:
+     info  get program informations
 
 Installation and Upgrade
 ------------------------
@@ -165,71 +234,6 @@ Installation and Upgrade
     # uninstall the package
     $ make uninstall
 
-Usage
------------
-
-.. code-block:: python
-
-    >>> import lib_platform
-
-    >>> # get system as string
-    >>> system = lib_platform.system
-
-    >>> # bool is_platform_linux
-    >>> is_platform_linux = lib_platform.is_platform_linux
-
-    >>> # bool is_platform_darwin
-    >>> is_platform_darwin = lib_platform.is_platform_darwin
-
-    >>> # bool is_platform_posix
-    >>> # either darwin or linux
-    >>> is_platform_posix = lib_platform.is_platform_posix
-
-    >>> # bool is_platform_windows
-    >>> # also True for windows_xp or windows_wine
-    >>> is_platform_windows = lib_platform.is_platform_windows
-
-    >>> # bool is_platform_windows_xp
-    >>> is_platform_windows_xp = lib_platform.is_platform_windows_xp
-
-    >>> # bool is_platform_windows_wine
-    >>> is_platform_windows_wine = lib_platform.is_platform_windows_wine
-
-    >>> # bool is_platform_windows_wine_xp
-    >>> is_platform_windows_wine_xp = lib_platform.is_platform_windows_wine_xp
-
-    >>> # string username lib_platform.username
-    >>> username = lib_platform.username
-
-    >>> # string fqdn hostname
-    >>> hostname = lib_platform.hostname
-
-    >>> # string hostname short
-    >>> hostname_short = lib_platform.hostname_short
-
-    >>> # path to userhome
-    >>> path_userhome = lib_platform.path_userhome
-
-    >>> # is user administrator (has user admin rights)
-    >>> is_user_admin = lib_platform.is_user_admin
-
-Usage from Commandline
-------------------------
-
-.. code-block:: bash
-
-   Usage: lib_platform [OPTIONS] COMMAND [ARGS]...
-
-     some platform related functions, which also work correctly on wine
-
-   Options:
-     --version                     Show the version and exit.
-     --traceback / --no-traceback  return traceback information on cli
-     -h, --help                    Show this message and exit.
-
-   Commands:
-     info  get program informations
-
 Requirements
 ------------
 following modules will be automatically installed :
@@ -238,6 +242,7 @@ following modules will be automatically installed :
 
     ## Project Requirements
     click
+    cli_exit_tools @ git+https://github.com/bitranox/cli_exit_tools.git
     lib_registry @ git+https://github.com/bitranox/lib_registry.git
 
 Acknowledgements
@@ -267,7 +272,9 @@ Changelog
 
 1.2.3
 -----
-development
+2020-07-29: feature release
+    - use the new pizzacutter template
+    - use cli_exit_tools
 
 1.2.2
 -----

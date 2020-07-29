@@ -1,3 +1,4 @@
 ## Project Requirements
 click
+cli_exit_tools @ git+https://github.com/bitranox/cli_exit_tools.git
 lib_registry @ git+https://github.com/bitranox/lib_registry.git
