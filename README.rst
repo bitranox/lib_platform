@@ -1,9 +1,8 @@
-Version v1.2.4 as of 2020-07-31, see changelog_
-
-=======================================================
-
 lib_platform
 ============
+
+
+Version v1.2.5 as of 2020-08-01 see `Changelog`_
 
 |travis_build| |license| |jupyter| |pypi|
 
@@ -53,7 +52,7 @@ automated tests, Travis Matrix, Documentation, Badges, etc. are managed with `Pi
 
 Python version required: 3.6.0 or newer
 
-tested on linux "bionic" with python 3.6, 3.7, 3.8, 3.8-dev, pypy3
+tested on linux "bionic" with python 3.6, 3.7, 3.8, 3.8-dev, pypy3 - architectures: amd64, ppc64le, s390x, arm64
 
 `100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, codestyle checking ,mypy static type checking ,tested under `Linux, macOS, Windows <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds and monitoring
 
@@ -270,6 +269,9 @@ Changelog
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
 
+v1.2.5
+---------
+2020-08-01: fix pypi deploy
 
 v1.2.4
 --------
