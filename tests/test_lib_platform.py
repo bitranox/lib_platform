@@ -126,7 +126,7 @@ def test_function_to_pickle() -> None:
 
 def test_if_pickable() -> None:
     pickled_object = dill.dumps(test_function_to_pickle)
-    unpickled_object = dill.loads(pickled_object)
+    dill.loads(pickled_object)
 
 
 def test_fake_xp_function() -> str:
