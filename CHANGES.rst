@@ -5,6 +5,11 @@ Changelog
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
 
+v1.2.8
+--------
+2022-11-09:
+    - fix get hostname on Windows
+
 v1.2.7
 --------
 2020-10-09: service release
