@@ -8,7 +8,7 @@ Changelog
 v1.2.8
 --------
 2022-11-09:
-    - fix get hostname on Windows
+    - fix get hostname, if something is tinkering with the loopback interface on Windows - for instance 'Solid Works 3DExperience'
 
 v1.2.7
 --------
