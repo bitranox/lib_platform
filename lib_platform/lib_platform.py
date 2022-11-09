@@ -17,10 +17,9 @@ def get_hostname() -> str:
 
     >>> result = get_hostname()
     >>> assert len(result) > 1
-
     """
 
-    if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - would give name of the host
+    if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - that would give name of the linux host
         # noinspection PyBroadException
         try:
             result_wine_reg = lib_registry.Registry().get_value(key=r'HKLM\System\CurrentControlSet\Control\ComputerName', value_name='ComputerName')
@@ -34,7 +33,7 @@ def get_hostname() -> str:
                 _hostname = result_wine_env
 
     elif get_is_platform_windows():
-        _hostname = socket.getfqdn()
+        _hostname = _get_fqdn_by_hostname()
     else:
         # this one failed on the first call sometimes - use now getfqdn() supports both IPv4 and IPv6. - and sometimes give WRONG HOSTNAME
         # _hostname = socket.gethostbyaddr(socket.gethostname())[0]
@@ -47,6 +46,22 @@ def get_hostname() -> str:
 
     _hostname = str(_hostname.lower())
     return str(_hostname)
+
+
+def _get_fqdn_by_hostname() -> str:
+    """
+    Returns fqdn by hostname
+    if You use just socket.getfqdn(), it will return 'dslauncher.3ds.com' if Solid Works 3DExperience is installed.
+    this is because they tinker with the loopback address
+    therefore we get hostname --> ip adress --> fqdn
+
+    >>> assert _get_fqdn_by_hostname()
+
+    """
+    _hostname_short = socket.gethostname()
+    _ip_address = socket.gethostbyname(_hostname_short)
+    _fqdn = socket.getfqdn(name=_ip_address)
+    return _fqdn
 
 
 def get_hostname_short() -> str:
