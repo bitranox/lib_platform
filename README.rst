@@ -2,21 +2,25 @@ lib_platform
 ============
 
 
-Version v1.2.7 as of 2020-10-09 see `Changelog`_
+Version v1.2.9 as of 2023-07-21 see `Changelog`_
 
-|travis_build| |license| |jupyter| |pypi|
+|build_badge| |codeql| |license| |jupyter| |pypi|
+|pypi-downloads| |black| |codecov| |cc_maintain| |cc_issues| |cc_coverage| |snyk|
 
-|codecov| |better_code| |cc_maintain| |cc_issues| |cc_coverage| |snyk|
 
 
-.. |travis_build| image:: https://img.shields.io/travis/bitranox/lib_platform/master.svg
-   :target: https://travis-ci.org/bitranox/lib_platform
+.. |build_badge| image:: https://github.com/bitranox/lib_platform/actions/workflows/python-package.yml/badge.svg
+   :target: https://github.com/bitranox/lib_platform/actions/workflows/python-package.yml
+
+
+.. |codeql| image:: https://github.com/bitranox/lib_platform/actions/workflows/codeql-analysis.yml/badge.svg?event=push
+   :target: https://github.com//bitranox/lib_platform/actions/workflows/codeql-analysis.yml
 
 .. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
    :target: http://en.wikipedia.org/wiki/MIT_License
 
 .. |jupyter| image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=lib_platform.ipynb
+   :target: https://mybinder.org/v2/gh/bitranox/lib_platform/master?filepath=lib_platform.ipynb
 
 .. for the pypi status link note the dashes, not the underscore !
 .. |pypi| image:: https://img.shields.io/pypi/status/lib-platform?label=PyPI%20Package
@@ -24,9 +28,6 @@ Version v1.2.7 as of 2020-10-09 see `Changelog`_
 
 .. |codecov| image:: https://img.shields.io/codecov/c/github/bitranox/lib_platform
    :target: https://codecov.io/gh/bitranox/lib_platform
-
-.. |better_code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_platform?branch=master
-   :target: https://bettercodehub.com/results/bitranox/lib_platform
 
 .. |cc_maintain| image:: https://img.shields.io/codeclimate/maintainability-percentage/bitranox/lib_platform?label=CC%20maintainability
    :target: https://codeclimate.com/github/bitranox/lib_platform/maintainability
@@ -40,24 +41,28 @@ Version v1.2.7 as of 2020-10-09 see `Changelog`_
    :target: https://codeclimate.com/github/bitranox/lib_platform/test_coverage
    :alt: Code Coverage
 
-.. |snyk| image:: https://img.shields.io/snyk/vulnerabilities/github/bitranox/lib_platform
+.. |snyk| image:: https://snyk.io/test/github/bitranox/lib_platform/badge.svg
    :target: https://snyk.io/test/github/bitranox/lib_platform
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 
+.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/lib-platform
+   :target: https://pypi.org/project/lib-platform/
+   :alt: PyPI - Downloads
+
 some platform related functions, which also work correctly on wine
 
 ----
 
-automated tests, Travis Matrix, Documentation, Badges, etc. are managed with `PizzaCutter <https://github
+automated tests, Github Actions, Documentation, Badges, etc. are managed with `PizzaCutter <https://github
 .com/bitranox/PizzaCutter>`_ (cookiecutter on steroids)
 
-Python version required: 3.6.0 or newer
+Python version required: 3.8.0 or newer
 
-tested on linux "bionic" with python 3.6, 3.7, 3.8, 3.9-dev, pypy3 - architectures: amd64, ppc64le, s390x, arm64
+tested on recent linux with python 3.8, 3.9, 3.10, 3.11, 3.12-dev, pypy-3.9, pypy-3.10 - architectures: amd64
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_platform>`_, flake8 style checking ,mypy static type checking ,tested under `Linux, macOS, Windows <https://travis-ci.org/bitranox/lib_platform>`_, automatic daily builds and monitoring
+`100% code coverage <https://codeclimate.com/github/bitranox/lib_platform/test_coverage>`_, flake8 style checking ,mypy static type checking ,tested under `Linux, macOS, Windows <https://github.com/bitranox/lib_platform/actions/workflows/python-package.yml>`_, automatic daily builds and monitoring
 
 ----
 
@@ -133,7 +138,7 @@ Usage
 Usage from Commandline
 ------------------------
 
-.. code-block:: bash
+.. code-block::
 
    Usage: lib_platform [OPTIONS] COMMAND [ARGS]...
 
@@ -153,28 +158,35 @@ Installation and Upgrade
 - Before You start, its highly recommended to update pip and setup tools:
 
 
-.. code-block:: bash
+.. code-block::
 
     python -m pip --upgrade pip
     python -m pip --upgrade setuptools
 
 - to install the latest release from PyPi via pip (recommended):
 
-.. code-block:: bash
+.. code-block::
 
     python -m pip install --upgrade lib_platform
+
+
+- to install the latest release from PyPi via pip, including test dependencies:
+
+.. code-block::
+
+    python -m pip install --upgrade lib_platform[test]
 
 - to install the latest version from github via pip:
 
 
-.. code-block:: bash
+.. code-block::
 
     python -m pip install --upgrade git+https://github.com/bitranox/lib_platform.git
 
 
 - include it into Your requirements.txt:
 
-.. code-block:: bash
+.. code-block::
 
     # Insert following line in Your requirements.txt:
     # for the latest Release on pypi:
@@ -187,14 +199,14 @@ Installation and Upgrade
     python -m pip install --upgrade -r /<path>/requirements.txt
 
 
-- to install the latest development version from source code:
+- to install the latest development version, including test dependencies from source code:
 
-.. code-block:: bash
+.. code-block::
 
     # cd ~
     $ git clone https://github.com/bitranox/lib_platform.git
     $ cd lib_platform
-    python setup.py install
+    python -m pip install -e .[test]
 
 - via makefile:
   makefiles are a very convenient way to install. Here we can do much more,
@@ -226,8 +238,8 @@ following modules will be automatically installed :
 
     ## Project Requirements
     click
-    cli_exit_tools @ git+https://github.com/bitranox/cli_exit_tools.git
-    lib_registry @ git+https://github.com/bitranox/lib_registry.git
+    cli_exit_tools
+    lib_registry
 
 Acknowledgements
 ----------------
@@ -253,6 +265,31 @@ Changelog
 - new MAJOR version for incompatible API changes,
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
+
+v1.2.9
+--------
+2023-07-21:
+    - require minimum python 3.8
+    - remove python 3.7 tests
+    - introduce PEP517 packaging standard
+    - introduce pyproject.toml build-system
+    - remove mypy.ini
+    - remove pytest.ini
+    - remove setup.cfg
+    - remove setup.py
+    - remove .bettercodehub.yml
+    - remove .travis.yml
+    - update black config
+    - clean ./tests/test_cli.py
+    - add codeql badge
+    - move 3rd_party_stubs outside the src directory to ``./.3rd_party_stubs``
+    - add pypy 3.10 tests
+    - add python 3.12-dev tests
+
+v1.2.8
+--------
+2022-11-09:
+    - fix get hostname, if something is tinkering with the loopback interface on Windows - for instance 'Solid Works 3DExperience'
 
 v1.2.7
 --------

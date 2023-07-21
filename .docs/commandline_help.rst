@@ -1,4 +1,4 @@
-.. code-block:: bash
+.. code-block::
 
    Usage: lib_platform [OPTIONS] COMMAND [ARGS]...
 

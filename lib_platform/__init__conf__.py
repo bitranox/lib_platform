@@ -1,6 +1,8 @@
+# CONF
+
 name = 'lib_platform'
 title = 'some platform related functions, which also work correctly on wine'
-version = 'v1.2.7'
+version = 'v1.2.9'
 url = 'https://github.com/bitranox/lib_platform'
 author = 'Robert Nowotny'
 author_email = 'bitranox@gmail.com'
@@ -14,7 +16,7 @@ Info for lib_platform:
 
     some platform related functions, which also work correctly on wine
 
-    Version : v1.2.7
+    Version : v1.2.9
     Url     : https://github.com/bitranox/lib_platform
     Author  : Robert Nowotny
     Email   : bitranox@gmail.com""")
