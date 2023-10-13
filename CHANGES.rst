@@ -5,6 +5,11 @@ Changelog
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
 
+v1.2.10
+--------
+2023-10-13:
+    - patch doctest for osx
+
 v1.2.9
 --------
 2023-07-21:

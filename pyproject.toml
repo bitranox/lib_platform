@@ -26,11 +26,11 @@ classifiers = [
 # dependencies - former setup.cfg "install_requires"
 # see: https://setuptools.pypa.io/en/latest/userguide/dependency_management.html
 dependencies = [
-    "click",
     "cli_exit_tools",
+    "click",
     "lib_registry",
 ]
-version = "v1.2.9"
+version = "v1.2.10"
 # seems to be not allowed anymore
 # zip-save = false
 
@@ -60,9 +60,9 @@ test = [
 
 [tool.setuptools.package-data]
 lib_platform = [
-    "py.typed",
     "*.pyi",
     "__init__.pyi",
+    "py.typed",
 ]
 
 [tool.black]

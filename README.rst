@@ -2,7 +2,7 @@ lib_platform
 ============
 
 
-Version v1.2.9 as of 2023-07-21 see `Changelog`_
+Version v1.2.10 as of 2023-10-13 see `Changelog`_
 
 |build_badge| |codeql| |license| |jupyter| |pypi|
 |pypi-downloads| |black| |codecov| |cc_maintain| |cc_issues| |cc_coverage| |snyk|
@@ -26,7 +26,10 @@ Version v1.2.9 as of 2023-07-21 see `Changelog`_
 .. |pypi| image:: https://img.shields.io/pypi/status/lib-platform?label=PyPI%20Package
    :target: https://badge.fury.io/py/lib_platform
 
-.. |codecov| image:: https://img.shields.io/codecov/c/github/bitranox/lib_platform
+.. badge until 2023-10-08:
+.. https://img.shields.io/codecov/c/github/bitranox/lib_platform
+.. badge from 2023-10-08:
+.. |codecov| image:: https://codecov.io/gh/bitranox/lib_platform/graph/badge.svg
    :target: https://codecov.io/gh/bitranox/lib_platform
 
 .. |cc_maintain| image:: https://img.shields.io/codeclimate/maintainability-percentage/bitranox/lib_platform?label=CC%20maintainability
@@ -265,6 +268,11 @@ Changelog
 - new MAJOR version for incompatible API changes,
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
+
+v1.2.10
+--------
+2023-10-13:
+    - patch doctest for osx
 
 v1.2.9
 --------

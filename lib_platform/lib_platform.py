@@ -50,12 +50,13 @@ def get_hostname() -> str:
 
 def _get_fqdn_by_hostname() -> str:
     """
-    Returns fqdn by hostname
+    Returns fqdn by hostname - will be only used on windows
     if You use just socket.getfqdn(), it will return 'dslauncher.3ds.com' if Solid Works 3DExperience is installed.
     this is because they tinker with the loopback address
     therefore we get hostname --> ip adress --> fqdn
 
-    >>> assert _get_fqdn_by_hostname()
+    >>> if get_is_platform_windows(): \
+            assert _get_fqdn_by_hostname() is not None
 
     """
     _hostname_short = socket.gethostname()
