@@ -2,7 +2,7 @@ lib_platform
 ============
 
 
-Version v1.2.10 as of 2023-10-13 see `Changelog`_
+Version v1.2.11 as of 2024-10-01 see `Changelog`_
 
 |build_badge| |codeql| |license| |jupyter| |pypi|
 |pypi-downloads| |black| |codecov| |cc_maintain| |cc_issues| |cc_coverage| |snyk|
@@ -63,7 +63,7 @@ automated tests, Github Actions, Documentation, Badges, etc. are managed with `P
 
 Python version required: 3.8.0 or newer
 
-tested on recent linux with python 3.8, 3.9, 3.10, 3.11, 3.12-dev, pypy-3.9, pypy-3.10 - architectures: amd64
+tested on recent linux with python 3.8, 3.9, 3.10, 3.11, 3.12, pypy-3.9, pypy-3.10, graalpy-24.1 - architectures: amd64
 
 `100% code coverage <https://codeclimate.com/github/bitranox/lib_platform/test_coverage>`_, flake8 style checking ,mypy static type checking ,tested under `Linux, macOS, Windows <https://github.com/bitranox/lib_platform/actions/workflows/python-package.yml>`_, automatic daily builds and monitoring
 
@@ -158,13 +158,12 @@ Usage from Commandline
 Installation and Upgrade
 ------------------------
 
-- Before You start, its highly recommended to update pip and setup tools:
+- Before You start, its highly recommended to update pip:
 
 
 .. code-block::
 
     python -m pip --upgrade pip
-    python -m pip --upgrade setuptools
 
 - to install the latest release from PyPi via pip (recommended):
 
@@ -268,6 +267,11 @@ Changelog
 - new MAJOR version for incompatible API changes,
 - new MINOR version for added functionality in a backwards compatible manner
 - new PATCH version for backwards compatible bug fixes
+
+v1.2.11
+---------
+2024-09-29:
+    - add graalpy tests
 
 v1.2.10
 --------

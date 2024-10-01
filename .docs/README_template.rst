@@ -2,7 +2,7 @@ lib_platform
 ============
 
 
-Version v1.2.10 as of 2023-10-13 see `Changelog`_
+Version v1.2.11 as of 2024-10-01 see `Changelog`_
 
 
 .. include:: ./badges.rst
