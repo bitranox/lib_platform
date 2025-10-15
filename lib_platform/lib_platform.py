@@ -1,6 +1,7 @@
 # STDLIB
 import ctypes
 import getpass
+from functools import lru_cache
 import os
 import platform
 import socket
@@ -8,9 +9,10 @@ import subprocess
 
 
 # OWN
-import lib_registry
+# import lib_registry  --> lazy loading by intent
 
 
+@lru_cache(maxsize=None)
 def get_hostname() -> str:
     """
     Returns fqdn hostname lowercase, also for WINE
@@ -22,6 +24,7 @@ def get_hostname() -> str:
     if get_is_platform_windows_wine():  # for wine get hostname not via IP Adress - that would give name of the linux host
         # noinspection PyBroadException
         try:
+            import lib_registry     # lazy loading by intent
             result_wine_reg = lib_registry.Registry().get_value(key=r'HKLM\System\CurrentControlSet\Control\ComputerName', value_name='ComputerName')
             assert isinstance(result_wine_reg, str)
             _hostname = result_wine_reg
@@ -44,10 +47,10 @@ def get_hostname() -> str:
         # this always works
         _hostname = subprocess.getoutput('uname -n')
 
-    _hostname = str(_hostname.lower())
-    return str(_hostname)
+    return str(_hostname.lower())
 
 
+@lru_cache(maxsize=None)
 def _get_fqdn_by_hostname() -> str:
     """
     Returns fqdn by hostname - will be only used on windows
@@ -65,6 +68,7 @@ def _get_fqdn_by_hostname() -> str:
     return _fqdn
 
 
+@lru_cache(maxsize=None)
 def get_hostname_short() -> str:
     """
     Returns hostname lowercase without domain part
@@ -79,6 +83,7 @@ def get_hostname_short() -> str:
     return _hostname_short
 
 
+@lru_cache(maxsize=None)
 def get_system() -> str:
     """
     gets system - but more detailed
@@ -93,6 +98,7 @@ def get_system() -> str:
     return s_system
 
 
+@lru_cache(maxsize=None)
 def _get_system_windows() -> str:
     _is_platform_windows_wine = get_is_platform_windows_wine()
     if _is_platform_windows_wine:
@@ -102,6 +108,7 @@ def _get_system_windows() -> str:
     return s_system
 
 
+@lru_cache(maxsize=None)
 def _get_system_windows_wine() -> str:
     _is_platform_windows_xp = get_is_platform_windows_xp()
     if _is_platform_windows_xp:
@@ -111,6 +118,7 @@ def _get_system_windows_wine() -> str:
     return s_system
 
 
+@lru_cache(maxsize=None)
 def _get_system_windows_not_wine() -> str:
     _is_platform_windows_xp = get_is_platform_windows_xp()
     if _is_platform_windows_xp:
@@ -120,6 +128,7 @@ def _get_system_windows_not_wine() -> str:
     return s_system
 
 
+@lru_cache(maxsize=None)
 def get_username() -> str:
     """
     Returns username lowercase
@@ -132,6 +141,7 @@ def get_username() -> str:
     return _username
 
 
+@lru_cache(maxsize=None)
 def get_is_platform_windows() -> bool:
     """
     >>> result = get_is_platform_windows()
@@ -140,17 +150,22 @@ def get_is_platform_windows() -> bool:
     return is_platform_windows
 
 
+@lru_cache(maxsize=None)
 def get_is_platform_windows_xp() -> bool:
     """
     >>> result = get_is_platform_windows_xp()
     """
 
-    if get_is_platform_windows() and platform.release().lower() == 'xp':
-        return True
-    else:
-        return False
+    if get_is_platform_windows():
+        if platform.release().lower() == 'xp':
+            return True
+        system_lower = platform.system().lower()
+        if "_xp" in system_lower:
+            return True
+    return False
 
 
+@lru_cache(maxsize=None)
 def get_is_platform_windows_wine() -> bool:
     """
     >>> result = get_is_platform_windows_wine()
@@ -158,12 +173,14 @@ def get_is_platform_windows_wine() -> bool:
     """
 
     if get_is_platform_windows():
+        import lib_registry  # lazy loading by intent
         _is_platform_windows_wine = lib_registry.Registry().key_exist(r'HKEY_LOCAL_MACHINE\Software\Wine')
     else:
         _is_platform_windows_wine = False
     return bool(_is_platform_windows_wine)
 
 
+@lru_cache(maxsize=None)
 def get_path_userhome() -> str:
     """
     >>> result = get_path_userhome()
@@ -175,6 +192,7 @@ def get_path_userhome() -> str:
     return s_userhome
 
 
+@lru_cache(maxsize=None)
 def get_is_user_admin() -> bool:
 
     """Return True if user has admin privileges.
@@ -197,17 +215,21 @@ def get_is_user_admin() -> bool:
     return bool(_is_user_admin)
 
 
-is_platform_windows = get_is_platform_windows()
-is_platform_linux = platform.system().lower() == 'linux'
-is_platform_darwin = platform.system().lower() == 'darwin'
-is_platform_posix = not get_is_platform_windows()
-is_platform_windows_xp = get_is_platform_windows_xp()
-is_platform_windows_wine = get_is_platform_windows_wine()
-is_platform_windows_wine_xp = is_platform_windows_xp and is_platform_windows_wine
-is_user_admin = get_is_user_admin()
-# 'darwin', 'linux', 'windows', 'windows_xp', 'windows_wine', 'windows_wine_xp'
-system = get_system()
-username = get_username()
-hostname = get_hostname()
-hostname_short = get_hostname_short()
-path_userhome = get_path_userhome()
+@lru_cache(maxsize=None)
+def get_is_platform_windows_wine_xp() -> bool:
+    return get_is_platform_windows_xp() and get_is_platform_windows_wine()
+
+
+@lru_cache(maxsize=None)
+def get_is_platform_linux() -> bool:
+    return get_system().lower() == 'linux'
+
+
+@lru_cache(maxsize=None)
+def get_is_platform_darwin() -> bool:
+    return get_system().lower() == 'darwin'
+
+
+@lru_cache(maxsize=None)
+def get_is_platform_posix() -> bool:
+    return not get_is_platform_windows()
